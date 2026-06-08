@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameLogic.Domain
+namespace GameLogic.Core.Models
 {
     public abstract class Entity
     {
