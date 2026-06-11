@@ -63,5 +63,18 @@ namespace ExtinctionMarine.Gameplay
 
             Destroy(gameObject);
         }
+
+     
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+          
+            if (collision.gameObject.TryGetComponent<PlayerController>(out var player))
+            {
+              
+                player.ApplyDamage(15f);
+
+                Debug.Log("[EnemyController] Raptor bites the player for 15 damage!");
+            }
+        }
     }
 }

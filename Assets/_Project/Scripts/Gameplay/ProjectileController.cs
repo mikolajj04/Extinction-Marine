@@ -62,5 +62,19 @@ namespace ExtinctionMarine.Gameplay
 
             onDeactivate?.Invoke(this);
         }
+
+        
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+           
+            if (other.TryGetComponent<EnemyController>(out var enemy))
+            {
+                
+                enemy.TakeDamage(5f);
+
+               
+                Deactivate();
+            }
+        }
     }
 }
