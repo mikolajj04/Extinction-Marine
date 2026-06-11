@@ -7,8 +7,15 @@ namespace ExtinctionMarine.Gameplay
     public class EnemyController : MonoBehaviour
     {
         [Header("Targeting")]
-        [SerializeField] private Transform playerTransform;
+        
+        private Transform playerTransform;
 
+        
+        public void SetTarget(Transform target)
+        {
+            playerTransform = target;
+            Debug.Log("[EnemyController] Target acquired. Commencing pursuit.");
+        }
 
         private RaptorEntity logicData;
         private Rigidbody2D rb;
@@ -76,5 +83,7 @@ namespace ExtinctionMarine.Gameplay
                 Debug.Log("[EnemyController] Raptor bites the player for 15 damage!");
             }
         }
+
+
     }
 }
