@@ -21,12 +21,29 @@ namespace ExtinctionMarine.Gameplay
 
         public void Initialize(Vector2 position, Vector2 direction, Action<ProjectileController> deactivateCallback)
         {
+        
+            gameObject.SetActive(true);
+
+           
             transform.position = position;
-            rb.linearVelocity = direction.normalized * speed;
             onDeactivate = deactivateCallback;
             currentLifeTime = 0f;
 
-            gameObject.SetActive(true);
+           
+            if (rb == null)
+            {
+                rb = GetComponent<Rigidbody2D>();
+            }
+
+           
+            if (rb != null)
+            {
+                rb.linearVelocity = direction.normalized * speed;
+            }
+            else
+            {
+                Debug.LogError("[ProjectileController] no Rigidbody2D!");
+            }
         }
 
         private void Update()
