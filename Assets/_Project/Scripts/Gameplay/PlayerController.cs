@@ -11,10 +11,14 @@ namespace ExtinctionMarine.Gameplay
         [Header("Movement Settings")]
         [SerializeField] private float moveSpeed = 5f;
 
+        [Header("Combat Dependencies")]
+        [SerializeField] private ProjectilePool projectilePool;
+
+
         private PlayerEntity logicData;
         private Rigidbody2D rb;
         private Vector2 moveInput;
-
+        private Camera mainCamera;
 
         public float CurrentHp => logicData.CurrentHealth;
         public float MaxHp => logicData.MaxHealth;
@@ -24,6 +28,7 @@ namespace ExtinctionMarine.Gameplay
         {
             
             rb = GetComponent<Rigidbody2D>();
+            mainCamera = Camera.main;
             logicData = new PlayerEntity();
         }
 
@@ -31,6 +36,27 @@ namespace ExtinctionMarine.Gameplay
         {
             if(IsDead) { return; }
             moveInput = value.Get<Vector2>();
+        }
+        public void OnFire(InputValue value)
+        {
+            if (IsDead || projectilePool == null) return;
+
+          
+            if (value.isPressed)
+            {
+                Shoot();
+            }
+        }
+        private void Shoot()
+        {
+           
+            Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
+            Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(mouseScreenPos);
+
+           
+            Vector2 shootDirection = (mouseWorldPos - transform.position).normalized;
+
+            projectilePool.FireProjectile(transform.position, shootDirection);
         }
 
         private void FixedUpdate()
