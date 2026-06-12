@@ -1,6 +1,7 @@
 using GameLogic.Core.Models;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using ExtinctionMarine.Gameplay.UI;
 
 namespace ExtinctionMarine.Gameplay
 {
@@ -8,6 +9,10 @@ namespace ExtinctionMarine.Gameplay
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour
     {
+
+        [Header("UI Dependencies")]
+        [SerializeField] private HealthBar healthBar;
+
         [Header("Movement Settings")]
         [SerializeField] private float moveSpeed = 5f;
 
@@ -24,12 +29,21 @@ namespace ExtinctionMarine.Gameplay
         public float MaxHp => logicData.MaxHealth;
         public bool IsDead => logicData.IsDead;
 
+
         private void Awake()
         {
             
             rb = GetComponent<Rigidbody2D>();
             mainCamera = Camera.main;
             logicData = new PlayerEntity();
+        }
+
+        private void Start()
+        {
+            if (healthBar != null)
+            {
+                healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
+            }
         }
 
         public void OnMove(InputValue value)
@@ -82,6 +96,10 @@ namespace ExtinctionMarine.Gameplay
             Debug.Log($"[Unity View] -HIT! HP before: {logicData.CurrentHealth}");
             logicData.TakeDamage(damageAmount);
             Debug.Log($"[Unity View] HP after: {logicData.CurrentHealth}");
+            if (healthBar != null)
+            {
+                healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
+            }
             if (logicData.IsDead)
             {
                 HandleDeath();
