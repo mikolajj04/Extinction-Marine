@@ -12,6 +12,7 @@ namespace ExtinctionMarine.Gameplay
 
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
+        [SerializeField] private GameOverScreen gameOverScreen;
 
         [Header("Movement Settings")]
         [SerializeField] private float moveSpeed = 5f;
@@ -109,7 +110,11 @@ namespace ExtinctionMarine.Gameplay
         private void HandleDeath()
         {
             Debug.LogWarning("[Unity View] TRIGGER GAME OVER: Marine has been killed");
-           
+            if (gameOverScreen != null)
+            {
+                gameOverScreen.ShowGameOver();
+            }
+
         }
 
     }
