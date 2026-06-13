@@ -169,5 +169,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a5412554fb9e8646bcb6be2c332eae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExtinctionMarine.Gameplay.ProjectileController
-  speed: 12
+  speed: 20
   lifeTime: 2

@@ -19,12 +19,15 @@ namespace ExtinctionMarine.Gameplay
 
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
-
+        [SerializeField] private float fireRate = 0.2f;
 
         private PlayerEntity logicData;
         private Rigidbody2D rb;
         private Vector2 moveInput;
         private Camera mainCamera;
+
+        private bool isFiring;
+        private float fireCooldownTimer;
 
         public float CurrentHp => logicData.CurrentHealth;
         public float MaxHp => logicData.MaxHealth;
@@ -56,10 +59,21 @@ namespace ExtinctionMarine.Gameplay
         {
             if (IsDead || projectilePool == null) return;
 
-          
-            if (value.isPressed)
+
+            isFiring = value.isPressed;
+        }
+        private void Update()
+        {
+            if (IsDead) return;
+
+  
+            fireCooldownTimer -= Time.deltaTime;
+
+       
+            if (isFiring && fireCooldownTimer <= 0f)
             {
                 Shoot();
+                fireCooldownTimer = fireRate;
             }
         }
         private void Shoot()

@@ -6,7 +6,7 @@ namespace ExtinctionMarine.Gameplay
     [RequireComponent(typeof(Rigidbody2D))]
     public class ProjectileController : MonoBehaviour
     {
-        [SerializeField] private float speed = 12f;
+        [SerializeField] private float speed = 20f;
         [SerializeField] private float lifeTime = 2f;
 
         private Rigidbody2D rb;
