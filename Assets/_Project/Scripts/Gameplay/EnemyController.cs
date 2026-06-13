@@ -2,11 +2,13 @@
 using UnityEngine;
 using GameLogic.Core.Models;
 
+
 namespace ExtinctionMarine.Gameplay
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class EnemyController : MonoBehaviour
     {
+        public static event Action OnEnemyKilled;
         private Transform playerTransform;
         private RaptorEntity logicData;
         private Rigidbody2D rb;
@@ -56,6 +58,7 @@ namespace ExtinctionMarine.Gameplay
         private void Die()
         {
             Debug.Log("[EnemyController] Raptor eliminated, recycling into pool.");
+            OnEnemyKilled?.Invoke();
             returnToPool?.Invoke(this);
         }
 

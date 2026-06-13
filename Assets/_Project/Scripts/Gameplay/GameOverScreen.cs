@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System;
 
 namespace ExtinctionMarine.Gameplay.UI
 {
@@ -7,6 +9,22 @@ namespace ExtinctionMarine.Gameplay.UI
     {
         [Header("UI References")]
         [SerializeField] private GameObject gameOverPanel;
+        [SerializeField] private Text killCountText;
+        [SerializeField] private Text survivalTimeText;
+        private int currentKills = 0;
+        private void OnEnable()
+        {
+            EnemyController.OnEnemyKilled += RegisterKill;
+        }
+        private void OnDisable()
+        {
+            
+            EnemyController.OnEnemyKilled -= RegisterKill;
+        }
+        private void RegisterKill()
+        {
+            currentKills++;
+        }
 
         private void Start()
         {
@@ -18,7 +36,10 @@ namespace ExtinctionMarine.Gameplay.UI
         {
             gameOverPanel.SetActive(true);
 
-            
+            TimeSpan time = TimeSpan.FromSeconds(Time.timeSinceLevelLoad);
+            survivalTimeText.text = $"YOU SURVIVED: {time.Minutes:D2}:{time.Seconds:D2}";
+            killCountText.text = $"RAPTORS KILLED: {currentKills}";
+
             Time.timeScale = 0f;
 
             Debug.Log("[GameOverScreen] Game Over triggered. Time frozen.");
