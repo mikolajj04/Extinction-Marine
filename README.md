@@ -1,4 +1,4 @@
-# ExtinctionMarine – High-Performance 2D Isometric Bullet Hell Simulation 🦖
+# ExtinctionMarine – High-Performance 2D Top-Down Bullet Hell Simulation 🦖
 
 [![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)]()
 [![.NET Standard](https://img.shields.io/badge/.NET_Standard_2.1-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)]()
