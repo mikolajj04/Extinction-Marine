@@ -10,6 +10,8 @@ namespace ExtinctionMarine.Gameplay
     public class PlayerController : MonoBehaviour
     {
 
+        [SerializeField] private HealthBar expBar; 
+        private float currentMaxExp = 100f; 
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
         [SerializeField] private GameOverScreen gameOverScreen;
@@ -47,6 +49,15 @@ namespace ExtinctionMarine.Gameplay
             if (healthBar != null)
             {
                 healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
+            }
+
+            if (expBar != null)
+            {
+                
+                currentMaxExp = logicData.Level * 100f;
+
+               
+                expBar.UpdateBar(logicData.Experience, currentMaxExp);
             }
         }
 
@@ -130,6 +141,36 @@ namespace ExtinctionMarine.Gameplay
             }
 
         }
+        public void AddExperience(float amount)
+        {
+            if (IsDead) return;
+
+           
+            logicData.AddExperience(amount);
+
+            
+            currentMaxExp = logicData.Level * 100f;
+
+            Debug.Log($"[PlayerController] Otrzymano {amount} EXP. Łącznie: {logicData.Experience} / {currentMaxExp}. Poziom: {logicData.Level}");
+
+            
+            if (expBar != null)
+            {
+                expBar.UpdateBar(logicData.Experience, currentMaxExp);
+            }
+
+            
+            if (logicData.Experience >= currentMaxExp)
+            {
+                LevelUp();
+            }
+        }
+        private void LevelUp()
+        {
+            Debug.LogWarning($"[PlayerController] LEVEL UP! Obecny poziom: {logicData.Level}");
+            
+        }
+
 
     }
 } 
