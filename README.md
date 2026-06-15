@@ -6,7 +6,11 @@
 
 > A high-performance 2D Roguelite/Bullet-Hell survival game emphasizing clean architecture, memory management, and complete separation of business logic from the game engine.
 
-![Gameplay Demo](./_Documentation/MarineShowcase.gif)
+<p align="center">
+  <img src="MarineShowcase.gif" alt="Gameplay Demo" />
+  <br>
+  <em>Core gameplay loop: Event-driven UI, zero-allocation entity pooling, and decoupled domain logic in action.</em>
+</p>
 
 ## 🏗️ Technical Showcase & Architecture
 This project was built from the ground up not just as a game, but as a demonstration of scalable C# engineering practices.
