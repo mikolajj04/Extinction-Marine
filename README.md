@@ -6,6 +6,8 @@
 
 > A high-performance 2D Roguelite/Bullet-Hell survival game emphasizing clean architecture, memory management, and complete separation of business logic from the game engine.
 
+![Gameplay Demo](./_Documentation/MarineShowcase.gif)
+
 ## 🏗️ Technical Showcase & Architecture
 This project was built from the ground up not just as a game, but as a demonstration of scalable C# engineering practices.
 ### 1. Engine-Agnostic Business Logic
