@@ -38,5 +38,8 @@ Tight coupling is avoided by utilizing the **Observer Pattern** (`Action`, `Even
 * **Engine Framework:** Unity 6 LTS (Universal Render Pipeline 2D)
 * **Input Architecture:** Unity Input System Package (Event-Driven Architecture)
 
+## ⚖️ License
+Copyright (c) 2026 Mikołaj Jussak. All rights reserved.
 
+See [`LICENSE`](./LICENSE) for more information.
   
