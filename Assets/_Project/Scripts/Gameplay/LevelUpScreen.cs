@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 namespace ExtinctionMarine.Gameplay.UI
 {
@@ -7,6 +8,19 @@ namespace ExtinctionMarine.Gameplay.UI
         [Header("UI References")]
         [SerializeField] private GameObject levelUpPanel;
 
+        public static event Action OnFireRateUpgrade;
+        public static event Action OnSpeedUpgrade;
+
+
+        private void OnEnable()
+        {
+            
+            PlayerController.OnPlayerLevelUp += ShowLevelUpScreen;
+        }
+        private void OnDisable()
+        {
+            PlayerController.OnPlayerLevelUp -= ShowLevelUpScreen;
+        }
         private void Start()
         {
             
@@ -26,14 +40,14 @@ namespace ExtinctionMarine.Gameplay.UI
         public void OnFireRateUpgradeChosen()
         {
             Debug.Log("[LevelUpScreen] Fire Rate upgrade selected.");
-            
+            OnFireRateUpgrade?.Invoke();
             ResumeGame();
         }
 
         public void OnSpeedUpgradeChosen()
         {
             Debug.Log("[LevelUpScreen] Speed upgrade selected.");
-            
+            OnSpeedUpgrade?.Invoke();
             ResumeGame();
         }
 

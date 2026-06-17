@@ -2,6 +2,7 @@ using GameLogic.Core.Models;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ExtinctionMarine.Gameplay.UI;
+using System;
 
 namespace ExtinctionMarine.Gameplay
 {
@@ -27,6 +28,7 @@ namespace ExtinctionMarine.Gameplay
         private Rigidbody2D rb;
         private Vector2 moveInput;
         private Camera mainCamera;
+        public static event Action OnPlayerLevelUp;
 
         private bool isFiring;
         private float fireCooldownTimer;
@@ -36,6 +38,35 @@ namespace ExtinctionMarine.Gameplay
         public bool IsDead => logicData.IsDead;
 
 
+        private void OnEnable()
+        {
+            LevelUpScreen.OnFireRateUpgrade += ApplyFireRateUpgrade;
+            LevelUpScreen.OnSpeedUpgrade += ApplySpeedUpgrade;
+        }
+        private void OnDisable()
+        {
+            LevelUpScreen.OnFireRateUpgrade -= ApplyFireRateUpgrade;
+            LevelUpScreen.OnSpeedUpgrade -= ApplySpeedUpgrade;
+        }
+        private void LevelUp()
+        {
+            Debug.LogWarning($"[PlayerController] LEVEL UP! Current level: {logicData.Level}");
+            OnPlayerLevelUp?.Invoke();
+        }
+        private void ApplyFireRateUpgrade()
+        {
+           
+           fireRate *= 0.9f; 
+
+            Debug.LogWarning("[PlayerController] Zastosowano ulepszenie: Szybkostrzelność wzrosła!");
+        }
+        private void ApplySpeedUpgrade()
+        {
+            
+             moveSpeed += 1.5f;
+
+            Debug.LogWarning("[PlayerController] Zastosowano ulepszenie: Prędkość ruchu wzrosła!");
+        }
         private void Awake()
         {
             
@@ -165,12 +196,7 @@ namespace ExtinctionMarine.Gameplay
                 LevelUp();
             }
         }
-        private void LevelUp()
-        {
-            Debug.LogWarning($"[PlayerController] LEVEL UP! Obecny poziom: {logicData.Level}");
-            
-        }
-
+        
 
     }
 } 
