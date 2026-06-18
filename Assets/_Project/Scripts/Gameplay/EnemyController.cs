@@ -11,7 +11,7 @@ namespace ExtinctionMarine.Gameplay
         [Header("Combat Settings")]
         [SerializeField] private float biteDamage = 15f;
         [SerializeField] private float attackCooldown = 1f;
-        public static event Action OnEnemyKilled;
+        public static event Action<Vector3> OnEnemyKilled;
         private Transform playerTransform;
         private RaptorEntity logicData;
         private Rigidbody2D rb;
@@ -63,10 +63,9 @@ namespace ExtinctionMarine.Gameplay
         private void Die()
         {
             Debug.Log("[EnemyController] Raptor eliminated, recycling into pool.");
-            OnEnemyKilled?.Invoke();
+            OnEnemyKilled?.Invoke(transform.position); 
             returnToPool?.Invoke(this);
         }
-
 
         private void OnCollisionStay2D(Collision2D collision)
         {

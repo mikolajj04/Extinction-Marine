@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace GameLogic.Core.Models
@@ -25,6 +26,11 @@ namespace GameLogic.Core.Models
         protected override void Die()
         {
 
+        }
+        public void LevelUp()
+        {
+            Level++;
+           
         }
 
     }

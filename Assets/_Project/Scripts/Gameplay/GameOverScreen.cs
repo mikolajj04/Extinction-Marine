@@ -21,7 +21,7 @@ namespace ExtinctionMarine.Gameplay.UI
             
             EnemyController.OnEnemyKilled -= RegisterKill;
         }
-        private void RegisterKill()
+        private void RegisterKill(Vector3 deathPosition)
         {
             currentKills++;
         }

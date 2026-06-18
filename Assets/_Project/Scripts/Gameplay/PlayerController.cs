@@ -2,6 +2,7 @@ using GameLogic.Core.Models;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ExtinctionMarine.Gameplay.UI;
+using System;
 
 namespace ExtinctionMarine.Gameplay
 {
@@ -10,6 +11,7 @@ namespace ExtinctionMarine.Gameplay
     public class PlayerController : MonoBehaviour
     {
 
+        [SerializeField] private HealthBar expBar; 
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
         [SerializeField] private GameOverScreen gameOverScreen;
@@ -25,6 +27,7 @@ namespace ExtinctionMarine.Gameplay
         private Rigidbody2D rb;
         private Vector2 moveInput;
         private Camera mainCamera;
+        public static event Action OnPlayerLevelUp;
 
         private bool isFiring;
         private float fireCooldownTimer;
@@ -34,6 +37,30 @@ namespace ExtinctionMarine.Gameplay
         public bool IsDead => logicData.IsDead;
 
 
+        private void OnEnable()
+        {
+            LevelUpScreen.OnFireRateUpgrade += ApplyFireRateUpgrade;
+            LevelUpScreen.OnSpeedUpgrade += ApplySpeedUpgrade;
+        }
+        private void OnDisable()
+        {
+            LevelUpScreen.OnFireRateUpgrade -= ApplyFireRateUpgrade;
+            LevelUpScreen.OnSpeedUpgrade -= ApplySpeedUpgrade;
+        }
+        private void ApplyFireRateUpgrade()
+        {
+           
+           fireRate *= 0.9f; 
+
+            Debug.LogWarning("[PlayerController] Zastosowano ulepszenie: Szybkostrzelność wzrosła!");
+        }
+        private void ApplySpeedUpgrade()
+        {
+            
+             moveSpeed += 1.5f;
+
+            Debug.LogWarning("[PlayerController] Zastosowano ulepszenie: Prędkość ruchu wzrosła!");
+        }
         private void Awake()
         {
             
@@ -48,6 +75,8 @@ namespace ExtinctionMarine.Gameplay
             {
                 healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
             }
+
+            UpdateExpUI();
         }
 
         public void OnMove(InputValue value)
@@ -75,6 +104,7 @@ namespace ExtinctionMarine.Gameplay
                 Shoot();
                 fireCooldownTimer = fireRate;
             }
+            
         }
         private void Shoot()
         {
@@ -93,6 +123,7 @@ namespace ExtinctionMarine.Gameplay
             if (IsDead)
             {
                 rb.linearVelocity = Vector2.zero;
+                return;
             }
             MovePlayer();
         }
@@ -130,6 +161,42 @@ namespace ExtinctionMarine.Gameplay
             }
 
         }
+
+        private void UpdateExpUI()
+        {
+            if (expBar == null) return;
+
+            float expNeededForCurrentLevel = logicData.Level * 100f;
+            float previousLevelMaxExp = (logicData.Level - 1) * 100f;
+
+            float expProgressInThisLevel = logicData.Experience - previousLevelMaxExp;
+            float totalExpRequiredForThisLevel = expNeededForCurrentLevel - previousLevelMaxExp;
+
+            expBar.UpdateBar(expProgressInThisLevel, totalExpRequiredForThisLevel);
+        }
+        public void AddExperience(float amount)
+        {
+            if (IsDead) return;
+
+            logicData.AddExperience(amount);
+
+            
+            float expNeededForCurrentLevel = logicData.Level * 100f;
+
+           
+            if (logicData.Experience >= expNeededForCurrentLevel)
+            {
+                logicData.LevelUp();
+                OnPlayerLevelUp?.Invoke();
+            }
+
+           
+            UpdateExpUI();
+        }
+
+
+
+
 
     }
 } 
