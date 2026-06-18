@@ -48,11 +48,6 @@ namespace ExtinctionMarine.Gameplay
             LevelUpScreen.OnFireRateUpgrade -= ApplyFireRateUpgrade;
             LevelUpScreen.OnSpeedUpgrade -= ApplySpeedUpgrade;
         }
-        private void LevelUp()
-        {
-            Debug.LogWarning($"[PlayerController] LEVEL UP! Current level: {logicData.Level}");
-            OnPlayerLevelUp?.Invoke();
-        }
         private void ApplyFireRateUpgrade()
         {
            
@@ -117,6 +112,7 @@ namespace ExtinctionMarine.Gameplay
                 Shoot();
                 fireCooldownTimer = fireRate;
             }
+            
         }
         private void Shoot()
         {
@@ -172,31 +168,42 @@ namespace ExtinctionMarine.Gameplay
             }
 
         }
+
+        private void UpdateExpUI()
+        {
+            if (expBar == null) return;
+
+            float expNeededForCurrentLevel = logicData.Level * 100f;
+            float previousLevelMaxExp = (logicData.Level - 1) * 100f;
+
+            float expProgressInThisLevel = logicData.Experience - previousLevelMaxExp;
+            float totalExpRequiredForThisLevel = expNeededForCurrentLevel - previousLevelMaxExp;
+
+            expBar.UpdateBar(expProgressInThisLevel, totalExpRequiredForThisLevel);
+        }
         public void AddExperience(float amount)
         {
             if (IsDead) return;
 
-           
             logicData.AddExperience(amount);
 
             
-            currentMaxExp = logicData.Level * 100f;
+            float expNeededForCurrentLevel = logicData.Level * 100f;
 
-            Debug.Log($"[PlayerController] Otrzymano {amount} EXP. Łącznie: {logicData.Experience} / {currentMaxExp}. Poziom: {logicData.Level}");
-
-            
-            if (expBar != null)
+           
+            if (logicData.Experience >= expNeededForCurrentLevel)
             {
-                expBar.UpdateBar(logicData.Experience, currentMaxExp);
+                logicData.LevelUp();
+                OnPlayerLevelUp?.Invoke();
             }
 
-            
-            if (logicData.Experience >= currentMaxExp)
-            {
-                LevelUp();
-            }
+           
+            UpdateExpUI();
         }
-        
+
+
+
+
 
     }
 } 
