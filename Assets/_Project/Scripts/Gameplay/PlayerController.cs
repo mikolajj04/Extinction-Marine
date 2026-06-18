@@ -12,7 +12,6 @@ namespace ExtinctionMarine.Gameplay
     {
 
         [SerializeField] private HealthBar expBar; 
-        private float currentMaxExp = 100f; 
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
         [SerializeField] private GameOverScreen gameOverScreen;
@@ -77,14 +76,7 @@ namespace ExtinctionMarine.Gameplay
                 healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
             }
 
-            if (expBar != null)
-            {
-                
-                currentMaxExp = logicData.Level * 100f;
-
-               
-                expBar.UpdateBar(logicData.Experience, currentMaxExp);
-            }
+            UpdateExpUI();
         }
 
         public void OnMove(InputValue value)
@@ -131,6 +123,7 @@ namespace ExtinctionMarine.Gameplay
             if (IsDead)
             {
                 rb.linearVelocity = Vector2.zero;
+                return;
             }
             MovePlayer();
         }
