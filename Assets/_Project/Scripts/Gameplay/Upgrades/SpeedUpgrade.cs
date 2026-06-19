@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ExtinctionMarine.Gameplay;
 using ExtinctionMarine.Gameplay.Upgrades;
+using UnityEngine;
 
 namespace Assets._Project.Scripts.Gameplay.Upgrades
 {
@@ -14,6 +15,7 @@ namespace Assets._Project.Scripts.Gameplay.Upgrades
         public void Apply(PlayerController player)
         {
             player.MoveSpeed += 1.5f;
+            Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Marine speed increased to {player.MoveSpeed}!");
         }
     }
 }
