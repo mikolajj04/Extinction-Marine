@@ -166,8 +166,8 @@ namespace ExtinctionMarine.Gameplay
         {
             if (expBar == null) return;
 
-            float expNeededForCurrentLevel = logicData.Level * 100f;
-            float previousLevelMaxExp = (logicData.Level - 1) * 100f;
+            float expNeededForCurrentLevel = GetExpRequiredForLevel(logicData.Level);
+            float previousLevelMaxExp = GetExpRequiredForLevel(logicData.Level-1);
 
             float expProgressInThisLevel = logicData.Experience - previousLevelMaxExp;
             float totalExpRequiredForThisLevel = expNeededForCurrentLevel - previousLevelMaxExp;
@@ -180,8 +180,8 @@ namespace ExtinctionMarine.Gameplay
 
             logicData.AddExperience(amount);
 
-            
-            float expNeededForCurrentLevel = logicData.Level * 100f;
+
+            float expNeededForCurrentLevel = GetExpRequiredForLevel(logicData.Level);
 
            
             if (logicData.Experience >= expNeededForCurrentLevel)
@@ -196,7 +196,13 @@ namespace ExtinctionMarine.Gameplay
 
 
 
-
+        private float GetExpRequiredForLevel(int level)
+        {
+            if (level <= 0) return 0f;
+            return level * 50f * (level + 0.5f);
+        }
 
     }
+
+
 } 
