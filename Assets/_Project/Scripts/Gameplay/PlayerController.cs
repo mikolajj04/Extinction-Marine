@@ -19,9 +19,20 @@ namespace ExtinctionMarine.Gameplay
         [Header("Movement Settings")]
         [SerializeField] private float moveSpeed = 5f;
 
+        public float MoveSpeed
+        {
+            get => moveSpeed;
+            set => moveSpeed = value;
+        }
+
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
         [SerializeField] private float fireRate = 0.2f;
+        public float FireRate
+        {
+            get => fireRate;
+            set => fireRate = value;
+        }
 
         private PlayerEntity logicData;
         private Rigidbody2D rb;

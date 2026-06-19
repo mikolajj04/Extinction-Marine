@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ExtinctionMarine.Gameplay;
 
-namespace Assets._Project.Scripts.Gameplay.Upgrades
+namespace ExtinctionMarine.Gameplay.Upgrades
 {
     public interface IUpgrade
     {
