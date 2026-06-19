@@ -15,6 +15,7 @@ namespace ExtinctionMarine.Gameplay
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
         [SerializeField] private GameOverScreen gameOverScreen;
+        
 
         [Header("Movement Settings")]
         [SerializeField] private float moveSpeed = 5f;
@@ -35,6 +36,8 @@ namespace ExtinctionMarine.Gameplay
         }
 
         private PlayerEntity logicData;
+
+        public PlayerEntity LogicData => logicData;
         private Rigidbody2D rb;
         private Vector2 moveInput;
         private Camera mainCamera;
@@ -48,30 +51,9 @@ namespace ExtinctionMarine.Gameplay
         public bool IsDead => logicData.IsDead;
 
 
-        private void OnEnable()
-        {
-            LevelUpScreen.OnFireRateUpgrade += ApplyFireRateUpgrade;
-            LevelUpScreen.OnSpeedUpgrade += ApplySpeedUpgrade;
-        }
-        private void OnDisable()
-        {
-            LevelUpScreen.OnFireRateUpgrade -= ApplyFireRateUpgrade;
-            LevelUpScreen.OnSpeedUpgrade -= ApplySpeedUpgrade;
-        }
-        private void ApplyFireRateUpgrade()
-        {
-           
-           fireRate *= 0.9f; 
-
-            Debug.LogWarning("[PlayerController] Zastosowano ulepszenie: Szybkostrzelność wzrosła!");
-        }
-        private void ApplySpeedUpgrade()
-        {
-            
-             moveSpeed += 1.5f;
-
-            Debug.LogWarning("[PlayerController] Zastosowano ulepszenie: Prędkość ruchu wzrosła!");
-        }
+       
+      
+      
         private void Awake()
         {
             
