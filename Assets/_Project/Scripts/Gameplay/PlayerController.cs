@@ -145,6 +145,22 @@ namespace ExtinctionMarine.Gameplay
             }
 
         }
+        public void ApplyHeal(float amount)
+        {
+            if (logicData == null || IsDead) return;
+
+            
+            logicData.Heal(amount);
+
+            
+            if (healthBar != null)
+            {
+                healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
+            }
+
+            Debug.Log($"[Unity View] +HEAL! Marine's HP: {logicData.CurrentHealth}");
+        }
+
         private void HandleDeath()
         {
             Debug.LogWarning("[Unity View] TRIGGER GAME OVER: Marine has been killed");

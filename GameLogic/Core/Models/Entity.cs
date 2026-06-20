@@ -40,6 +40,7 @@ namespace GameLogic.Core.Models
             {
                 CurrentHealth = MaxHealth;
             }
+          
         }
 
 
