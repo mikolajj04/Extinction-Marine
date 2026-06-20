@@ -1,61 +1,79 @@
 ﻿using UnityEngine;
-using System;
+using UnityEngine.UI;
+using TMPro; 
+using System.Collections.Generic;
+using ExtinctionMarine.Gameplay.Upgrades;
 
 namespace ExtinctionMarine.Gameplay.UI
 {
     public class LevelUpScreen : MonoBehaviour
     {
-        [Header("UI References")]
+        [Header("Systems")]
         [SerializeField] private GameObject levelUpPanel;
+        [SerializeField] private UpgradeManager upgradeManager; 
 
-        public static event Action OnFireRateUpgrade;
-        public static event Action OnSpeedUpgrade;
+        [Header("UI elements [Cards]")]
+     
+        [SerializeField] private Button[] upgradeButtons;
+        [SerializeField] private TextMeshProUGUI[] titleTexts;
+        [SerializeField] private TextMeshProUGUI[] descriptionTexts;
 
+       
+        private List<IUpgrade> currentChoices;
 
         private void OnEnable()
         {
-            
             PlayerController.OnPlayerLevelUp += ShowLevelUpScreen;
         }
+
         private void OnDisable()
         {
             PlayerController.OnPlayerLevelUp -= ShowLevelUpScreen;
         }
+
         private void Start()
         {
-            
             levelUpPanel.SetActive(false);
         }
 
-        public void ShowLevelUpScreen()
+        private void ShowLevelUpScreen()
         {
+            Time.timeScale = 0f; 
+
+            
+            currentChoices = upgradeManager.GetRandomUpgrades(upgradeButtons.Length);
+
+          
+            for (int i = 0; i < upgradeButtons.Length; i++)
+            {
+                if (i < currentChoices.Count)
+                {
+                    
+                    upgradeButtons[i].gameObject.SetActive(true);
+                    titleTexts[i].text = currentChoices[i].Title;
+                    descriptionTexts[i].text = currentChoices[i].Description;
+                }
+                else
+                {
+                    
+                    upgradeButtons[i].gameObject.SetActive(false);
+                }
+            }
+
             levelUpPanel.SetActive(true);
+        }
+
+       
+        public void OnUpgradeButtonClicked(int buttonIndex)
+        {
+            if (buttonIndex >= currentChoices.Count) return;
 
             
-            Time.timeScale = 0f;
-            Debug.Log("[LevelUpScreen] System upgrade initialized. Time frozen.");
-        }
+            IUpgrade chosenUpgrade = currentChoices[buttonIndex];
+            upgradeManager.SelectUpgrade(chosenUpgrade);
 
-      
-        public void OnFireRateUpgradeChosen()
-        {
-            Debug.Log("[LevelUpScreen] Fire Rate upgrade selected.");
-            OnFireRateUpgrade?.Invoke();
-            ResumeGame();
-        }
-
-        public void OnSpeedUpgradeChosen()
-        {
-            Debug.Log("[LevelUpScreen] Speed upgrade selected.");
-            OnSpeedUpgrade?.Invoke();
-            ResumeGame();
-        }
-
-        private void ResumeGame()
-        {
+            
             levelUpPanel.SetActive(false);
-
-           
             Time.timeScale = 1f;
         }
     }

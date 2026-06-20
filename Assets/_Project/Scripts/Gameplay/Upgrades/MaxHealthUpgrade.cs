@@ -5,7 +5,7 @@ using ExtinctionMarine.Gameplay;
 using ExtinctionMarine.Gameplay.Upgrades;
 using UnityEngine;
 
-namespace Assets._Project.Scripts.Gameplay.Upgrades
+namespace ExtinctionMarine.Gameplay.Upgrades
 {
     internal class MaxHealthUpgrade : IUpgrade
     {
