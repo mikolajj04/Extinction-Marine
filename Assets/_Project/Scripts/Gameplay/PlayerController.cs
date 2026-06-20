@@ -15,15 +15,29 @@ namespace ExtinctionMarine.Gameplay
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
         [SerializeField] private GameOverScreen gameOverScreen;
+        
 
         [Header("Movement Settings")]
         [SerializeField] private float moveSpeed = 5f;
 
+        public float MoveSpeed
+        {
+            get => moveSpeed;
+            set => moveSpeed = value;
+        }
+
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
         [SerializeField] private float fireRate = 0.2f;
+        public float FireRate
+        {
+            get => fireRate;
+            set => fireRate = value;
+        }
 
         private PlayerEntity logicData;
+
+        public PlayerEntity LogicData => logicData;
         private Rigidbody2D rb;
         private Vector2 moveInput;
         private Camera mainCamera;
@@ -37,30 +51,9 @@ namespace ExtinctionMarine.Gameplay
         public bool IsDead => logicData.IsDead;
 
 
-        private void OnEnable()
-        {
-            LevelUpScreen.OnFireRateUpgrade += ApplyFireRateUpgrade;
-            LevelUpScreen.OnSpeedUpgrade += ApplySpeedUpgrade;
-        }
-        private void OnDisable()
-        {
-            LevelUpScreen.OnFireRateUpgrade -= ApplyFireRateUpgrade;
-            LevelUpScreen.OnSpeedUpgrade -= ApplySpeedUpgrade;
-        }
-        private void ApplyFireRateUpgrade()
-        {
-           
-           fireRate *= 0.9f; 
-
-            Debug.LogWarning("[PlayerController] Zastosowano ulepszenie: Szybkostrzelność wzrosła!");
-        }
-        private void ApplySpeedUpgrade()
-        {
-            
-             moveSpeed += 1.5f;
-
-            Debug.LogWarning("[PlayerController] Zastosowano ulepszenie: Prędkość ruchu wzrosła!");
-        }
+       
+      
+      
         private void Awake()
         {
             
@@ -152,6 +145,22 @@ namespace ExtinctionMarine.Gameplay
             }
 
         }
+        public void ApplyHeal(float amount)
+        {
+            if (logicData == null || IsDead) return;
+
+            
+            logicData.Heal(amount);
+
+            
+            if (healthBar != null)
+            {
+                healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
+            }
+
+            Debug.Log($"[Unity View] +HEAL! Marine's HP: {logicData.CurrentHealth}");
+        }
+
         private void HandleDeath()
         {
             Debug.LogWarning("[Unity View] TRIGGER GAME OVER: Marine has been killed");

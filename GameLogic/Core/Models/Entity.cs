@@ -30,6 +30,18 @@ namespace GameLogic.Core.Models
 
         protected abstract void Die();
 
+        public virtual void Heal(float amount)
+        {
+            if (CurrentHealth + amount < MaxHealth)
+            {
+                CurrentHealth += amount;
+            }
+            else
+            {
+                CurrentHealth = MaxHealth;
+            }
+          
+        }
 
 
     }
