@@ -15,12 +15,13 @@ namespace ExtinctionMarine.Gameplay.Upgrades
 
         private void Awake()
         {
-           
+
             upgradePool = new List<IUpgrade>
             {
                 new FireRateUpgrade(),
                 new SpeedUpgrade(),
-                new HealUpgrade()
+                new HealUpgrade(),
+                new MaxHealthUpgrade(),
             };
         }
 
