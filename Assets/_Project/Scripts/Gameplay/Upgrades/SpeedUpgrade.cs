@@ -14,8 +14,8 @@ namespace ExtinctionMarine.Gameplay.Upgrades
 
         public void Apply(PlayerController player)
         {
-            player.MoveSpeed += 1.2f;
-            Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Marine speed increased to {player.MoveSpeed}!");
+            player.ApplySpeedUpgrade(1.2f);
+           
         }
     }
 }

@@ -12,9 +12,9 @@ namespace ExtinctionMarine.Gameplay.Upgrades
         public void Apply(PlayerController player)
         {
 
-            player.FireRate *= 0.90f;
+            player.ApplyFireRateUpgrade(0.10f);
 
-            Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Fire rate increased to {player.FireRate}!");
+           
         }
     }
 }
