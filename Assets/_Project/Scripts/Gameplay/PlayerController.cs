@@ -15,8 +15,9 @@ namespace ExtinctionMarine.Gameplay
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
         [SerializeField] private GameOverScreen gameOverScreen;
-        
 
+        [Header("Collection Settings")]
+        [SerializeField] private CircleCollider2D magnetCollider;
         [Header("Movement Settings")]
         [SerializeField] private float moveSpeed = 5f;
 
@@ -24,8 +25,8 @@ namespace ExtinctionMarine.Gameplay
 
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
-        [SerializeField] private float fireRate = 0.2f;
-        public float FireRate { get; private set; }
+        [SerializeField] private float fireRate = 0.3f;
+        public float FireRate { get; private set; } // Fire Cooldown
 
         private PlayerEntity logicData;
 
@@ -45,12 +46,14 @@ namespace ExtinctionMarine.Gameplay
 
        //Upgrade Gates:
 
-        public void ApplyFireRateUpgrade(float amount)
+        public void ApplyFireRateUpgrade(float percentageAmount)
         {
-            FireRate -= amount;
+
+            FireRate *= (1f - percentageAmount); //FireRate as Fire cooldown
             Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Fire rate increased to {FireRate}!");
 
         }
+
         public void ApplyHeal(float amount)
         {
             if (logicData == null || IsDead) return;
@@ -85,7 +88,7 @@ namespace ExtinctionMarine.Gameplay
         }
 
         
-        
+      
       
       
         private void Awake()
@@ -94,6 +97,9 @@ namespace ExtinctionMarine.Gameplay
             rb = GetComponent<Rigidbody2D>();
             mainCamera = Camera.main;
             logicData = new PlayerEntity();
+
+            MoveSpeed = moveSpeed;
+            FireRate = fireRate;
         }
 
         private void Start()
@@ -129,7 +135,7 @@ namespace ExtinctionMarine.Gameplay
             if (isFiring && fireCooldownTimer <= 0f)
             {
                 Shoot();
-                fireCooldownTimer = fireRate;
+                fireCooldownTimer = FireRate;
             }
             
         }
@@ -158,7 +164,7 @@ namespace ExtinctionMarine.Gameplay
         private void MovePlayer()
         {
            
-            Vector2 movement = moveInput.normalized * moveSpeed;
+            Vector2 movement = moveInput.normalized * MoveSpeed;
 
             rb.linearVelocity = movement;
         }
