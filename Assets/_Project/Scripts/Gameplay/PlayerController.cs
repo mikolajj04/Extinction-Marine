@@ -15,25 +15,18 @@ namespace ExtinctionMarine.Gameplay
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
         [SerializeField] private GameOverScreen gameOverScreen;
-        
 
+        [Header("Collection Settings")]
+        [SerializeField] private CircleCollider2D magnetCollider;
         [Header("Movement Settings")]
         [SerializeField] private float moveSpeed = 5f;
 
-        public float MoveSpeed
-        {
-            get => moveSpeed;
-            set => moveSpeed = value;
-        }
+        public float MoveSpeed { get; private set; }
 
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
-        [SerializeField] private float fireRate = 0.2f;
-        public float FireRate
-        {
-            get => fireRate;
-            set => fireRate = value;
-        }
+        [SerializeField] private float fireRate = 0.3f;
+        public float FireRate { get; private set; } // Fire Cooldown
 
         private PlayerEntity logicData;
 
@@ -51,7 +44,51 @@ namespace ExtinctionMarine.Gameplay
         public bool IsDead => logicData.IsDead;
 
 
-       
+       //Upgrade Gates:
+
+        public void ApplyFireRateUpgrade(float percentageAmount)
+        {
+
+            FireRate *= (1f - percentageAmount); //FireRate as Fire cooldown
+            Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Fire rate increased to {FireRate}!");
+
+        }
+
+        public void ApplyHeal(float amount)
+        {
+            if (logicData == null || IsDead) return;
+
+            
+            logicData.Heal(amount);
+
+            
+            if (healthBar != null)
+            {
+                healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
+            }
+
+            Debug.Log($"[PlayerController]pgrade has been choosen!: Healed by {amount}, current HP: {logicData.CurrentHealth}");
+        }
+
+        public void ApplyMaxHealthIncrease(float amount)
+        {
+            if (logicData == null || IsDead) return;
+            logicData.IncreaseMaxHealth(amount);
+            if (healthBar != null)
+            {
+                healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
+                Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Marine max-health increased! current HP: {logicData.MaxHealth}");
+            }
+        }
+
+        public void ApplySpeedUpgrade(float amount)
+        {
+            MoveSpeed += amount;
+            Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Marine speed increased to {MoveSpeed}!");
+        }
+
+        
+      
       
       
         private void Awake()
@@ -60,6 +97,9 @@ namespace ExtinctionMarine.Gameplay
             rb = GetComponent<Rigidbody2D>();
             mainCamera = Camera.main;
             logicData = new PlayerEntity();
+
+            MoveSpeed = moveSpeed;
+            FireRate = fireRate;
         }
 
         private void Start()
@@ -95,7 +135,7 @@ namespace ExtinctionMarine.Gameplay
             if (isFiring && fireCooldownTimer <= 0f)
             {
                 Shoot();
-                fireCooldownTimer = fireRate;
+                fireCooldownTimer = FireRate;
             }
             
         }
@@ -124,7 +164,7 @@ namespace ExtinctionMarine.Gameplay
         private void MovePlayer()
         {
            
-            Vector2 movement = moveInput.normalized * moveSpeed;
+            Vector2 movement = moveInput.normalized * MoveSpeed;
 
             rb.linearVelocity = movement;
         }
@@ -145,21 +185,8 @@ namespace ExtinctionMarine.Gameplay
             }
 
         }
-        public void ApplyHeal(float amount)
-        {
-            if (logicData == null || IsDead) return;
 
-            
-            logicData.Heal(amount);
-
-            
-            if (healthBar != null)
-            {
-                healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
-            }
-
-            Debug.Log($"[Unity View] +HEAL! Marine's HP: {logicData.CurrentHealth}");
-        }
+     
 
         private void HandleDeath()
         {

@@ -42,6 +42,12 @@ namespace GameLogic.Core.Models
             }
           
         }
+        public virtual void IncreaseMaxHealth(float amount)
+        {
+            if (IsDead) return;
+            MaxHealth += amount;
+            CurrentHealth += amount;
+        }
 
 
     }

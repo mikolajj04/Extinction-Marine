@@ -11,7 +11,7 @@ namespace ExtinctionMarine.Gameplay
 
         [Header("Spawn Settings")]
         [SerializeField] private float spawnInterval = 1f;
-        [SerializeField] private float spawnRadius = 30f;
+        [SerializeField] private float spawnRadius = 40f;
 
         private void Start()
         {

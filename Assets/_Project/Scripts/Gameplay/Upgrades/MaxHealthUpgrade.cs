@@ -10,12 +10,11 @@ namespace ExtinctionMarine.Gameplay.Upgrades
     internal class MaxHealthUpgrade : IUpgrade
     {
         public string Title => "[ PAIN TOLERANCE! ]";
-        public string Description => "Gain +30 max HP";
+        public string Description => "Gain and heal +20 max HP";
 
         public void Apply(PlayerController player)
         {
-           
-            Debug.LogWarning("[PlayerController] Upgrade has been choosen!: Marine stimmed! +80HP!");
+            player.ApplyMaxHealthIncrease(20);
 
         }
     }
