@@ -71,7 +71,7 @@ namespace ExtinctionMarine.Gameplay
         }
 
         public void ApplyMaxHealthIncrease(float amount)
-        {
+        { 
             if (logicData == null || IsDead) return;
             logicData.IncreaseMaxHealth(amount);
             if (healthBar != null)
