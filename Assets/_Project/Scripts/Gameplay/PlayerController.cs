@@ -20,7 +20,7 @@ namespace ExtinctionMarine.Gameplay
         [SerializeField] private CircleCollider2D magnetCollider;
         [Header("Movement Settings")]
         [SerializeField] private float moveSpeed = 5f;
-
+        public int ProjectileCount { get; private set; } = 1;
         public float MoveSpeed { get; private set; }
 
         [Header("Combat Dependencies")]
@@ -102,6 +102,12 @@ namespace ExtinctionMarine.Gameplay
             }
         }
 
+        public void ApplySplitShotUpgrade()
+        {
+            ProjectileCount++;
+            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Brand new gun installed! Number of guns: {ProjectileCount}");
+        }
+
 
         private void Awake()
         {
@@ -158,9 +164,39 @@ namespace ExtinctionMarine.Gameplay
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(mouseScreenPos);
 
            
-            Vector2 shootDirection = (mouseWorldPos - transform.position).normalized;
+            Vector2 baseDirection = (mouseWorldPos - transform.position).normalized;
+            if (ProjectileCount <= 1)
+            {
+                projectilePool.FireProjectile(transform.position, baseDirection);
+                return;
+            }
+            float angleStep = 15f;
+            float totalSpread = angleStep * (ProjectileCount - 1);
+            float startAngle = -totalSpread / 2f;
+            for (int i = 0; i < ProjectileCount; i++)
+            {
+                // Obliczamy k¹t dla tego konkretnego pocisku w pêtli
+                float currentAngle = startAngle + (i * angleStep);
 
-            projectilePool.FireProjectile(transform.position, shootDirection);
+                // Obracamy nasz wektor bazowy o wyliczony k¹t
+                Vector2 rotatedDirection = RotateVector(baseDirection, currentAngle);
+
+                // Wypluwamy pocisk
+                projectilePool.FireProjectile(transform.position, rotatedDirection);
+            }
+
+            
+        }
+        private Vector2 RotateVector(Vector2 vector, float degrees)
+        {
+            float radians = degrees * Mathf.Deg2Rad;
+            float sin = Mathf.Sin(radians);
+            float cos = Mathf.Cos(radians);
+
+            return new Vector2(
+                vector.x * cos - vector.y * sin,
+                vector.x * sin + vector.y * cos
+            );
         }
 
         private void FixedUpdate()

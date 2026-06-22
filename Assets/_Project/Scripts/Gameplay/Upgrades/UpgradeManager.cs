@@ -23,7 +23,8 @@ namespace ExtinctionMarine.Gameplay.Upgrades
                 new HealUpgrade(),
                 new MaxHealthUpgrade(),
                 new MagnetUpgrade(),
-               
+                new SplitShotUpgrade()
+
             };
         }
 
