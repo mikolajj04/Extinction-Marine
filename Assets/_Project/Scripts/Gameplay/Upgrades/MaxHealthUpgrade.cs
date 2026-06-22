@@ -11,6 +11,8 @@ namespace ExtinctionMarine.Gameplay.Upgrades
     {
         public string Title => "[ PAIN TOLERANCE! ]";
         public string Description => "Gain and heal +20 max HP";
+        public int CurrentLevel { get; set; } = 1;
+        public int MaxLevel => 999;
 
         public void Apply(PlayerController player)
         {

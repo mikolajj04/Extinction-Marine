@@ -9,6 +9,8 @@ namespace ExtinctionMarine.Gameplay.Upgrades
     {
         public string Title => "[ OVERCLOCK WEAPON ]";
         public string Description => "Increases fire rate by 20%.";
+        public int CurrentLevel { get; set; } = 1;
+        public int MaxLevel => 100;
         public void Apply(PlayerController player)
         {
 
