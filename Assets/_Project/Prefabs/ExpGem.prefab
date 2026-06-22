@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExtinctionMarine.Gameplay.ExpGem
   expAmount: 10
+  startMoveSpeed: 10
+  acceleration: 30
+  collectionDistance: 0.5
 --- !u!61 &3788235453086107329
 BoxCollider2D:
   m_ObjectHideFlags: 0
