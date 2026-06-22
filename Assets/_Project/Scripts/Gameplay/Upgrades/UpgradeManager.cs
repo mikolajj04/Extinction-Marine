@@ -22,6 +22,7 @@ namespace ExtinctionMarine.Gameplay.Upgrades
                 new SpeedUpgrade(),
                 new HealUpgrade(),
                 new MaxHealthUpgrade(),
+                new MagnetUpgrade()
             };
         }
 

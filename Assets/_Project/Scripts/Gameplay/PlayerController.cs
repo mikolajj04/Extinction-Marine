@@ -87,10 +87,22 @@ namespace ExtinctionMarine.Gameplay
             Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Marine speed increased to {MoveSpeed}!");
         }
 
-        
-      
-      
-      
+
+        public void ApplyMagnetUpgrade(float radiusIncrease)
+        {
+            if (magnetCollider != null)
+            {
+                
+                magnetCollider.radius += radiusIncrease;
+                Debug.LogWarning($"[Upgrade] Nano-Magnet upgraded! Nowy radius: {magnetCollider.radius}");
+            }
+            else
+            {
+                Debug.LogError("No Magnet integrated!");
+            }
+        }
+
+
         private void Awake()
         {
             
