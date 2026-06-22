@@ -12,6 +12,8 @@ namespace ExtinctionMarine.Gameplay.Upgrades
     {
         public string Title => "[ I NEED MORE STIMS!! ]";
         public string Description => "Instantly restores 80 HP";
+        public int CurrentLevel { get; set; } = 0;
+        public int MaxLevel => 999;
 
         public void Apply(PlayerController player)
         {

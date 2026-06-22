@@ -11,6 +11,8 @@ namespace ExtinctionMarine.Gameplay.Upgrades
     {
         public string Title => "[ ENHANCE SERVOS ]";
         public string Description => "Increases movement speed by 1.2";
+        public int CurrentLevel { get; set; } = 0;
+        public int MaxLevel => 999;
 
         public void Apply(PlayerController player)
         {

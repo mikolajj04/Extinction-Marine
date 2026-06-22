@@ -22,24 +22,30 @@ namespace ExtinctionMarine.Gameplay.Upgrades
                 new SpeedUpgrade(),
                 new HealUpgrade(),
                 new MaxHealthUpgrade(),
-                new MagnetUpgrade()
+                new MagnetUpgrade(),
+                new SplitShotUpgrade()
+
             };
         }
 
        
         public List<IUpgrade> GetRandomUpgrades(int count = 3)
         {
-           
-            return upgradePool.OrderBy(x => Random.value).Take(count).ToList();
+            var validPool = upgradePool.Where(u => u.CurrentLevel < u.MaxLevel).ToList();
+
+
+            return validPool.OrderBy(x => Random.value).Take(count).ToList();
         }
 
         
         public void SelectUpgrade(IUpgrade chosenUpgrade)
         {
-            Debug.Log($"[UpgradeManager] Gracz wybrał: {chosenUpgrade.Title}");
+            Debug.Log($"[UpgradeManager] Player has choosen: {chosenUpgrade.Title} (previous level of upgrade: {chosenUpgrade.CurrentLevel})");
+           
 
             
             chosenUpgrade.Apply(player);
+            chosenUpgrade.CurrentLevel++;
         }
     }
 }
