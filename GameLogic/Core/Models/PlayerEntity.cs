@@ -10,7 +10,7 @@ namespace GameLogic.Core.Models
         public int Level { get; private set; }
         public float Experience { get; private set; }
 
-        public PlayerEntity() : base(100f)
+        public PlayerEntity() : base(100f, 5f)
         {
             Level = 1;
             Experience = 0f;
@@ -33,6 +33,12 @@ namespace GameLogic.Core.Models
            
         }
 
-     
+        //for the future upgrade
+        public void IncreaseDamage(float extraDamage)
+        {
+            if (IsDead) return;
+            Damage += extraDamage;
+        }
+
     }
 }
