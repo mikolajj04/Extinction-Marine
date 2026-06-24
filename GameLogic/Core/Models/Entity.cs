@@ -8,13 +8,16 @@ namespace GameLogic.Core.Models
     {
         public float MaxHealth { get; private set;}
         public float CurrentHealth { get; private set; }
+        public float Damage { get; protected set; }
 
         public bool IsDead => CurrentHealth <= 0;
 
-        protected Entity(float maxHealth)
+        protected Entity(float maxHealth, float baseDamage)
         {
             MaxHealth = maxHealth;
             CurrentHealth = maxHealth;
+            Damage = baseDamage;
+
         }
 
         public virtual void TakeDamage(float amount)
