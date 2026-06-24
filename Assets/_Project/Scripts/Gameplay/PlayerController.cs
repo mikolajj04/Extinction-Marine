@@ -167,7 +167,7 @@ namespace ExtinctionMarine.Gameplay
             Vector2 baseDirection = (mouseWorldPos - transform.position).normalized;
             if (ProjectileCount <= 1)
             {
-                projectilePool.FireProjectile(transform.position, baseDirection);
+                projectilePool.FireProjectile(transform.position, baseDirection, logicData.Damage);
                 return;
             }
             float angleStep = 15f;
@@ -182,7 +182,7 @@ namespace ExtinctionMarine.Gameplay
                 Vector2 rotatedDirection = RotateVector(baseDirection, currentAngle);
 
                 // Wypluwamy pocisk
-                projectilePool.FireProjectile(transform.position, rotatedDirection);
+                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage);
             }
 
             

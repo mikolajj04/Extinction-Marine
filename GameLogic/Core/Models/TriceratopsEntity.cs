@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameLogic.Core.Models
 {
-    internal class TriceratopsEntity : DinosaurEntity
+    public class TriceratopsEntity : DinosaurEntity
     {
         public TriceratopsEntity() : base(40f, 25f, 3.5f, 40f)
         {

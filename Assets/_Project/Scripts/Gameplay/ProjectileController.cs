@@ -9,8 +9,10 @@ namespace ExtinctionMarine.Gameplay
         [SerializeField] private float speed = 20f;
         [SerializeField] private float lifeTime = 2f;
 
+
         private Rigidbody2D rb;
         private float currentLifeTime;
+        private float projectileDamage;
 
         private Action<ProjectileController> onDeactivate;
 
@@ -19,7 +21,7 @@ namespace ExtinctionMarine.Gameplay
             rb = GetComponent<Rigidbody2D>();
         }
 
-        public void Initialize(Vector2 position, Vector2 direction, Action<ProjectileController> deactivateCallback)
+        public void Initialize(Vector2 position, Vector2 direction, float damage, Action<ProjectileController> deactivateCallback)
         {
         
             gameObject.SetActive(true);
@@ -28,7 +30,7 @@ namespace ExtinctionMarine.Gameplay
             transform.position = position;
             onDeactivate = deactivateCallback;
             currentLifeTime = 0f;
-
+            projectileDamage = damage;
            
             if (rb == null)
             {
@@ -70,7 +72,7 @@ namespace ExtinctionMarine.Gameplay
             if (other.TryGetComponent<EnemyController>(out var enemy))
             {
                 
-                enemy.TakeDamage(5f);
+                enemy.TakeDamage(projectileDamage);
 
                
                 Deactivate();

@@ -179,4 +179,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f9f99d1036a7443a8ec0cdbff6c275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExtinctionMarine.Gameplay.EnemyController
-  playerTransform: {fileID: 0}
+  species: 0
+  attackCooldown: 1
