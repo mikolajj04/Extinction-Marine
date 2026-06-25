@@ -111,6 +111,12 @@ namespace ExtinctionMarine.Gameplay
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Brand new gun installed! Number of guns: {ProjectileCount}");
         }
 
+        public void ApplyDamageUpgrade()
+        {
+            logicData.IncreaseDamage(0.5f);
+            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Damage of your projectiles {logicData.Damage}");
+        }
+
 
         private void UpdateLevelUI()
         {
