@@ -9,12 +9,12 @@ namespace GameLogic.Core.Models
         public float Speed { get; private set; }
         public float XpReward { get; private set; }
 
-        protected DinosaurEntity(float maxHealth, float speed, float xpReward) : base(maxHealth)
+       
+        protected DinosaurEntity(float maxHealth, float baseDamage, float speed, float xpReward)
+            : base(maxHealth, baseDamage)
         {
             Speed = speed;
             XpReward = xpReward;
         }
-
-       
     }
 }

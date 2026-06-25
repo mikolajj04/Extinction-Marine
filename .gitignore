@@ -9,3 +9,5 @@ UserSettings/
 *.sln
 *.slnx
 UpgradeLog.htm
+GameLogic/bin/
+GameLogic/obj/
