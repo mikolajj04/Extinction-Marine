@@ -5,7 +5,7 @@ namespace ExtinctionMarine.Gameplay
 {
     public class ExpGem : MonoBehaviour
     {
-        [SerializeField] private float expAmount = 10f;
+        [SerializeField] private float expAmount;
         [SerializeField] private float startMoveSpeed = 4f;
         [SerializeField] private float acceleration = 20f;
         [SerializeField] private float collectionDistance = 0.5f;
@@ -17,8 +17,9 @@ namespace ExtinctionMarine.Gameplay
         private bool isAttracted;
         private float currentSpeed;
 
-        public void Initialize(Vector3 position, Action<ExpGem> onCollectCallback)
+        public void Initialize(Vector3 position, Action<ExpGem> onCollectCallback, float amount)
         {
+            expAmount= amount;
             transform.position = position;
             returnToPool = onCollectCallback;
             isAttracted = false;

@@ -1,8 +1,9 @@
+using System;
+using ExtinctionMarine.Gameplay.UI;
 using GameLogic.Core.Models;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using ExtinctionMarine.Gameplay.UI;
-using System;
 
 namespace ExtinctionMarine.Gameplay
 {
@@ -11,10 +12,12 @@ namespace ExtinctionMarine.Gameplay
     public class PlayerController : MonoBehaviour
     {
 
+
         [SerializeField] private HealthBar expBar; 
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
         [SerializeField] private GameOverScreen gameOverScreen;
+        [SerializeField] private TMP_Text levelText;
 
         [Header("Collection Settings")]
         [SerializeField] private CircleCollider2D magnetCollider;
@@ -109,6 +112,14 @@ namespace ExtinctionMarine.Gameplay
         }
 
 
+        private void UpdateLevelUI()
+        {
+            if (levelText != null && logicData != null)
+            {
+                levelText.text = $"LVL {logicData.Level}";
+            }
+        }
+
         private void Awake()
         {
             
@@ -128,6 +139,7 @@ namespace ExtinctionMarine.Gameplay
             }
 
             UpdateExpUI();
+            UpdateLevelUI();
         }
 
         public void OnMove(InputValue value)
@@ -271,6 +283,7 @@ namespace ExtinctionMarine.Gameplay
             if (logicData.Experience >= expNeededForCurrentLevel)
             {
                 logicData.LevelUp();
+                UpdateLevelUI();
                 OnPlayerLevelUp?.Invoke();
             }
 

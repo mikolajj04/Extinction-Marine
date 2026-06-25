@@ -21,7 +21,7 @@ namespace ExtinctionMarine.Gameplay
         [Header("Combat Settings")]
        
         [SerializeField] private float attackCooldown = 1f;
-        public static event Action<Vector3> OnEnemyKilled;
+        public static event Action<Vector3, float> OnEnemyKilled;
         private Transform playerTransform;
         private DinosaurEntity logicData;
         private Rigidbody2D rb;
@@ -84,8 +84,9 @@ namespace ExtinctionMarine.Gameplay
         private void Die()
         {
             Debug.Log($"[EnemyController] {species} eliminated, recycling into pool.");
-            OnEnemyKilled?.Invoke(transform.position);
+            OnEnemyKilled?.Invoke(transform.position, logicData.XpReward);
             returnToPool?.Invoke(this);
+
         }
 
         private void OnCollisionStay2D(Collision2D collision)

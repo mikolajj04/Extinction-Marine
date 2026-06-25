@@ -37,10 +37,10 @@ namespace ExtinctionMarine.Gameplay
             return gem;
         }
 
-        private void SpawnGemAtPosition(Vector3 deathPosition)
+        private void SpawnGemAtPosition(Vector3 deathPosition, float xpAmount)
         {
             ExpGem gem = pool.Count > 0 ? pool.Dequeue() : CreateNewGem();
-            gem.Initialize(deathPosition, ReturnGem);
+            gem.Initialize(deathPosition, ReturnGem, xpAmount);
         }
 
         private void ReturnGem(ExpGem gem)
