@@ -181,3 +181,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExtinctionMarine.Gameplay.EnemyController
   species: 0
   attackCooldown: 1
+  separationRadius: 1.5
+  separationWeight: 1
