@@ -8,11 +8,13 @@
 
 <p align="center">
   <img src="./_Documentation/MarineShowcase.gif" alt="Gameplay Demo1" />
+  <br>
+  <em>Core gameplay loop: Event-driven UI, zero-allocation entity pooling, and decoupled domain logic in action.</em>
 </p>
 <p align="center">
   <img src="./_Documentation/MidGameShowCase.gif" alt="Gameplay Demo2" />
   <br>
-  <em>Core gameplay loop: Event-driven UI, zero-allocation entity pooling, and decoupled domain logic in action.</em>
+  <em>Gameplay Preview: Action-packed combat featuring scale-aware swarm AI and custom upgrade mechanics.</em>
 </p>
 
 
