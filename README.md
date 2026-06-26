@@ -5,18 +5,20 @@
 [![Unity](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white)]()
 
 > A high-performance 2D Roguelite/Bullet-Hell survival game emphasizing clean architecture, memory management, and complete separation of business logic from the game engine.
-
+<div>
 <p align="center">
   <img src="./_Documentation/MarineShowcase.gif" alt="Gameplay Demo1" />
   <br>
   <em>Core gameplay loop: Event-driven UI, zero-allocation entity pooling, and decoupled domain logic in action.</em>
 </p>
+</div>
+<div>
 <p align="center">
   <img src="./_Documentation/MidGameShowCase.gif" alt="Gameplay Demo2" />
   <br>
   <em>Gameplay Preview: Action-packed combat featuring scale-aware swarm AI and custom upgrade mechanics.</em>
 </p>
-
+</div>
 
 
 ## 🏗️ Technical Showcase & Architecture
