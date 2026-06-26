@@ -6,7 +6,7 @@ namespace GameLogic.Core.Models
 {
     public class TriceratopsEntity : DinosaurEntity
     {
-        public TriceratopsEntity() : base(40f, 25f, 3.5f, 40f)
+        public TriceratopsEntity() : base(50f, 25f, 5f, 40f)
         {
 
         }

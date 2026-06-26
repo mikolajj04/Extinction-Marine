@@ -4,14 +4,13 @@ using System.Text;
 
 namespace GameLogic.Core.Models
 {
-    public class TRexEntity : DinosaurEntity
+    public class MicroRaptorEntity : DinosaurEntity
     {
-        
-        public TRexEntity() : base(2000f, 70f, 7f, 500f)
+        public MicroRaptorEntity() : base(5f, 8f, 10f, 7f)
         {
+
         }
 
         protected override void Die() { }
     }
-
 }

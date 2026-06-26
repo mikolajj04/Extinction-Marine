@@ -117,7 +117,7 @@ namespace ExtinctionMarine.Gameplay.Spawning
 
             boss.Initialize(player.transform, (e) => Destroy(e.gameObject));
 
-            Debug.LogError($"[WaveManager]  ATTENTION! MASSIVE BIOLOGICAL ANOMALY:  {currentWave.BossPrefab.name} ON RADAR!");
+            Debug.LogWarning($"[WaveManager]  ATTENTION! MASSIVE BIOLOGICAL ANOMALY:  {currentWave.BossPrefab.name} ON RADAR!");
         }
 
      
