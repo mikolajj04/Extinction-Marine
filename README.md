@@ -7,7 +7,10 @@
 > A high-performance 2D Roguelite/Bullet-Hell survival game emphasizing clean architecture, memory management, and complete separation of business logic from the game engine.
 
 <p align="center">
-  <img src="./_Documentation/MarineShowcase.gif" alt="Gameplay Demo" />
+  <img src="./_Documentation/MarineShowcase.gif" alt="Gameplay Demo1" />
+</p>
+<p align="center">
+  <img src="./_Documentation/MidGameShowCase.gif" alt="Gameplay Demo2" />
   <br>
   <em>Core gameplay loop: Event-driven UI, zero-allocation entity pooling, and decoupled domain logic in action.</em>
 </p>
