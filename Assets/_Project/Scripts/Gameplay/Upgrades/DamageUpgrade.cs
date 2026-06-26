@@ -8,7 +8,7 @@ namespace ExtinctionMarine.Gameplay.Upgrades
     public class DamageUpgrade : IUpgrade
     {
         public string Title => "[ Doom-Doom bullets ]";
-        public string Description => "Increases damage by 0.5.";
+        public string Description => "Increases damage by 1.5";
         public int CurrentLevel { get; set; } = 1;
         public int MaxLevel => 100;
         public void Apply(PlayerController player)

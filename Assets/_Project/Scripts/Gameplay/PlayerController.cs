@@ -113,7 +113,7 @@ namespace ExtinctionMarine.Gameplay
 
         public void ApplyDamageUpgrade()
         {
-            logicData.IncreaseDamage(0.5f);
+            logicData.IncreaseDamage(1.5f);
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Damage of your projectiles {logicData.Damage}");
         }
 
