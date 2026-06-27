@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using ExtinctionMarine.Gameplay.UI;
 using GameLogic.Core.Models;
 using TMPro;
@@ -21,10 +22,9 @@ namespace ExtinctionMarine.Gameplay
 
         [Header("Collection Settings")]
         [SerializeField] private CircleCollider2D magnetCollider;
-        [Header("Movement Settings")]
-        [SerializeField] private float moveSpeed = 5f;
+        
         public int ProjectileCount { get; private set; } = 1;
-        public float MoveSpeed { get; private set; }
+        
 
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
@@ -32,7 +32,6 @@ namespace ExtinctionMarine.Gameplay
         public float FireRate { get; private set; } // Fire Cooldown
 
         private PlayerEntity logicData;
-
         public PlayerEntity LogicData => logicData;
         private Rigidbody2D rb;
         private Vector2 moveInput;
@@ -42,6 +41,9 @@ namespace ExtinctionMarine.Gameplay
         private bool isFiring;
         private float fireCooldownTimer;
 
+
+       
+        public float MoveSpeed => logicData.MoveSpeed;
         public float CurrentHp => logicData.CurrentHealth;
         public float MaxHp => logicData.MaxHealth;
         public bool IsDead => logicData.IsDead;
@@ -86,7 +88,7 @@ namespace ExtinctionMarine.Gameplay
 
         public void ApplySpeedUpgrade(float amount)
         {
-            MoveSpeed += amount;
+            logicData.IncreaseSpeed(amount);
             Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Marine speed increased to {MoveSpeed}!");
         }
 
@@ -132,8 +134,6 @@ namespace ExtinctionMarine.Gameplay
             rb = GetComponent<Rigidbody2D>();
             mainCamera = Camera.main;
             logicData = new PlayerEntity();
-
-            MoveSpeed = moveSpeed;
             FireRate = fireRate;
         }
 
