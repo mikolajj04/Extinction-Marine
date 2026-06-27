@@ -37,10 +37,12 @@ namespace ExtinctionMarine.Gameplay
         private Action<EnemyController> returnToPool;
         private float nextAttackTime = 0f;
         private Collider2D[] separationBuffer = new Collider2D[20];
+        
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             myCollider = GetComponent<Collider2D>();
+            
         }
 
         private DinosaurEntity CreateEntityModel()
@@ -81,7 +83,7 @@ namespace ExtinctionMarine.Gameplay
             Vector2 separationForce = Vector2.zero;
 
             float scanRadius = separationRadius + 5f;
-            int hitCount = Physics2D.OverlapCircleNonAlloc(transform.position, scanRadius, separationBuffer);
+            int hitCount = Physics2D.OverlapCircle(transform.position, scanRadius,ContactFilter2D.noFilter, separationBuffer);
 
             for (int i = 0; i < hitCount; i++)
             {
