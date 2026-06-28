@@ -22,36 +22,40 @@
 
 
 ## 🏗️ Technical Showcase & Architecture
-This project was built from the ground up not just as a game, but as a demonstration of scalable C# engineering practices.
-### 1. Engine-Agnostic Business Logic
-The core game rules (HP math, experience systems, entity stats) do not live in Unity. They are encapsulated in a completely independent, pure C# class library (`GameLogic.dll` targeting **.NET Standard 2.1**). 
-* **Benefit:** The Unity layer acts solely as a View/Controller. The business logic is fully unit-testable outside the game engine environment.
 
-  
-* ### 2. Zero-Allocation Gameplay (Object Pooling)
-To survive the demanding performance requirements of a bullet-hell game, the Garbage Collector (GC) is bypassed during runtime.
-* Custom `Queue<T>` based Object Pools manage all projectiles, enemy entities, and EXP gems. 
-* Objects are instantiated once upon level load and continuously recycled, ensuring a steady 60+ FPS even with hundreds of entities on screen.
+This simulation was designed from the ground up using **Domain-Driven Design (DDD)** concepts to demonstrate how a game engine can be treated purely as an infrastructure/presentation layer.
 
-### 3. Event-Driven Decoupling
-Tight coupling is avoided by utilizing the **Observer Pattern** (`Action`, `EventHandler`). 
-* Systems communicate via broadcasts. For example: An enemy dying triggers a strict `OnEnemyKilled` action. The `GemPool` listens to this event to spawn an EXP gem, and the UI listens to update the kill counter—without these classes ever referencing each other.
+### 1. Engine-Agnostic Core Logic (Clean Architecture)
+The entire game state evaluation, experience tables, leveling math, and base entity configurations do not rely on Unity APIs. They are encapsulated inside a pure, decoupled C# Class Library (`GameLogic.dll`).
+* **The Domain:** Entities like `PlayerEntity`, `RaptorEntity`, `TRexEntity`, and `DiplodocusEntity` inherit from a clean C# `Entity` abstraction.
+* **Benefit:** The core mechanics are 100% unit-testable outside of Unity, completely immune to engine overhead, and could easily be ported to another framework or server architecture.
 
----
-## 💻 Tech Stack
-* **Language:** C# 9.0
-* **Framework:** .NET Standard 2.1 (Domain Logic)
-* **Engine:** Unity 2022+ (Presentation Layer)
-* **Input:** New Unity Input System (Event-based)
----
+### 2. Zero-Allocation Swarm Mechanics (Advanced Object Pooling)
+To sustain hundreds of active entities and projectiles simultaneously at 60+ FPS, the runtime completely bypasses the Garbage Collector (GC):
+* **Optimized Queries:** Replaced all deprecated non-alloc APIs with the modern **Unity 6 compliant `Physics2D.OverlapCircle` utilizing static `ContactFilter2D.noFilter` buckets** to process neighborhood updates directly within pre-allocated `Collider2D[]` arrays.
+* **Hybrid Disposal Patterns:** Regular swarm enemies (`EnemyPool`) and drop items (`GemPool`) utilize robust object recycle queues. High-tier Boss entities leverage dynamic `Instantiate` pipelines but share the exact same unified interface via explicit functional lambda callbacks (`Action<EnemyController> onDeath`).
 
+### 3. Scale-Aware Swarm AI (Boids Separation)
+Standard top-down physics engines suffer from "clumping" anomalies when pushing hundreds of steering agents toward a single target. This engine features a custom **Anti-Jitter Swarm Separation Algorithm**:
+* **Edge-to-Edge Distance Calculation:** Instead of measuring center-to-center transforms (which collapses large hitboxes), the AI calculates distances utilizing the `Physics2D.Distance` schema.
+* **Mass & Extents Awareness:** Small `MicroRaptors` organically yield to massive `Diplodocus (7x10)` blockades via runtime bounding volume checks (`bounds.extents.sqrMagnitude`), dynamically amplifying separation forces with a smooth, linear velocity `Vector2.Lerp`.
 
-## 🚀 Tech Stack
+### 4. Modular Interface-Driven Upgrade System
+Weapon and marine stats scale dynamically through a highly decoupled interface ecosystem (`IUpgrade`).
+* Modifiers like `DamageUpgrade`, `SplitShotUpgrade`, and `FireRateUpgrade` alter structural thresholds at runtime.
+* **AP Bullet Penetration:** Features a specialized `PierceUpgrade` workflow. Projectiles store localized penetration depth state and utilize an internal `HashSet<Collider2D>` memory buffer to safeguard against multi-frame duplicate collision triggers on dense enemy clusters or multi-collider boss targets.
 
-* **Language:** C# (.NET 8+ compliant compiler features)
-* **IDE:** Visual Studio 2026 Insiders
-* **Engine Framework:** Unity 6 LTS (Universal Render Pipeline 2D)
-* **Input Architecture:** Unity Input System Package (Event-Driven Architecture)
+### 5. Dynamic Event-Driven Data Pipelines
+Tight coupling is eliminated by communicating exclusively through data-carrying decoupled event streams:
+* Enemies evaluate damage thresholds inside the domain layer and broadcast events containing both positional coordinates and exact runtime domain data (`Action<Vector3, float> OnEnemyKilled`).
+* The `GemPool` intercepts this broadcast, dynamically configuring empty pooled `ExpGem` structures with individual `XpReward` payloads on the fly, eliminating hardcoded value schemas.
+
+## 💻 Technical Stack
+
+* **Language Features:** C# 12 (Pattern matching, advanced switch expressions, expression-bodied members).
+* **Game Engine:** Unity 6 LTS (Version 6000.3.17f1+ compliant).
+* **Render Pipeline:** Universal Render Pipeline (URP 2D).
+* **Input System:** Unity Input System Package (Fully event-driven action binding architecture).
 
 ## ⚖️ License
 Copyright (c) 2026 Mikołaj Jussak. All rights reserved.
