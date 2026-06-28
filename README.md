@@ -31,7 +31,7 @@ The entire game state evaluation, experience tables, leveling math, and base ent
 * **Benefit:** The core mechanics are 100% unit-testable outside of Unity, completely immune to engine overhead, and could easily be ported to another framework or server architecture.
 
 ### 2. Zero-Allocation Swarm Mechanics (Advanced Object Pooling)
-To sustain hundreds of active entities and projectiles simultaneously at 60+ FPS, the runtime completely bypasses the Garbage Collector (GC):
+To sustain hundreds of active entities and projectiles simultaneously at 60+ FPS even on old hardware, the runtime completely bypasses the Garbage Collector (GC):
 * **Optimized Queries:** Replaced all deprecated non-alloc APIs with the modern **Unity 6 compliant `Physics2D.OverlapCircle` utilizing static `ContactFilter2D.noFilter` buckets** to process neighborhood updates directly within pre-allocated `Collider2D[]` arrays.
 * **Hybrid Disposal Patterns:** Regular swarm enemies (`EnemyPool`) and drop items (`GemPool`) utilize robust object recycle queues. High-tier Boss entities leverage dynamic `Instantiate` pipelines but share the exact same unified interface via explicit functional lambda callbacks (`Action<EnemyController> onDeath`).
 
@@ -43,7 +43,7 @@ Standard top-down physics engines suffer from "clumping" anomalies when pushing 
 ### 4. Modular Interface-Driven Upgrade System
 Weapon and marine stats scale dynamically through a highly decoupled interface ecosystem (`IUpgrade`).
 * Modifiers like `DamageUpgrade`, `SplitShotUpgrade`, and `FireRateUpgrade` alter structural thresholds at runtime.
-* **AP Bullet Penetration:** Features a specialized `PierceUpgrade` workflow. Projectiles store localized penetration depth state and utilize an internal `HashSet<Collider2D>` memory buffer to safeguard against multi-frame duplicate collision triggers on dense enemy clusters or multi-collider boss targets.
+
 
 ### 5. Dynamic Event-Driven Data Pipelines
 Tight coupling is eliminated by communicating exclusively through data-carrying decoupled event streams:
@@ -52,7 +52,7 @@ Tight coupling is eliminated by communicating exclusively through data-carrying 
 
 ## 💻 Technical Stack
 
-* **Language Features:** C# 12 (Pattern matching, advanced switch expressions, expression-bodied members).
+* **Ecosphere:** .NET Standard 2.1
 * **Game Engine:** Unity 6 LTS (Version 6000.3.17f1+ compliant).
 * **Render Pipeline:** Universal Render Pipeline (URP 2D).
 * **Input System:** Unity Input System Package (Fully event-driven action binding architecture).
