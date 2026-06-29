@@ -28,7 +28,7 @@ namespace ExtinctionMarine.Gameplay
 
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
-        [SerializeField] private float fireRate = 0.3f;
+        [SerializeField] private float fireRate = 0.35f;
         public float FireRate { get; private set; } // Fire Cooldown
 
         private PlayerEntity logicData;
