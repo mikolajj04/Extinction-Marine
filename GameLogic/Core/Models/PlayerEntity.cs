@@ -15,7 +15,7 @@ namespace GameLogic.Core.Models
         {
             Level = 1;
             Experience = 0f;
-            MoveSpeed = 8f;
+            MoveSpeed = 8.5f;
         }
 
 
