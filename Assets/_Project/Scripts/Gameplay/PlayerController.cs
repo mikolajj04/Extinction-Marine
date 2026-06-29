@@ -28,7 +28,7 @@ namespace ExtinctionMarine.Gameplay
 
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
-        [SerializeField] private float fireRate = 0.3f;
+        [SerializeField] private float fireRate = 0.35f;
         public float FireRate { get; private set; } // Fire Cooldown
 
         private PlayerEntity logicData;
@@ -115,7 +115,7 @@ namespace ExtinctionMarine.Gameplay
 
         public void ApplyDamageUpgrade()
         {
-            logicData.IncreaseDamage(1.5f);
+            logicData.IncreaseDamage(2f);
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Damage of your projectiles {logicData.Damage}");
         }
 
