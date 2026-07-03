@@ -119,6 +119,13 @@ namespace ExtinctionMarine.Gameplay
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Damage of your projectiles {logicData.Damage}");
         }
 
+        public void ApplyPenetrationUpgrade()
+        {
+            logicData.IncreasePenetration();
+            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Current penetration level of bullets: {logicData.PenetrationCount}");
+        
+        }
+
 
         private void UpdateLevelUI()
         {
@@ -185,7 +192,7 @@ namespace ExtinctionMarine.Gameplay
             Vector2 baseDirection = (mouseWorldPos - transform.position).normalized;
             if (ProjectileCount <= 1)
             {
-                projectilePool.FireProjectile(transform.position, baseDirection, logicData.Damage);
+                projectilePool.FireProjectile(transform.position, baseDirection, logicData.Damage, logicData.PenetrationCount);
                 return;
             }
             float angleStep = 15f;
@@ -200,7 +207,7 @@ namespace ExtinctionMarine.Gameplay
                 Vector2 rotatedDirection = RotateVector(baseDirection, currentAngle);
 
                 // Wypluwamy pocisk
-                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage);
+                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage, logicData.PenetrationCount);
             }
 
             

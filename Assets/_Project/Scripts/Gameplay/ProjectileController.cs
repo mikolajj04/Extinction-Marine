@@ -1,18 +1,22 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace ExtinctionMarine.Gameplay
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class ProjectileController : MonoBehaviour
     {
-        [SerializeField] private float speed = 20f;
+        [SerializeField] private float baseSpeed = 20f;
         [SerializeField] private float lifeTime = 2f;
 
 
         private Rigidbody2D rb;
         private float currentLifeTime;
         private float projectileDamage;
+        private int remainingPierce;
+        private float currentSpeed;
+        private HashSet<Collider2D> piercedEnemies = new HashSet<Collider2D>();
 
         private Action<ProjectileController> onDeactivate;
 
@@ -21,31 +25,24 @@ namespace ExtinctionMarine.Gameplay
             rb = GetComponent<Rigidbody2D>();
         }
 
-        public void Initialize(Vector2 position, Vector2 direction, float damage, Action<ProjectileController> deactivateCallback)
+        public void Initialize(Vector2 position, Vector2 direction, float damage, int pierceCount, Action<ProjectileController> deactivateCallback)
         {
-        
-            gameObject.SetActive(true);
 
-           
+            gameObject.SetActive(true);
             transform.position = position;
+
+            projectileDamage = damage;
+            remainingPierce = pierceCount; 
+            piercedEnemies.Clear(); 
+
             onDeactivate = deactivateCallback;
             currentLifeTime = 0f;
-            projectileDamage = damage;
-           
-            if (rb == null)
-            {
-                rb = GetComponent<Rigidbody2D>();
-            }
+            currentSpeed = baseSpeed;
 
-           
-            if (rb != null)
-            {
-                rb.linearVelocity = direction.normalized * speed;
-            }
-            else
-            {
-                Debug.LogError("[ProjectileController] no Rigidbody2D!");
-            }
+            rb.linearVelocity = direction.normalized * currentSpeed;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 
         private void Update()
@@ -68,14 +65,21 @@ namespace ExtinctionMarine.Gameplay
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-           
             if (other.TryGetComponent<EnemyController>(out var enemy))
             {
-                
-                enemy.TakeDamage(projectileDamage);
+           
+                if (piercedEnemies.Contains(other)) return;
 
-               
-                Deactivate();
+                enemy.TakeDamage(projectileDamage);
+                piercedEnemies.Add(other);
+                remainingPierce--;
+                currentSpeed = Mathf.Max(2f, currentSpeed - 5f);
+                rb.linearVelocity = rb.linearVelocity.normalized * currentSpeed;
+
+                if (remainingPierce <= 0)
+                {
+                    Deactivate();
+                }
             }
         }
     }
