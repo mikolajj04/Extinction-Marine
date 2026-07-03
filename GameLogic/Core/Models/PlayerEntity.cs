@@ -10,12 +10,14 @@ namespace GameLogic.Core.Models
         public int Level { get; private set; }
         public float Experience { get; private set; }
         public float MoveSpeed { get; private set; }
+        public int PenetrationCount { get; private set; }
 
         public PlayerEntity() : base(100f, 5f)
         {
             Level = 1;
             Experience = 0f;
             MoveSpeed = 8.5f;
+            PenetrationCount = 1;
         }
 
 
@@ -35,7 +37,11 @@ namespace GameLogic.Core.Models
            
         }
 
-        
+        public void IncreasePenetration(int amount = 1)
+        {
+            if (IsDead) return;
+            PenetrationCount += amount;
+        }
         public void IncreaseDamage(float extraDamage)
         {
             if (IsDead) return;
