@@ -42,7 +42,7 @@ Standard top-down physics engines suffer from "clumping" anomalies when pushing 
 
 ### 4. Modular Interface-Driven Upgrade System
 Weapon and marine stats scale dynamically through a highly decoupled interface ecosystem (`IUpgrade`).
-* Modifiers like `DamageUpgrade`, `SplitShotUpgrade`,  `MaxHealthUpgrade`, `HealUpgrade`, `SpeedUpgrade`, `MagnetUpgrade` and `FireRateUpgrade` alter structural thresholds at runtime.
+* Modifiers like `DamageUpgrade`, `SplitShotUpgrade`,  `MaxHealthUpgrade`, `HealUpgrade`, `SpeedUpgrade`, `MagnetUpgrade`, `PierceUpgrade` and `FireRateUpgrade` alter structural thresholds at runtime.
 
 
 ### 5. Dynamic Event-Driven Data Pipelines
