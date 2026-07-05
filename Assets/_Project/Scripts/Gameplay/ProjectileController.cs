@@ -71,7 +71,7 @@ namespace ExtinctionMarine.Gameplay
                 enemy.TakeDamage(projectileDamage);
                 piercedEnemies.Add(other);
                 remainingPierce--;
-                currentSpeed = Mathf.Max(2f, currentSpeed - 5f);
+                currentSpeed = Mathf.Max(2f, currentSpeed - 8f);
                 rb.linearVelocity = rb.linearVelocity.normalized * currentSpeed;
 
                 if (remainingPierce <= 0)

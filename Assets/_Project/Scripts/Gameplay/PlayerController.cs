@@ -300,6 +300,7 @@ namespace ExtinctionMarine.Gameplay
             UpdateExpUI();
         }
 
+
         private float GetExpRequiredForLevel(int level)
         {
             if (level <= 0) return 0f;
