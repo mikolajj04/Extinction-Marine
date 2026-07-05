@@ -19,6 +19,7 @@ namespace GameLogic.Core.Models
             Experience = 0f;
             MoveSpeed = 8.5f;
             PenetrationCount = 1;
+            ProjectileSpeed = 15f;
         }
 
 
