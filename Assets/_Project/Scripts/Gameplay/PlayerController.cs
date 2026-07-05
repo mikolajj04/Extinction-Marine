@@ -13,7 +13,6 @@ namespace ExtinctionMarine.Gameplay
     public class PlayerController : MonoBehaviour
     {
 
-
         [SerializeField] private HealthBar expBar; 
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
@@ -23,8 +22,7 @@ namespace ExtinctionMarine.Gameplay
         [Header("Collection Settings")]
         [SerializeField] private CircleCollider2D magnetCollider;
         
-        public int ProjectileCount { get; private set; } = 1;
-        
+        public int ProjectileCount { get; private set; } = 1;       
 
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
@@ -42,15 +40,9 @@ namespace ExtinctionMarine.Gameplay
         private float fireCooldownTimer;
 
 
-       
-        public float MoveSpeed => logicData.MoveSpeed;
-        public float CurrentHp => logicData.CurrentHealth;
-        public float MaxHp => logicData.MaxHealth;
         public bool IsDead => logicData.IsDead;
 
-
        //Upgrade Gates:
-
         public void ApplyFireRateUpgrade(float percentageAmount)
         {
 
@@ -89,9 +81,8 @@ namespace ExtinctionMarine.Gameplay
         public void ApplySpeedUpgrade(float amount)
         {
             logicData.IncreaseSpeed(amount);
-            Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Marine speed increased to {MoveSpeed}!");
+            Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Marine speed increased to {logicData.MoveSpeed}!");
         }
-
 
         public void ApplyMagnetUpgrade(float radiusIncrease)
         {
@@ -131,7 +122,6 @@ namespace ExtinctionMarine.Gameplay
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Current penetration level of bullets: {logicData.PenetrationCount}");
         
         }
-
 
         private void UpdateLevelUI()
         {
@@ -243,7 +233,7 @@ namespace ExtinctionMarine.Gameplay
         private void MovePlayer()
         {
            
-            Vector2 movement = moveInput.normalized * MoveSpeed;
+            Vector2 movement = moveInput.normalized * logicData.MoveSpeed;
 
             rb.linearVelocity = movement;
         }
@@ -309,8 +299,6 @@ namespace ExtinctionMarine.Gameplay
            
             UpdateExpUI();
         }
-
-
 
         private float GetExpRequiredForLevel(int level)
         {

@@ -6,10 +6,8 @@ namespace ExtinctionMarine.Gameplay
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class ProjectileController : MonoBehaviour
-    {
-        
+    {       
         [SerializeField] private float lifeTime = 2f;
-
 
         private Rigidbody2D rb;
         private float currentLifeTime;
