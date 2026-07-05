@@ -8,13 +8,13 @@ namespace ExtinctionMarine.Gameplay.Upgrades
     public class BulletSpeedUpgrade : IUpgrade
     {
         public string Title => "[ SUPERSONIC BULLETS ]";
-        public string Description => "Increases speed of bullets by X.";
-        public int CurrentLevel { get; set; } = 1;
-        public int MaxLevel => 100;
+        public string Description => "Increases speed of bullets by 5.";
+        public int CurrentLevel { get; set; } = 0;
+        public int MaxLevel => 5;
         public void Apply(PlayerController player)
         {
 
-            player.ApplyBulletSpeedUpgrade(0.2f);
+            player.ApplyBulletSpeedUpgrade();
 
 
         }

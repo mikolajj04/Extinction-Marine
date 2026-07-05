@@ -28,7 +28,7 @@ namespace ExtinctionMarine.Gameplay
         }
 
      
-        public void FireProjectile(Vector2 position, Vector2 direction, float damage, int pierceCount)
+        public void FireProjectile(Vector2 position, Vector2 direction, float damage, float speed, int pierceCount)
         {
             ProjectileController bullet;
 
@@ -44,7 +44,7 @@ namespace ExtinctionMarine.Gameplay
             }
 
           
-            bullet.Initialize(position, direction, damage,pierceCount, ReturnToPool);
+            bullet.Initialize(position, direction, damage,speed, pierceCount, ReturnToPool);
         }
 
       
