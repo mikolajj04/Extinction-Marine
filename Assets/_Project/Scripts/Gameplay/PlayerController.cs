@@ -119,6 +119,12 @@ namespace ExtinctionMarine.Gameplay
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Damage of your projectiles {logicData.Damage}");
         }
 
+        public void ApplyBulletSpeedUpgrade()
+        {
+            logicData.IncreaseProjectileSpeed(5f);
+            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Current speed of your projectiles {logicData.ProjectileSpeed}");
+        }
+
         public void ApplyPenetrationUpgrade()
         {
             logicData.IncreasePenetration();
@@ -192,7 +198,7 @@ namespace ExtinctionMarine.Gameplay
             Vector2 baseDirection = (mouseWorldPos - transform.position).normalized;
             if (ProjectileCount <= 1)
             {
-                projectilePool.FireProjectile(transform.position, baseDirection, logicData.Damage, logicData.PenetrationCount);
+                projectilePool.FireProjectile(transform.position, baseDirection, logicData.Damage,logicData.ProjectileSpeed, logicData.PenetrationCount);
                 return;
             }
             float angleStep = 15f;
@@ -200,14 +206,14 @@ namespace ExtinctionMarine.Gameplay
             float startAngle = -totalSpread / 2f;
             for (int i = 0; i < ProjectileCount; i++)
             {
-                // Obliczamy k¹t dla tego konkretnego pocisku w pêtli
+               
                 float currentAngle = startAngle + (i * angleStep);
 
-                // Obracamy nasz wektor bazowy o wyliczony k¹t
+               
                 Vector2 rotatedDirection = RotateVector(baseDirection, currentAngle);
 
-                // Wypluwamy pocisk
-                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage, logicData.PenetrationCount);
+               
+                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount);
             }
 
             

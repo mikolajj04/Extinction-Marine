@@ -7,7 +7,7 @@ namespace ExtinctionMarine.Gameplay
     [RequireComponent(typeof(Rigidbody2D))]
     public class ProjectileController : MonoBehaviour
     {
-        [SerializeField] private float baseSpeed = 20f;
+        
         [SerializeField] private float lifeTime = 2f;
 
 
@@ -25,7 +25,7 @@ namespace ExtinctionMarine.Gameplay
             rb = GetComponent<Rigidbody2D>();
         }
 
-        public void Initialize(Vector2 position, Vector2 direction, float damage, int pierceCount, Action<ProjectileController> deactivateCallback)
+        public void Initialize(Vector2 position, Vector2 direction, float damage, float speed, int pierceCount, Action<ProjectileController> deactivateCallback)
         {
 
             gameObject.SetActive(true);
@@ -37,7 +37,7 @@ namespace ExtinctionMarine.Gameplay
 
             onDeactivate = deactivateCallback;
             currentLifeTime = 0f;
-            currentSpeed = baseSpeed;
+            currentSpeed = speed;
 
             rb.linearVelocity = direction.normalized * currentSpeed;
 

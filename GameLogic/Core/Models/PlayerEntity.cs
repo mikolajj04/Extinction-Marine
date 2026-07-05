@@ -11,6 +11,7 @@ namespace GameLogic.Core.Models
         public float Experience { get; private set; }
         public float MoveSpeed { get; private set; }
         public int PenetrationCount { get; private set; }
+        public float ProjectileSpeed { get; private set; }
 
         public PlayerEntity() : base(100f, 5f)
         {
@@ -51,6 +52,13 @@ namespace GameLogic.Core.Models
         {
             if (IsDead) return;
             MoveSpeed += amount;
+        }
+
+        public void IncreaseProjectileSpeed(float amount)
+        {
+            if (IsDead) return;
+            ProjectileSpeed += amount;
+            
         }
 
     }
