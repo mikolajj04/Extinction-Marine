@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
-namespace ExtinctionMarine.Gameplay
+using ExtinctionMarine.Gameplay.Controllers;
+namespace ExtinctionMarine.Gameplay.Pools
 {
     public class GemPool : MonoBehaviour
     {

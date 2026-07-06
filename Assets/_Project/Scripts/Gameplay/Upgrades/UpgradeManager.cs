@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
+using ExtinctionMarine.Gameplay.Controllers;
 using ExtinctionMarine.Gameplay.Upgrades;
 using UnityEngine;
 

@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using ExtinctionMarine.Gameplay.Controllers;
 
 namespace ExtinctionMarine.Gameplay.UI
 {

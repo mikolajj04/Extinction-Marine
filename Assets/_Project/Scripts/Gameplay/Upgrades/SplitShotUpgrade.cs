@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ExtinctionMarine.Gameplay;
+using ExtinctionMarine.Gameplay.Controllers;
 using ExtinctionMarine.Gameplay.Upgrades;
 
 namespace ExtinctionMarine.Gameplay.Upgrades

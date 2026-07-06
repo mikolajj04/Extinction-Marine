@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using ExtinctionMarine.Gameplay.Controllers;
+using ExtinctionMarine.Gameplay.Pools;
 using UnityEngine;
 
 namespace ExtinctionMarine.Gameplay

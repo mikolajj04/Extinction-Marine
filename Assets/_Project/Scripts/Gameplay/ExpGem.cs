@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using ExtinctionMarine.Gameplay.Controllers;
 
 namespace ExtinctionMarine.Gameplay
 {

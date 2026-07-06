@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using ExtinctionMarine.Gameplay.Controllers;
 using UnityEngine;
 
-namespace ExtinctionMarine.Gameplay
+namespace ExtinctionMarine.Gameplay.Pools
 {
     public class EnemyPool : MonoBehaviour
     {

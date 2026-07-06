@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ExtinctionMarine.Gameplay
+namespace ExtinctionMarine.Gameplay.Controllers
 {
     public class CameraController : MonoBehaviour
     {

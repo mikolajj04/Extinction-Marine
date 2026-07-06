@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro; 
 using System.Collections.Generic;
 using ExtinctionMarine.Gameplay.Upgrades;
+using ExtinctionMarine.Gameplay.Controllers;
 
 namespace ExtinctionMarine.Gameplay.UI
 {

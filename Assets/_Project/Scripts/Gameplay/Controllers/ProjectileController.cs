@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExtinctionMarine.Gameplay
+namespace ExtinctionMarine.Gameplay.Controllers
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class ProjectileController : MonoBehaviour

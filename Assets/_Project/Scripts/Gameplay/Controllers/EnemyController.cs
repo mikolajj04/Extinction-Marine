@@ -3,7 +3,7 @@ using UnityEngine;
 using GameLogic.Core.Models;
 
 
-namespace ExtinctionMarine.Gameplay
+namespace ExtinctionMarine.Gameplay.Controllers
 {
     public enum DinosaurSpecies
     {

@@ -1,12 +1,13 @@
 using System;
 using System.Runtime.InteropServices.WindowsRuntime;
+using ExtinctionMarine.Gameplay.Pools;
 using ExtinctionMarine.Gameplay.UI;
 using GameLogic.Core.Models;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ExtinctionMarine.Gameplay
+namespace ExtinctionMarine.Gameplay.Controllers
 {
     
     [RequireComponent(typeof(Rigidbody2D))]
