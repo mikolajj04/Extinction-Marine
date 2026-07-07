@@ -12,7 +12,8 @@ namespace ExtinctionMarine.Gameplay.Controllers
         Triceratops,
         MicroRaptor,
         Carnotaurus,
-        Diplodocus
+        Diplodocus,
+        Stegosaurus
     }
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))] 
@@ -55,6 +56,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 DinosaurSpecies.MicroRaptor => new MicroRaptorEntity(),
                 DinosaurSpecies.Carnotaurus => new CarnotaurusEntity(),
                 DinosaurSpecies.Diplodocus => new DiplodocusEntity(),
+                DinosaurSpecies.Stegosaurus => new StegosaurusEntity(),
                 _ => new RaptorEntity() 
             };
         }
