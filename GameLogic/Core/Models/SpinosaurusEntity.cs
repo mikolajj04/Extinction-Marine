@@ -6,7 +6,7 @@ namespace GameLogic.Core.Models
 {
     public class SpinosaurusEntity : DinosaurEntity
     {
-        public SpinosaurusEntity() : base(2000f, 75f, 8f, 900f)
+        public SpinosaurusEntity() : base(2000f, 80f, 8f, 900f)
         {
 
         }
