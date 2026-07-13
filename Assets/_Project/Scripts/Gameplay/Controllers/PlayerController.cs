@@ -102,6 +102,11 @@ namespace ExtinctionMarine.Gameplay.Controllers
             logicData.AddProjectile();
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Brand new gun installed! Number of guns: {logicData.ProjectileCount}");
         }
+        public void ApplyRearGunUpgrade()
+        {
+            logicData.AddRearProjectile();
+            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Brand new rear-gun installed! Number of rear-guns: {logicData.RearProjectileCount}");
+        }
 
         public void ApplyDamageUpgrade()
         {
