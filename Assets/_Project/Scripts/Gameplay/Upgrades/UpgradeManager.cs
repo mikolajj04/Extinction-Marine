@@ -27,7 +27,8 @@ namespace ExtinctionMarine.Gameplay.Upgrades
                 new SplitShotUpgrade(),
                 new DamageUpgrade(),
                 new PierceUpgrade(),
-                new BulletSpeedUpgrade()
+                new BulletSpeedUpgrade(),
+                new RearGunUpgrade()
 
             };
         }
