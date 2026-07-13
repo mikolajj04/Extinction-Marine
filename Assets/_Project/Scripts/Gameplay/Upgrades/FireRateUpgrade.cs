@@ -9,13 +9,13 @@ namespace ExtinctionMarine.Gameplay.Upgrades
     public class FireRateUpgrade : IUpgrade
     {
         public string Title => "[ OVERCLOCK WEAPON ]";
-        public string Description => "Increases fire rate by 20%.";
+        public string Description => "Increases fire rate by 15%.";
         public int CurrentLevel { get; set; } = 0;
         public int MaxLevel => 100;
         public void Apply(PlayerController player)
         {
 
-            player.ApplyFireRateUpgrade(0.2f);
+            player.ApplyFireRateUpgrade(0.15f);
 
            
         }
