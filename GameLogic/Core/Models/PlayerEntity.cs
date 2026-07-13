@@ -13,6 +13,7 @@ namespace GameLogic.Core.Models
         public int PenetrationCount { get; private set; }
         public float ProjectileSpeed { get; private set; }
         public int ProjectileCount { get; private set; }
+        public int RearProjectileCount { get; private set; }
 
         public PlayerEntity() : base(100f, 5f)
         {
@@ -68,6 +69,11 @@ namespace GameLogic.Core.Models
         {
             if (IsDead) return;
             ProjectileCount++;
+        }
+        public void AddRearProjectile()
+        {
+            if (IsDead) return;
+            RearProjectileCount++;
         }
     }
 }
