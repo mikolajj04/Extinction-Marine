@@ -185,28 +185,36 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
            
             Vector2 baseDirection = (mouseWorldPos - transform.position).normalized;
-            if (logicData.ProjectileCount <= 1)
+            FireVolley(baseDirection, logicData.ProjectileCount);
+            
+            if(logicData.RearProjectileCount > 0)
             {
-                projectilePool.FireProjectile(transform.position, baseDirection, logicData.Damage,logicData.ProjectileSpeed, logicData.PenetrationCount);
-                return;
-            }
-            float angleStep = 15f;
-            float totalSpread = angleStep * (logicData.ProjectileCount - 1);
-            float startAngle = -totalSpread / 2f;
-            for (int i = 0; i < logicData.ProjectileCount; i++)
-            {
-               
-                float currentAngle = startAngle + (i * angleStep);
-
-               
-                Vector2 rotatedDirection = RotateVector(baseDirection, currentAngle);
-
-               
-                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount);
+                FireVolley(-baseDirection, logicData.RearProjectileCount);
             }
 
             
         }
+
+        private void FireVolley(Vector2 direction, int count)
+        {
+            if (count <= 1)
+            {
+                projectilePool.FireProjectile(transform.position, direction, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount);
+                return;
+            }
+
+            float angleStep = 15f;
+            float totalSpread = angleStep * (count - 1);
+            float startAngle = -totalSpread / 2f;
+
+            for (int i = 0; i < count; i++)
+            {
+                float currentAngle = startAngle + (i * angleStep);
+                Vector2 rotatedDirection = RotateVector(direction, currentAngle);
+                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount);
+            }
+        }
+
         private Vector2 RotateVector(Vector2 vector, float degrees)
         {
             float radians = degrees * Mathf.Deg2Rad;
