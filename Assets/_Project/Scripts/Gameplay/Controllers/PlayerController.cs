@@ -22,9 +22,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
         [Header("Collection Settings")]
         [SerializeField] private CircleCollider2D magnetCollider;
-        
-        public int ProjectileCount { get; private set; } = 1;       
-
+       
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
         [SerializeField] private float fireRate = 0.35f;
@@ -101,8 +99,13 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
         public void ApplySplitShotUpgrade()
         {
-            ProjectileCount++;
-            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Brand new gun installed! Number of guns: {ProjectileCount}");
+            logicData.AddProjectile();
+            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Brand new gun installed! Number of guns: {logicData.ProjectileCount}");
+        }
+        public void ApplyRearGunUpgrade()
+        {
+            logicData.AddRearProjectile();
+            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Brand new rear-gun installed! Number of rear-guns: {logicData.RearProjectileCount}");
         }
 
         public void ApplyDamageUpgrade()
@@ -187,28 +190,36 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
            
             Vector2 baseDirection = (mouseWorldPos - transform.position).normalized;
-            if (ProjectileCount <= 1)
+            FireVolley(baseDirection, logicData.ProjectileCount);
+            
+            if(logicData.RearProjectileCount > 0)
             {
-                projectilePool.FireProjectile(transform.position, baseDirection, logicData.Damage,logicData.ProjectileSpeed, logicData.PenetrationCount);
-                return;
-            }
-            float angleStep = 15f;
-            float totalSpread = angleStep * (ProjectileCount - 1);
-            float startAngle = -totalSpread / 2f;
-            for (int i = 0; i < ProjectileCount; i++)
-            {
-               
-                float currentAngle = startAngle + (i * angleStep);
-
-               
-                Vector2 rotatedDirection = RotateVector(baseDirection, currentAngle);
-
-               
-                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount);
+                FireVolley(-baseDirection, logicData.RearProjectileCount);
             }
 
             
         }
+
+        private void FireVolley(Vector2 direction, int count)
+        {
+            if (count <= 1)
+            {
+                projectilePool.FireProjectile(transform.position, direction, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount);
+                return;
+            }
+
+            float angleStep = 15f;
+            float totalSpread = angleStep * (count - 1);
+            float startAngle = -totalSpread / 2f;
+
+            for (int i = 0; i < count; i++)
+            {
+                float currentAngle = startAngle + (i * angleStep);
+                Vector2 rotatedDirection = RotateVector(direction, currentAngle);
+                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount);
+            }
+        }
+
         private Vector2 RotateVector(Vector2 vector, float degrees)
         {
             float radians = degrees * Mathf.Deg2Rad;
