@@ -22,9 +22,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
         [Header("Collection Settings")]
         [SerializeField] private CircleCollider2D magnetCollider;
-        
-        public int ProjectileCount { get; private set; } = 1;       
-
+       
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
         [SerializeField] private float fireRate = 0.35f;
@@ -101,8 +99,8 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
         public void ApplySplitShotUpgrade()
         {
-            ProjectileCount++;
-            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Brand new gun installed! Number of guns: {ProjectileCount}");
+            logicData.AddProjectile();
+            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Brand new gun installed! Number of guns: {logicData.ProjectileCount}");
         }
 
         public void ApplyDamageUpgrade()
@@ -187,15 +185,15 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
            
             Vector2 baseDirection = (mouseWorldPos - transform.position).normalized;
-            if (ProjectileCount <= 1)
+            if (logicData.ProjectileCount <= 1)
             {
                 projectilePool.FireProjectile(transform.position, baseDirection, logicData.Damage,logicData.ProjectileSpeed, logicData.PenetrationCount);
                 return;
             }
             float angleStep = 15f;
-            float totalSpread = angleStep * (ProjectileCount - 1);
+            float totalSpread = angleStep * (logicData.ProjectileCount - 1);
             float startAngle = -totalSpread / 2f;
-            for (int i = 0; i < ProjectileCount; i++)
+            for (int i = 0; i < logicData.ProjectileCount; i++)
             {
                
                 float currentAngle = startAngle + (i * angleStep);
