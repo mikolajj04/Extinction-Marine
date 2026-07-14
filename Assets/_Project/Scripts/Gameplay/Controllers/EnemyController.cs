@@ -38,7 +38,8 @@ namespace ExtinctionMarine.Gameplay.Controllers
         private Action<EnemyController> returnToPool;
         private float nextAttackTime = 0f;
         private Collider2D[] separationBuffer = new Collider2D[20];
-        
+        private float knockbackTimer = 0f;
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -73,12 +74,31 @@ namespace ExtinctionMarine.Gameplay.Controllers
             gameObject.SetActive(true);
         }
 
+        public void ApplyKnockback(Vector2 knockbackForce)
+        {
+            if (logicData == null || logicData.IsDead || logicData.IsImmuneToKnockback) return;
+
+            
+            rb.linearVelocity = knockbackForce;
+
+            
+            knockbackTimer = 0.2f;
+        }
         private void FixedUpdate()
         {
             if (logicData == null || logicData.IsDead || playerTransform == null)
             {
                 rb.linearVelocity = Vector2.zero;
                 return;
+            }
+            if (knockbackTimer > 0f)
+            {
+                knockbackTimer -= Time.fixedDeltaTime;
+
+               
+                rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, Time.fixedDeltaTime * 5f);
+
+                return; 
             }
 
             Vector2 directionToPlayer = (playerTransform.position - transform.position).normalized;
