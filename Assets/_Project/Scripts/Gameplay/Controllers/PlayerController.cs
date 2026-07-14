@@ -29,7 +29,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
         public float FireRate { get; private set; } // Fire Cooldown
 
         private PlayerEntity logicData;
-        public PlayerEntity LogicData => logicData;
+        //public PlayerEntity LogicData => logicData;
         private Rigidbody2D rb;
         private Vector2 moveInput;
         private Camera mainCamera;
@@ -127,6 +127,13 @@ namespace ExtinctionMarine.Gameplay.Controllers
         
         }
 
+        public void ApplyConcussiveShells()
+        {
+            logicData.IncreaseKnockback(2.5f);
+            Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Current knockback force: {logicData.KnockbackForce}");
+
+        }
+
         private void UpdateLevelUI()
         {
             if (levelText != null && logicData != null)
@@ -204,7 +211,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
         {
             if (count <= 1)
             {
-                projectilePool.FireProjectile(transform.position, direction, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount);
+                projectilePool.FireProjectile(transform.position, direction, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount, logicData.KnockbackForce);
                 return;
             }
 
@@ -216,7 +223,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             {
                 float currentAngle = startAngle + (i * angleStep);
                 Vector2 rotatedDirection = RotateVector(direction, currentAngle);
-                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount);
+                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount, logicData.KnockbackForce);
             }
         }
 
