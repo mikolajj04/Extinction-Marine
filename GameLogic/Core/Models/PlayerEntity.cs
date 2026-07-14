@@ -14,6 +14,7 @@ namespace GameLogic.Core.Models
         public float ProjectileSpeed { get; private set; }
         public int ProjectileCount { get; private set; }
         public int RearProjectileCount { get; private set; }
+        public float KnockbackForce { get; private set; }
 
         public PlayerEntity() : base(100f, 5f)
         {
@@ -23,6 +24,8 @@ namespace GameLogic.Core.Models
             PenetrationCount = 1;
             ProjectileSpeed = 12f;
             ProjectileCount = 1;
+            RearProjectileCount = 0;
+            KnockbackForce = 0;
         }
 
 
@@ -74,6 +77,12 @@ namespace GameLogic.Core.Models
         {
             if (IsDead) return;
             RearProjectileCount++;
+        }
+
+        public void IncreaseKnockback(float amount)
+        {
+            if (IsDead) return;
+            KnockbackForce += amount;
         }
     }
 }
