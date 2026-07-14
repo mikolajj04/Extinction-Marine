@@ -14,6 +14,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
         private float projectileDamage;
         private int remainingPierce;
         private float currentSpeed;
+        private float knockbackForce;
         private HashSet<Collider2D> piercedEnemies = new HashSet<Collider2D>();
 
         private Action<ProjectileController> onDeactivate;
@@ -23,11 +24,12 @@ namespace ExtinctionMarine.Gameplay.Controllers
             rb = GetComponent<Rigidbody2D>();
         }
 
-        public void Initialize(Vector2 position, Vector2 direction, float damage, float speed, int pierceCount, Action<ProjectileController> deactivateCallback)
+        public void Initialize(Vector2 position, Vector2 direction, float damage, float speed, int pierceCount, float knockback, Action<ProjectileController> deactivateCallback)
         {
 
             gameObject.SetActive(true);
             transform.position = position;
+            knockbackForce = knockback;
 
             projectileDamage = damage;
             remainingPierce = pierceCount; 
@@ -69,6 +71,15 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 if (piercedEnemies.Contains(other)) return;
 
                 enemy.TakeDamage(projectileDamage);
+                if (knockbackForce > 0f)
+                {
+                    
+                    Vector2 knockbackVector = rb.linearVelocity.normalized * knockbackForce;
+
+                  
+                    enemy.ApplyKnockback(knockbackVector);
+                }
+
                 piercedEnemies.Add(other);
                 remainingPierce--;
                 currentSpeed = Mathf.Max(2f, currentSpeed - 8f);

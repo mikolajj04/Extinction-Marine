@@ -6,9 +6,9 @@ namespace GameLogic.Core.Models
 {
     public class StegosaurusEntity : DinosaurEntity
     {
-        public StegosaurusEntity() : base(100f, 35f, 3f, 65f)
+        public StegosaurusEntity() : base(60f, 25f, 3f, 45f)
         {
-
+            
         }
 
         protected override void Die()

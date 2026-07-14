@@ -6,9 +6,9 @@ namespace GameLogic.Core.Models
 {
     public class TriceratopsEntity : DinosaurEntity
     {
-        public TriceratopsEntity() : base(60f, 25f, 5.5f, 45f)
+        public TriceratopsEntity() : base(100f, 35f, 5.5f, 70f)
         {
-
+            IsImmuneToKnockback = true;
         }
 
         protected override void Die()
