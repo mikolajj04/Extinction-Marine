@@ -8,7 +8,7 @@ namespace GameLogic.Core.Models
     {
         public SpinosaurusEntity() : base(2000f, 80f, 8f, 900f)
         {
-
+            IsImmuneToKnockback = true;
         }
 
         protected override void Die() { }

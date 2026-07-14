@@ -8,6 +8,7 @@ namespace GameLogic.Core.Models
     {
         public CarnotaurusEntity() : base(1000f, 70f, 7.5f, 500f)
         {
+            IsImmuneToKnockback = true;
 
         }
 

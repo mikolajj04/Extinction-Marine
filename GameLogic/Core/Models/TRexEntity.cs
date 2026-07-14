@@ -9,6 +9,7 @@ namespace GameLogic.Core.Models
         
         public TRexEntity() : base(8000f, 90f, 10.5f, 2000f)
         {
+            IsImmuneToKnockback = true;
         }
 
         protected override void Die() { }
