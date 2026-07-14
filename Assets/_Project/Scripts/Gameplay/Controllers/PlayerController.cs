@@ -29,7 +29,6 @@ namespace ExtinctionMarine.Gameplay.Controllers
         public float FireRate { get; private set; } // Fire Cooldown
 
         private PlayerEntity logicData;
-        //public PlayerEntity LogicData => logicData;
         private Rigidbody2D rb;
         private Vector2 moveInput;
         private Camera mainCamera;
