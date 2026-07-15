@@ -4,6 +4,7 @@ using ExtinctionMarine.Gameplay.Controllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 namespace ExtinctionMarine.Gameplay.UI
 {
@@ -49,7 +50,7 @@ namespace ExtinctionMarine.Gameplay.UI
             killCountText.text = $"ENEMIES KILLED: {currentKills}";
 
             Time.timeScale = 0f;
-            SaveScoreToFilesystem();
+            _ = SaveScoreToFilesystemAsync();
 
             Debug.Log("[GameOverScreen] Game Over triggered. Time frozen.");
         }
@@ -64,15 +65,15 @@ namespace ExtinctionMarine.Gameplay.UI
           
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        private void SaveScoreToFilesystem()
+        private async Task SaveScoreToFilesystemAsync()
         {
             try
             {
                 string timeOfDeath = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                string logEntry = $"MARINE DIED AT: {timeOfDeath}.\nKILLED ENEMIES: {currentKills}.\n{survivalTimeText.text}. \n--------------------";
+                string logEntry = $"MARINE DIED AT: {timeOfDeath}.\nKILLED ENEMIES: {currentKills}.\n{survivalTimeText.text}. \n--------------------\n";
 
-             
-                File.AppendAllText(saveFilePath, logEntry);
+
+                await File.AppendAllTextAsync(saveFilePath, logEntry);
                 Debug.Log($"[File System] Score saved in: {saveFilePath}");
             }
             catch (Exception e)
