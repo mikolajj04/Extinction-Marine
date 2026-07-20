@@ -13,7 +13,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour
     {
-
+        [SerializeField] Animator animator;
         [SerializeField] private HealthBar expBar; 
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
@@ -175,9 +175,18 @@ namespace ExtinctionMarine.Gameplay.Controllers
         }
         private void Update()
         {
+         
             if (IsDead) return;
+            moveInput.x = Input.GetAxisRaw("Horizontal");
+            moveInput.y = Input.GetAxisRaw("Vertical");
+            bool isMoving = moveInput.magnitude > 0.1f;
+            if (animator != null)
+            {
+                animator.SetBool("IsRunning", isMoving);
+            }
 
-  
+            RotateTowardsMouse();
+
             fireCooldownTimer -= Time.deltaTime;
 
        
@@ -318,14 +327,52 @@ namespace ExtinctionMarine.Gameplay.Controllers
             UpdateExpUI();
         }
 
-
         private float GetExpRequiredForLevel(int level)
         {
             if (level <= 0) return 0f;
             return level * 50f * (level + 0.5f);
         }
+        private void RotateTowardsMouse()
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+         
+            Vector2 direction = mousePos - transform.position;
+
+        
+            Vector3 characterScale = transform.localScale;
+
+            if (direction.x > 0)
+            {
+          
+                characterScale.x = Mathf.Abs(characterScale.x);
+            }
+            else if (direction.x < 0)
+            {
+
+                characterScale.x = -Mathf.Abs(characterScale.x);
+            }
+
+            transform.localScale = characterScale;
+
+
+            float tiltAngle = Mathf.Atan2(direction.y, Mathf.Abs(direction.x)) * Mathf.Rad2Deg;
+
+            tiltAngle = Mathf.Clamp(tiltAngle, -45f, 45f);
+
+           
+            if (direction.x > 0)
+            {
+                transform.rotation = Quaternion.Euler(0f, 0f, tiltAngle);
+            }
+            else if (direction.x < 0)
+            {
+                
+                transform.rotation = Quaternion.Euler(0f, 0f, -tiltAngle);
+            }
+        }
     }
 
+}
 
-} 
+
