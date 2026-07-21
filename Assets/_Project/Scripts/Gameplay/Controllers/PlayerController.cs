@@ -221,6 +221,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 muzzleFlash.Play();
             }
 
+            CameraController.Instance.TriggerShake(0.1f, 0.15f);
 
 
         }
