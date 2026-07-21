@@ -1,11 +1,14 @@
 using System;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Collections;
 using ExtinctionMarine.Gameplay.Pools;
 using ExtinctionMarine.Gameplay.UI;
 using GameLogic.Core.Models;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI; 
+
+
 
 namespace ExtinctionMarine.Gameplay.Controllers
 {
@@ -13,7 +16,15 @@ namespace ExtinctionMarine.Gameplay.Controllers
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour
     {
+
+        [SerializeField] private Transform firePoint;
+        [Header("VFX")]
+        [SerializeField] private Image damageOverlay;
+        [SerializeField] private float damageFlashDuration = 0.2f;
+        private Coroutine damageFlashCoroutine;
         [SerializeField] Animator animator;
+        [Tooltip("Drag the MuzzleFlash (Particle System) object from the player's hierarchy here")]
+        [SerializeField] private ParticleSystem muzzleFlash;
         [SerializeField] private HealthBar expBar; 
         [Header("UI Dependencies")]
         [SerializeField] private HealthBar healthBar;
@@ -211,15 +222,21 @@ namespace ExtinctionMarine.Gameplay.Controllers
             {
                 FireVolley(-baseDirection, logicData.RearProjectileCount);
             }
+            if (muzzleFlash != null)
+            {
+                muzzleFlash.Play();
+            }
 
-            
+            CameraController.Instance.TriggerShake(0.1f, 0.15f);
+
+
         }
 
         private void FireVolley(Vector2 direction, int count)
         {
             if (count <= 1)
             {
-                projectilePool.FireProjectile(transform.position, direction, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount, logicData.KnockbackForce);
+                projectilePool.FireProjectile(firePoint.position, direction, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount, logicData.KnockbackForce);
                 return;
             }
 
@@ -231,7 +248,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             {
                 float currentAngle = startAngle + (i * angleStep);
                 Vector2 rotatedDirection = RotateVector(direction, currentAngle);
-                projectilePool.FireProjectile(transform.position, rotatedDirection, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount, logicData.KnockbackForce);
+                projectilePool.FireProjectile(firePoint.position, rotatedDirection, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount, logicData.KnockbackForce);
             }
         }
 
@@ -275,14 +292,43 @@ namespace ExtinctionMarine.Gameplay.Controllers
             {
                 healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
             }
+
+            CameraController.Instance.TriggerShake(0.15f, 0.3f);
+            if (damageOverlay != null)
+            {
+               
+                if (damageFlashCoroutine != null)
+                {
+                    StopCoroutine(damageFlashCoroutine);
+                }
+                damageFlashCoroutine = StartCoroutine(FlashDamageOverlay());
+            }
+
             if (logicData.IsDead)
             {
                 HandleDeath();
             }
 
         }
+        private IEnumerator FlashDamageOverlay()
+        {
+           
+            Color c = damageOverlay.color;
+            c.a = 0.4f;
+            damageOverlay.color = c;
 
-     
+            float elapsed = 0f;
+            while (elapsed < damageFlashDuration)
+            {
+                elapsed += Time.deltaTime;
+                
+                c.a = Mathf.Lerp(0.4f, 0f, elapsed / damageFlashDuration);
+                damageOverlay.color = c;
+                yield return null; 
+            }
+        }
+
+
 
         private void HandleDeath()
         {
