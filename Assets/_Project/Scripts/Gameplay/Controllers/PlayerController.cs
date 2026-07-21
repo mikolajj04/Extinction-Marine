@@ -1,11 +1,14 @@
 using System;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Collections;
 using ExtinctionMarine.Gameplay.Pools;
 using ExtinctionMarine.Gameplay.UI;
 using GameLogic.Core.Models;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI; 
+
+
 
 namespace ExtinctionMarine.Gameplay.Controllers
 {
@@ -16,6 +19,9 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
         [SerializeField] private Transform firePoint;
         [Header("VFX")]
+        [SerializeField] private Image damageOverlay;
+        [SerializeField] private float damageFlashDuration = 0.2f;
+        private Coroutine damageFlashCoroutine;
         [SerializeField] Animator animator;
         [Tooltip("Drag the MuzzleFlash (Particle System) object from the player's hierarchy here")]
         [SerializeField] private ParticleSystem muzzleFlash;
@@ -286,14 +292,43 @@ namespace ExtinctionMarine.Gameplay.Controllers
             {
                 healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
             }
+
+            CameraController.Instance.TriggerShake(0.15f, 0.3f);
+            if (damageOverlay != null)
+            {
+               
+                if (damageFlashCoroutine != null)
+                {
+                    StopCoroutine(damageFlashCoroutine);
+                }
+                damageFlashCoroutine = StartCoroutine(FlashDamageOverlay());
+            }
+
             if (logicData.IsDead)
             {
                 HandleDeath();
             }
 
         }
+        private IEnumerator FlashDamageOverlay()
+        {
+           
+            Color c = damageOverlay.color;
+            c.a = 0.4f;
+            damageOverlay.color = c;
 
-     
+            float elapsed = 0f;
+            while (elapsed < damageFlashDuration)
+            {
+                elapsed += Time.deltaTime;
+                
+                c.a = Mathf.Lerp(0.4f, 0f, elapsed / damageFlashDuration);
+                damageOverlay.color = c;
+                yield return null; 
+            }
+        }
+
+
 
         private void HandleDeath()
         {
