@@ -1,6 +1,7 @@
 ﻿using System;
-using UnityEngine;
 using GameLogic.Core.Models;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 
 namespace ExtinctionMarine.Gameplay.Controllers
@@ -19,6 +20,9 @@ namespace ExtinctionMarine.Gameplay.Controllers
     [RequireComponent(typeof(Collider2D))] 
     public class EnemyController : MonoBehaviour
     {
+        [Header("Visuals")]
+        [SerializeField] private Animator animator;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         [Header("Identity")]
         [Tooltip("Choose dinosaur spiecies!")]
         [SerializeField] private DinosaurSpecies species;
@@ -200,5 +204,31 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 }
             }
         }
+        private void Update()
+        {
+            UpdateVisuals();
+        }
+
+        private void UpdateVisuals()
+        {
+            if (playerTransform == null) return;
+
+
+           
+            if (spriteRenderer != null)
+            {
+                if (playerTransform.position.x > transform.position.x)
+                {
+                    
+                    spriteRenderer.flipX = false;
+                }
+                else if (playerTransform.position.x < transform.position.x)
+                {
+                    
+                    spriteRenderer.flipX = true;
+                }
+            }
+        }
+
     }
 }
