@@ -404,7 +404,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
             float tiltAngle = Mathf.Atan2(direction.y, Mathf.Abs(direction.x)) * Mathf.Rad2Deg;
 
-            tiltAngle = Mathf.Clamp(tiltAngle, -45f, 45f);
+            tiltAngle = Mathf.Clamp(tiltAngle, -30f, 30f);
 
            
             if (direction.x > 0)
