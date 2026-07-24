@@ -23,6 +23,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
         [Header("Visuals")]
         [SerializeField] private Animator animator;
         [SerializeField] private SpriteRenderer spriteRenderer;
+        private Vector3 baseScale;
         [Header("Identity")]
         [Tooltip("Choose dinosaur spiecies!")]
         [SerializeField] private DinosaurSpecies species;
@@ -48,7 +49,8 @@ namespace ExtinctionMarine.Gameplay.Controllers
         {
             rb = GetComponent<Rigidbody2D>();
             myCollider = GetComponent<Collider2D>();
-            
+            baseScale = transform.localScale;
+
         }
 
         private DinosaurEntity CreateEntityModel()
@@ -214,19 +216,15 @@ namespace ExtinctionMarine.Gameplay.Controllers
             if (playerTransform == null) return;
 
 
-           
-            if (spriteRenderer != null)
+            if (playerTransform.position.x > transform.position.x)
             {
-                if (playerTransform.position.x > transform.position.x)
-                {
-                    
-                    spriteRenderer.flipX = false;
-                }
-                else if (playerTransform.position.x < transform.position.x)
-                {
-                    
-                    spriteRenderer.flipX = true;
-                }
+          
+                transform.localScale = new Vector3(Mathf.Abs(baseScale.x), baseScale.y, baseScale.z);
+            }
+            else if (playerTransform.position.x < transform.position.x)
+            {
+  
+                transform.localScale = new Vector3(-Mathf.Abs(baseScale.x), baseScale.y, baseScale.z);
             }
         }
 
