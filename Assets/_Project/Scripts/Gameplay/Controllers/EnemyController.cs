@@ -198,11 +198,14 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 if (collision.gameObject.TryGetComponent<PlayerController>(out var player))
                 {
                     player.ApplyDamage(logicData.Damage);
-
-
                     nextAttackTime = Time.time + attackCooldown;
 
-                    Debug.Log($"[EnemyController] Raptor bites the player for {logicData.Damage} damage!");
+                    if(animator != null)
+                    {
+                        animator.SetTrigger("Attack");
+                    }
+
+                    Debug.Log($"[EnemyController] {species} bites the player for {logicData.Damage} damage!");
                 }
             }
         }
