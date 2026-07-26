@@ -151,8 +151,8 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: StegosaurusRunning-Sheet_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.55, y: 0.15}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -172,8 +172,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: StegosaurusRunning-Sheet_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.55, y: 0.15}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -193,8 +193,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: StegosaurusRunning-Sheet_2
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.55, y: 0.15}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -214,8 +214,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: StegosaurusRunning-Sheet_3
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.55, y: 0.15}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:

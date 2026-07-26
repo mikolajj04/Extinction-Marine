@@ -149,10 +149,10 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: RaptorRunning 1_0
+  - name: RaptorRunning_3
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.01}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -160,8 +160,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 32
-      height: 28
-    spriteID: e7de43d89a4bddf4f99e2a7abc1c3b68
+      height: 32
+    spriteID: b952ae5a70c8d844b87e321f632d7271
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,19 +170,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: RaptorRunning 1_1
+  - name: RaptorRunning_4
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.01}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 37
-      y: 6
-      width: 31
-      height: 26
-    spriteID: 24ef78bfb7573154baf1adf7560ec42e
+      x: 36
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 24c9984e23d5575428a7ef6ea8d7a3cc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -191,10 +191,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: RaptorRunning 1_2
+  - name: RaptorRunning_5
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.01}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -202,8 +202,8 @@ ScriptedImporter:
       x: 68
       y: 4
       width: 32
-      height: 29
-    spriteID: 29b770189301e444d92505aa1028113f
+      height: 32
+    spriteID: 281bb33e164827e4d921fe82e3dedf7d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,19 +212,19 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: RaptorRunning 1_3
+  - name: RaptorRunning_6
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.01}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 101
-      y: 6
-      width: 31
-      height: 27
-    spriteID: bccf222f7f1b70d46ae030978370c6ae
+      x: 100
+      y: 4
+      width: 32
+      height: 32
+    spriteID: f9e7e9f8ddaa008409059500798dffee
     spriteBone: []
     spriteOutline: []
     vertices: []
