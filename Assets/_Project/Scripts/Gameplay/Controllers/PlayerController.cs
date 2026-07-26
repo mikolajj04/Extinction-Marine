@@ -215,7 +215,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(mouseScreenPos);
 
            
-            Vector2 baseDirection = (mouseWorldPos - transform.position).normalized;
+            Vector2 baseDirection = (mouseWorldPos - firePoint.position).normalized;
             FireVolley(baseDirection, logicData.ProjectileCount);
             
             if(logicData.RearProjectileCount > 0)
