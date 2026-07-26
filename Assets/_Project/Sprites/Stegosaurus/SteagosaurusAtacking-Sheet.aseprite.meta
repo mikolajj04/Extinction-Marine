@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5870d011501bf834aa59786ee4119f9a
+guid: 2e8d1c63b9244d94b994063b32722576
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639201875240563643
+  platformSettingsDirtyTick: 639206106801155428
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: MarineIdle 1
+  - name: SteagosaurusAtacking-Sheet
     originalName: 
-    pivot: {x: 0.5714286, y: 0}
+    pivot: {x: 0.496063, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 70
-      height: 30
-    spriteID: 9853072998ee14048ae3ed5fefa58c5a
+      width: 254
+      height: 28
+    spriteID: 94cec5b4deeff3948919ea15825a0438
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,21 +147,21 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 2, y: 4}
   spriteSheetImportData:
-  - name: MarineIdle
+  - name: SteagosaurusAtacking-Sheet_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.55, y: 0.15}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
-      width: 23
-      height: 30
-    spriteID: 4017831a95a43ab42b0ff33272892a88
+      x: 2
+      y: 2
+      width: 64
+      height: 32
+    spriteID: b9e0a6941105a8a4c82a0a31299d164a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,19 +170,61 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: MarineIdle 1_1
+  - name: SteagosaurusAtacking-Sheet_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.55, y: 0.15}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 51
-      y: 4
-      width: 23
-      height: 30
-    spriteID: db6f191ac5f35824c80f06ece448ea20
+      x: 66
+      y: 2
+      width: 64
+      height: 32
+    spriteID: 4dc864f7106b7a845b9e6defb263fb40
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: SteagosaurusAtacking-Sheet_2
+    originalName: 
+    pivot: {x: 0.55, y: 0.15}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 130
+      y: 2
+      width: 64
+      height: 32
+    spriteID: 786072c20ec6af0499c74479dfaf604e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: SteagosaurusAtacking-Sheet_3
+    originalName: 
+    pivot: {x: 0.55, y: 0.15}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 194
+      y: 2
+      width: 64
+      height: 32
+    spriteID: fbea5b8ec9ac0004ab923cd2316e968d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -195,25 +237,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 2338960649
+      value0: 2424712374
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: MarineIdle 1
+    name: SteagosaurusAtacking-Sheet
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: MarineIdle 1
+    - name: SteagosaurusAtacking-Sheet
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 8
+        x: 2
         y: 0
-        width: 70
-        height: 30
-      spriteId: 9853072998ee14048ae3ed5fefa58c5a
+        width: 254
+        height: 28
+      spriteId: 94cec5b4deeff3948919ea15825a0438
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -247,5 +289,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 96, y: 32}
-  previousTextureSize: {x: 128, y: 64}
+  canvasSize: {x: 256, y: 32}
+  previousTextureSize: {x: 512, y: 64}

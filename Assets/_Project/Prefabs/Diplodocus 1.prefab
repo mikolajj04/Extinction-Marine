@@ -93,7 +93,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!50 &7434987433777792719
 Rigidbody2D:
   serializedVersion: 5
@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f9f99d1036a7443a8ec0cdbff6c275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExtinctionMarine.Gameplay.EnemyController
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   species: 5
   attackCooldown: 1
   separationRadius: 1.5

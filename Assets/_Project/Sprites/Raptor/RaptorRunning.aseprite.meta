@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c09f5aac8b3ac8849987d3c90fc30d27
+guid: b81596e96d859d44385384065333eee4
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639201827012467932
+  platformSettingsDirtyTick: 639202830533452296
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Sprite-0001-Sheet
+  - name: RaptorRunning 1
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 90
-      height: 31
-    spriteID: 36ba6798bae89e14e81b36546616c4ac
+      width: 128
+      height: 29
+    spriteID: 2f930c672a94f0844bc1a2934745110c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,21 +147,84 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 1, y: 4}
+    uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: Sprite-0001-Sheet_2
+  - name: RaptorRunning_3
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0.01}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 71
+      x: 4
       y: 4
-      width: 23
-      height: 30
-    spriteID: 1c3fd46b559c06c47b17a8a6336bd290
+      width: 32
+      height: 32
+    spriteID: b952ae5a70c8d844b87e321f632d7271
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: RaptorRunning_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.01}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 36
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 24c9984e23d5575428a7ef6ea8d7a3cc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: RaptorRunning_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.01}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 68
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 281bb33e164827e4d921fe82e3dedf7d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: RaptorRunning_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.01}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 100
+      y: 4
+      width: 32
+      height: 32
+    spriteID: f9e7e9f8ddaa008409059500798dffee
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -174,25 +237,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 2721187963
+      value0: 1057079742
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Sprite-0001-Sheet
+    name: RaptorRunning 1
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Sprite-0001-Sheet
+    - name: RaptorRunning
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 96
+        width: 128
         height: 32
-      spriteId: 36ba6798bae89e14e81b36546616c4ac
+      spriteId: 2f930c672a94f0844bc1a2934745110c
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -226,5 +289,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 96, y: 32}
-  previousTextureSize: {x: 128, y: 64}
+  canvasSize: {x: 128, y: 32}
+  previousTextureSize: {x: 256, y: 64}

@@ -1,6 +1,7 @@
 ﻿using System;
-using UnityEngine;
 using GameLogic.Core.Models;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 
 namespace ExtinctionMarine.Gameplay.Controllers
@@ -19,6 +20,10 @@ namespace ExtinctionMarine.Gameplay.Controllers
     [RequireComponent(typeof(Collider2D))] 
     public class EnemyController : MonoBehaviour
     {
+        [Header("Visuals")]
+        [SerializeField] private Animator animator;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        private Vector3 baseScale;
         [Header("Identity")]
         [Tooltip("Choose dinosaur spiecies!")]
         [SerializeField] private DinosaurSpecies species;
@@ -44,7 +49,8 @@ namespace ExtinctionMarine.Gameplay.Controllers
         {
             rb = GetComponent<Rigidbody2D>();
             myCollider = GetComponent<Collider2D>();
-            
+            baseScale = transform.localScale;
+
         }
 
         private DinosaurEntity CreateEntityModel()
@@ -192,13 +198,38 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 if (collision.gameObject.TryGetComponent<PlayerController>(out var player))
                 {
                     player.ApplyDamage(logicData.Damage);
-
-
                     nextAttackTime = Time.time + attackCooldown;
 
-                    Debug.Log($"[EnemyController] Raptor bites the player for {logicData.Damage} damage!");
+                    if(animator != null)
+                    {
+                        animator.SetTrigger("Attack");
+                    }
+
+                    Debug.Log($"[EnemyController] {species} bites the player for {logicData.Damage} damage!");
                 }
             }
         }
+        private void Update()
+        {
+            UpdateVisuals();
+        }
+
+        private void UpdateVisuals()
+        {
+            if (playerTransform == null) return;
+
+
+            if (playerTransform.position.x > transform.position.x)
+            {
+          
+                transform.localScale = new Vector3(Mathf.Abs(baseScale.x), baseScale.y, baseScale.z);
+            }
+            else if (playerTransform.position.x < transform.position.x)
+            {
+  
+                transform.localScale = new Vector3(-Mathf.Abs(baseScale.x), baseScale.y, baseScale.z);
+            }
+        }
+
     }
 }
