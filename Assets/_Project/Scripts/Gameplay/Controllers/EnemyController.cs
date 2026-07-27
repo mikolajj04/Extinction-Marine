@@ -198,6 +198,16 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 if (collision.gameObject.TryGetComponent<PlayerController>(out var player))
                 {
                     player.ApplyDamage(logicData.Damage);
+
+                    if (logicData.MeleeKnockbackForce > 0f)
+                    {
+                        
+                        Vector2 knockbackDirection = (player.transform.position - transform.position).normalized;
+                        Vector2 knockbackVector = knockbackDirection * logicData.MeleeKnockbackForce;
+
+                        player.ApplyKnockback(knockbackVector);
+                    }
+
                     nextAttackTime = Time.time + attackCooldown;
 
                     if(animator != null)

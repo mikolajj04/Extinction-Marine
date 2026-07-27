@@ -6,6 +6,7 @@ using GameLogic.Core.Models;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UI; 
 
 
@@ -16,7 +17,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour
     {
-
+        
         [SerializeField] private Transform firePoint;
         [Header("VFX")]
         [SerializeField] private Image damageOverlay;
@@ -38,6 +39,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
         [SerializeField] private ProjectilePool projectilePool;
         [SerializeField] private float fireRate = 0.35f;
         public float FireRate { get; private set; } // Fire Cooldown
+        private float knockbackTimer = 0f;
 
         private PlayerEntity logicData;
         private Rigidbody2D rb;
@@ -271,6 +273,13 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 rb.linearVelocity = Vector2.zero;
                 return;
             }
+            if (knockbackTimer > 0f)
+            {
+                CameraController.Instance.TriggerShake(0.1f, 0.1f);
+                knockbackTimer -= Time.fixedDeltaTime;
+                rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, Time.fixedDeltaTime * 5f);
+                return;
+            }
             MovePlayer();
         }
 
@@ -280,6 +289,13 @@ namespace ExtinctionMarine.Gameplay.Controllers
             Vector2 movement = moveInput.normalized * logicData.MoveSpeed;
 
             rb.linearVelocity = movement;
+        }
+
+        public void ApplyKnockback(Vector2 knockbackForce)
+        {
+            if (IsDead) { return; }
+            rb.linearVelocity = knockbackForce / rb.mass;
+            knockbackTimer = 0.2f;
         }
 
         public void ApplyDamage(float damageAmount)
