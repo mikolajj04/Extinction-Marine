@@ -8,8 +8,9 @@ namespace GameLogic.Core.Models
     {
         public float Speed { get; private set; }
         public float XpReward { get; private set; }
-        public bool IsImmuneToKnockback { get; protected set; }
+        public bool IsImmuneToKnockback { get; protected set; } = false;
         public float MeleeKnockbackForce { get; protected set; } = 0f;
+        public bool IsImpenetrable { get; protected set; } = false;
 
        
         protected DinosaurEntity(float maxHealth, float baseDamage, float speed, float xpReward)

@@ -75,13 +75,20 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 {
                     
                     Vector2 knockbackVector = rb.linearVelocity.normalized * knockbackForce;
-
                   
                     enemy.ApplyKnockback(knockbackVector);
                 }
 
                 piercedEnemies.Add(other);
-                remainingPierce--;
+                if (enemy.IsImpenetrable)
+                {
+                   
+                    remainingPierce = 0;
+                }
+                else
+                {
+                    remainingPierce--;
+                }
                 currentSpeed = Mathf.Max(2f, currentSpeed - 8f);
                 rb.linearVelocity = rb.linearVelocity.normalized * currentSpeed;
 

@@ -51,6 +51,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
         private float nextAttackTime = 0f;
         private Collider2D[] separationBuffer = new Collider2D[20];
         private float knockbackTimer = 0f;
+        public bool IsImpenetrable => logicData != null && logicData.IsImpenetrable;
 
         private void Awake()
         {
