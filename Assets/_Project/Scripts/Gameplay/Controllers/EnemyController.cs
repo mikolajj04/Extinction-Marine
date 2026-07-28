@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using GameLogic.Core.Models;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -20,10 +21,16 @@ namespace ExtinctionMarine.Gameplay.Controllers
     [RequireComponent(typeof(Collider2D))] 
     public class EnemyController : MonoBehaviour
     {
+        [Header("")]
         [Header("Visuals")]
         [SerializeField] private Animator animator;
         [SerializeField] private SpriteRenderer spriteRenderer;
         private Vector3 baseScale;
+        [SerializeField] private Color hitFlashColor = new Color(1f, 0f, 0f, 0.5f);
+        [SerializeField] private float flashDuration = 0.1f;
+        private Color originalColor;
+        private Coroutine flashCoroutine;
+
         [Header("Identity")]
         [Tooltip("Choose dinosaur spiecies!")]
         [SerializeField] private DinosaurSpecies species;
@@ -50,6 +57,11 @@ namespace ExtinctionMarine.Gameplay.Controllers
             rb = GetComponent<Rigidbody2D>();
             myCollider = GetComponent<Collider2D>();
             baseScale = transform.localScale;
+
+            if(spriteRenderer!= null)
+            {
+                originalColor = spriteRenderer.color;   
+            }
 
         }
 
@@ -172,7 +184,15 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
             logicData.TakeDamage(amount);
             Debug.Log($"[EnemyController] {species} took {amount} damage. HP: {logicData.CurrentHealth}");
-
+            if (spriteRenderer != null)
+            {
+                if (flashCoroutine != null)
+                {
+                    StopCoroutine(flashCoroutine);
+                    spriteRenderer.color = originalColor;
+                }
+                flashCoroutine = StartCoroutine(FlashRoutine());
+            }
             if (logicData.IsDead)
             {
                 Die();
@@ -239,6 +259,16 @@ namespace ExtinctionMarine.Gameplay.Controllers
   
                 transform.localScale = new Vector3(-Mathf.Abs(baseScale.x), baseScale.y, baseScale.z);
             }
+        }
+
+        private IEnumerator FlashRoutine()
+        {
+
+            spriteRenderer.color = hitFlashColor;
+            yield return new WaitForSeconds(flashDuration);
+            spriteRenderer.color = originalColor;
+
+            flashCoroutine = null; 
         }
 
     }
