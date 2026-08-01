@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ea7dd95ee14fb6644bbb7b4ef33fee89
+guid: 3b045b88f57b7d44fa67e0b3ef5d8e16
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639212064171484548
+  platformSettingsDirtyTick: 639212066121726574
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: DiplodocusRunning-Sheet
+  - name: DiplodocusAttacking-Sheet
     originalName: 
-    pivot: {x: 0.5144033, y: 0}
+    pivot: {x: 0.51452285, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 972
-      height: 63
-    spriteID: 034abcacc4d0644409a45ff4cda488d1
+      width: 723
+      height: 50
+    spriteID: 4e25a4114b0077f46ac77aca9cbfaf0a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -149,7 +149,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: -8, y: 4}
   spriteSheetImportData:
-  - name: DiplodocusRunning-Sheet_8
+  - name: DiplodocusAttacking-Sheet_0
     originalName: 
     pivot: {x: 0.45, y: 0.06}
     alignment: 9
@@ -161,7 +161,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 64
-    spriteID: 6060aacc661af814790fac1646a91f2d
+    spriteID: 826d1677c7b220f4781c1e9b41cf0c34
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,7 +170,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: DiplodocusRunning-Sheet_9
+  - name: DiplodocusAttacking-Sheet_1
     originalName: 
     pivot: {x: 0.45, y: 0.06}
     alignment: 9
@@ -182,7 +182,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 64
-    spriteID: 3578936539bdd924ab5bfb2a8ba4b0e7
+    spriteID: b3caf7bc1333c564da8313fa776b4717
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -191,7 +191,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: DiplodocusRunning-Sheet_10
+  - name: DiplodocusAttacking-Sheet_2
     originalName: 
     pivot: {x: 0.45, y: 0.06}
     alignment: 9
@@ -203,7 +203,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 64
-    spriteID: 71d9a37dd2b2a6e4da6f8585a3d32aed
+    spriteID: 04073b71c3dab1249bae73ece090e646
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +212,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: DiplodocusRunning-Sheet_11
+  - name: DiplodocusAttacking-Sheet_3
     originalName: 
     pivot: {x: 0.45, y: 0.06}
     alignment: 9
@@ -224,7 +224,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 64
-    spriteID: a882633e1641e2943a803539f08fa302
+    spriteID: ddafcdc1683315341829e8aaa349f7f2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -233,7 +233,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: DiplodocusRunning-Sheet_12
+  - name: DiplodocusAttacking-Sheet_4
     originalName: 
     pivot: {x: 0.45, y: 0.06}
     alignment: 9
@@ -245,7 +245,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 64
-    spriteID: 557711b74f6505e48b297c3922b7adc5
+    spriteID: e13988588b6c251419bda399e7cac783
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -254,7 +254,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: DiplodocusRunning-Sheet_13
+  - name: DiplodocusAttacking-Sheet_5
     originalName: 
     pivot: {x: 0.45, y: 0.06}
     alignment: 9
@@ -266,49 +266,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 64
-    spriteID: 0ceadc0f45ae85a4893549dbc7957566
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: DiplodocusRunning-Sheet_14
-    originalName: 
-    pivot: {x: 0.45, y: 0.06}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 768
-      y: 0
-      width: 128
-      height: 64
-    spriteID: 9e4ea4e417d81a346a1beb93b2b5d894
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: DiplodocusRunning-Sheet_15
-    originalName: 
-    pivot: {x: 0.45, y: 0.06}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 896
-      y: 0
-      width: 128
-      height: 64
-    spriteID: 8359b30f33decab4aa8ef9915cfaf204
+    spriteID: 0321990e8459ec54eb6d86ccb45378ec
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -321,25 +279,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1447914137
+      value0: 4083439378
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: DiplodocusRunning-Sheet
+    name: DiplodocusAttacking-Sheet
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: DiplodocusRunning-Sheet
+    - name: DiplodocusAttacking-Sheet
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 1024
+        width: 768
         height: 64
-      spriteId: 034abcacc4d0644409a45ff4cda488d1
+      spriteId: 4e25a4114b0077f46ac77aca9cbfaf0a
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -373,5 +331,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 1024, y: 64}
+  canvasSize: {x: 768, y: 64}
   previousTextureSize: {x: 1024, y: 64}
