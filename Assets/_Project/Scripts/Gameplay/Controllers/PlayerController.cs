@@ -141,7 +141,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
         public void ApplyConcussiveShells()
         {
-            logicData.IncreaseKnockback(2.5f);
+            logicData.IncreaseKnockback(3f);
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Current knockback force: {logicData.KnockbackForce}");
 
         }
