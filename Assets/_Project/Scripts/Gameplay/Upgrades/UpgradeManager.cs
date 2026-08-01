@@ -19,16 +19,16 @@ namespace ExtinctionMarine.Gameplay.Upgrades
 
             upgradePool = new List<IUpgrade>
             {
-                //new FireRateUpgrade(),
-                //new SpeedUpgrade(),
-                //new HealUpgrade(),
-                //new MaxHealthUpgrade(),
-                //new MagnetUpgrade(),
-                //new SplitShotUpgrade(),
-                //new DamageUpgrade(),
+                new FireRateUpgrade(),
+                new SpeedUpgrade(),
+                new HealUpgrade(),
+                new MaxHealthUpgrade(),
+                new MagnetUpgrade(),
+                new SplitShotUpgrade(),
+                new DamageUpgrade(),
                 new PierceUpgrade(),
-                //new BulletSpeedUpgrade(),
-                //new RearGunUpgrade(),
+                new BulletSpeedUpgrade(),
+                new RearGunUpgrade(),
                 new ConcussiveShells()
 
             };

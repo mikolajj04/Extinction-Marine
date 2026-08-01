@@ -5,7 +5,7 @@ namespace ExtinctionMarine.Gameplay.Upgrades
     public class ConcussiveShells : IUpgrade
     {
         public string Title => "[ Concussive Shells ]";
-        public string Description => "Adds +2.5 kinetic impact to bullets, knocking enemies back.";
+        public string Description => "Adds +3 kinetic impact to bullets, knocking enemies back.";
 
         public int CurrentLevel { get; set; } = 1;
         public int MaxLevel => 8;
