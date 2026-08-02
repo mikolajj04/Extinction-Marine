@@ -90,6 +90,12 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
             rb.linearVelocity = Vector2.zero;
             nextAttackTime = 0f;
+
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = originalColor;
+            }
+
             gameObject.SetActive(true);
         }
 
