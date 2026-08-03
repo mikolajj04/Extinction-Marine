@@ -15,9 +15,11 @@ namespace GameLogic.Core.Models
         public int ProjectileCount { get; private set; }
         public int RearProjectileCount { get; private set; }
         public float KnockbackForce { get; private set; }
+        public float FireRate { get; private set; }
 
         public PlayerEntity() : base(100f, 5f)
         {
+            FireRate = 0.4f;
             Level = 1;
             Experience = 0f;
             MoveSpeed = 8.5f;
@@ -83,6 +85,12 @@ namespace GameLogic.Core.Models
         {
             if (IsDead) return;
             KnockbackForce += amount;
+        }
+
+        public void IncreaseFireRate(float percentageAmount)
+        {
+            if (IsDead) return;
+            FireRate *= (1f - percentageAmount);
         }
     }
 }

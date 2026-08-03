@@ -17,7 +17,8 @@ namespace ExtinctionMarine.Gameplay.Upgrades
 
             player.ApplyFireRateUpgrade(0.15f);
 
-           
+
+
         }
     }
 }

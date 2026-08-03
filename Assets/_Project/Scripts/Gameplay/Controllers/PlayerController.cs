@@ -37,8 +37,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
        
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
-        [SerializeField] private float fireRate = 0.35f;
-        public float FireRate { get; private set; } // Fire Cooldown
+       
         private float knockbackTimer = 0f;
 
         private PlayerEntity logicData;
@@ -57,8 +56,8 @@ namespace ExtinctionMarine.Gameplay.Controllers
         public void ApplyFireRateUpgrade(float percentageAmount)
         {
 
-            FireRate *= (1f - percentageAmount); //FireRate as Fire cooldown
-            Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Fire rate increased to {FireRate}!");
+            logicData.IncreaseFireRate(percentageAmount);//FireRate as Fire cooldown
+            Debug.LogWarning($"[PlayerController] Upgrade has been choosen!: Fire rate increased to {logicData.FireRate}!");
 
         }
 
@@ -160,7 +159,6 @@ namespace ExtinctionMarine.Gameplay.Controllers
             rb = GetComponent<Rigidbody2D>();
             mainCamera = Camera.main;
             logicData = new PlayerEntity();
-            FireRate = fireRate;
         }
 
         private void Start()
@@ -206,7 +204,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             if (isFiring && fireCooldownTimer <= 0f)
             {
                 Shoot();
-                fireCooldownTimer = FireRate;
+                fireCooldownTimer = logicData.FireRate;
             }
             
         }
