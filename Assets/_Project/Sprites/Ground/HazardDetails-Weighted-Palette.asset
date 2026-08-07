@@ -40,9 +40,9 @@ MonoBehaviour:
   - Sprite: {fileID: 6168242764846019233, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
     Weight: 5
   - Sprite: {fileID: 17632545256679610, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 20
   - Sprite: {fileID: 7834827419432904826, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 20
   - Sprite: {fileID: -1380313871555113762, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
     Weight: 2
   - Sprite: {fileID: -8831124181157262195, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
@@ -54,15 +54,15 @@ MonoBehaviour:
   - Sprite: {fileID: -8038303908866255392, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
     Weight: 5
   - Sprite: {fileID: -7477829721743814308, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 1
   - Sprite: {fileID: -9122418517666406487, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
     Weight: 5
   - Sprite: {fileID: -4205621613280577380, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 20
   - Sprite: {fileID: -2787267217498075036, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 20
   - Sprite: {fileID: 3010383081412936085, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 1
   - Sprite: {fileID: 8720625977761883874, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
     Weight: 2
   - Sprite: {fileID: 8658250313691720932, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
@@ -72,12 +72,12 @@ MonoBehaviour:
   - Sprite: {fileID: 4238714433339269472, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
     Weight: 4
   - Sprite: {fileID: -2442150948770247834, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 1
   - Sprite: {fileID: 4581350179557179, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 1
   - Sprite: {fileID: 5659135960268946513, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
     Weight: 1
   - Sprite: {fileID: -3305316472522422035, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
     Weight: 1
   - Sprite: {fileID: 0}
-    Weight: 500
+    Weight: 800

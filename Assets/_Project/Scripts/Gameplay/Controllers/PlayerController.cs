@@ -458,6 +458,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                
                 boundaryDamageTimer = 0f;
             }
+            
         }
 
     }
