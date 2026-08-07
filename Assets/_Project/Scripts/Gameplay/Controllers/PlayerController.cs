@@ -450,7 +450,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 {
                     ApplyDamage(boundaryDamage);
                     boundaryDamageTimer = boundaryTickRate; 
-                    Debug.LogWarning("[Toxic Zone] Marine wyszedł poza teren! Kwas wyżera pancerz!");
+                    Debug.LogWarning("[Hazard Zone] Marine went beyond the borders! Radiation is slowly killing you!");
                 }
             }
             else
