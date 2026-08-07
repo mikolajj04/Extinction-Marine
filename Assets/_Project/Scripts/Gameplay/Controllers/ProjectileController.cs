@@ -65,6 +65,13 @@ namespace ExtinctionMarine.Gameplay.Controllers
         
         private void OnTriggerEnter2D(Collider2D other)
         {
+
+            if (other.CompareTag("Obstacle"))
+            {
+                Deactivate();
+                return;
+            }
+
             if (other.TryGetComponent<EnemyController>(out var enemy))
             {
            

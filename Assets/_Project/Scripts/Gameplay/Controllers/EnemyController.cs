@@ -136,7 +136,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             {
                 Collider2D neighbor = separationBuffer[i];
 
-                if (neighbor.gameObject != gameObject && neighbor.TryGetComponent<EnemyController>(out _))
+                if (neighbor.gameObject != gameObject && (neighbor.TryGetComponent<EnemyController>(out _) || neighbor.CompareTag("Obstacle")))
                 {
                     ColliderDistance2D colDist = Physics2D.Distance(myCollider, neighbor);
                     float trueDistance = colDist.isOverlapped ? 0f : colDist.distance;
@@ -156,12 +156,12 @@ namespace ExtinctionMarine.Gameplay.Controllers
                         float mySize = myCollider.bounds.extents.sqrMagnitude;
                         float neighborSize = neighbor.bounds.extents.sqrMagnitude;
 
-                        if (mySize < 0.1f) mySize = 0.1f; 
+                        if (mySize < 0.1f) mySize = 0.1f;
 
-                      
-                        float sizeRatio = Mathf.Clamp(neighborSize / mySize, 0.1f, 5f);
 
-                      
+                        float sizeRatio = neighbor.CompareTag("Obstacle") ? 10f : Mathf.Clamp(neighborSize / mySize, 0.1f, 5f);
+
+
                         float pushStrength = 1f - (trueDistance / separationRadius);
 
                      

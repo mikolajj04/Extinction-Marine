@@ -37,7 +37,13 @@ namespace ExtinctionMarine.Gameplay.Controllers
        
         [Header("Combat Dependencies")]
         [SerializeField] private ProjectilePool projectilePool;
-       
+
+        [Header("Toxic Boundary Settings")]
+        [SerializeField] private float mapBoundaryLimit = 150f; 
+        [SerializeField] private float boundaryDamage = 5f;
+        [SerializeField] private float boundaryTickRate = 0.5f; 
+        private float boundaryDamageTimer = 0f;
+
         private float knockbackTimer = 0f;
 
         private PlayerEntity logicData;
@@ -206,6 +212,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 Shoot();
                 fireCooldownTimer = logicData.FireRate;
             }
+            CheckToxicBoundary();
             
         }
         private void Shoot()
@@ -431,6 +438,29 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 transform.rotation = Quaternion.Euler(0f, 0f, -tiltAngle);
             }
         }
+        private void CheckToxicBoundary()
+        {
+            
+            if (Mathf.Abs(transform.position.x) >= mapBoundaryLimit || Mathf.Abs(transform.position.y) >= mapBoundaryLimit)
+            {
+                
+                boundaryDamageTimer -= Time.deltaTime;
+
+                if (boundaryDamageTimer <= 0f)
+                {
+                    ApplyDamage(boundaryDamage);
+                    boundaryDamageTimer = boundaryTickRate; 
+                    Debug.LogWarning("[Hazard Zone] Marine went beyond the borders! Radiation is slowly killing you!");
+                }
+            }
+            else
+            {
+               
+                boundaryDamageTimer = 0f;
+            }
+            
+        }
+
     }
 
 }
