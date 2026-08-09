@@ -44,11 +44,11 @@ MonoBehaviour:
   - Sprite: {fileID: 7834827419432904826, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
     Weight: 20
   - Sprite: {fileID: -1380313871555113762, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 1
   - Sprite: {fileID: -8831124181157262195, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 1
   - Sprite: {fileID: 2559353452002593538, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
-    Weight: 2
+    Weight: 1
   - Sprite: {fileID: 5118096160549724643, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
     Weight: 3
   - Sprite: {fileID: -8038303908866255392, guid: 8127b7dcc379c9a49b2c7596b2b54546, type: 3}
