@@ -165,6 +165,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             rb = GetComponent<Rigidbody2D>();
             mainCamera = Camera.main;
             logicData = new PlayerEntity();
+           
         }
 
         private void Start()
@@ -258,6 +259,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 projectilePool.FireProjectile(firePoint.position, rotatedDirection, logicData.Damage, logicData.ProjectileSpeed, logicData.PenetrationCount, logicData.KnockbackForce);
             }
         }
+        
 
         private Vector2 RotateVector(Vector2 vector, float degrees)
         {
