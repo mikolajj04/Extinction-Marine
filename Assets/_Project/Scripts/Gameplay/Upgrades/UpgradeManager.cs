@@ -29,7 +29,8 @@ namespace ExtinctionMarine.Gameplay.Upgrades
                 new PierceUpgrade(),
                 new BulletSpeedUpgrade(),
                 new RearGunUpgrade(),
-                new ConcussiveShells()
+                new ConcussiveShells(),
+                new MassUpgrade()
 
             };
         }
