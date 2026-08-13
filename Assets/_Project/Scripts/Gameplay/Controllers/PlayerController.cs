@@ -150,6 +150,15 @@ namespace ExtinctionMarine.Gameplay.Controllers
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Current knockback force: {logicData.KnockbackForce}");
 
         }
+        public void ApplyMassUpgrade(float amount)
+        {
+            logicData.IncreaseMass(amount);
+            if (rb != null)
+            {
+                rb.mass = logicData.Mass;
+                Debug.LogWarning($"[PlayerController] Upgrade chosen! Marine mass increased to {logicData.Mass}.");
+            }
+        }
 
         private void UpdateLevelUI()
         {
@@ -165,7 +174,8 @@ namespace ExtinctionMarine.Gameplay.Controllers
             rb = GetComponent<Rigidbody2D>();
             mainCamera = Camera.main;
             logicData = new PlayerEntity();
-           
+            rb.mass = logicData.Mass;
+
         }
 
         private void Start()
