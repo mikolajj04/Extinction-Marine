@@ -9,7 +9,7 @@ namespace ExtinctionMarine.Gameplay.Upgrades
         public class MassUpgrade : IUpgrade
         {
             public string Title => "[ TITANIUM EXOSKELETON ]";
-            public string Description => "Increases Marine's mass by 15. High knockback resistance and heavy pushing power.";
+            public string Description => "Increases Marine's mass by 10. High knockback resistance and heavy pushing power.";
 
             public int CurrentLevel { get; set; } = 0;
             public int MaxLevel => 5;
@@ -17,7 +17,7 @@ namespace ExtinctionMarine.Gameplay.Upgrades
             public void Apply(PlayerController player)
             {
                 
-                player.ApplyMassUpgrade(15f);
+                player.ApplyMassUpgrade(10f);
             }
         }
 }
