@@ -20,7 +20,7 @@
 </p>
 </div>
 
-> ⚠️ **Notice:** GIFs abowe might not fully reflect the current state of the game - development moves fast, and new mechanics/assets are being deployed continuously.**
+> ⚠️ **Notice:** GIFs above might not fully reflect the current state of the game - development moves fast, and new mechanics/assets are being deployed continuously.
 
 
 ## 🏗️ Technical Showcase & Architecture
