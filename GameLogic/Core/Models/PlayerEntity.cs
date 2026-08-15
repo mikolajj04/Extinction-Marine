@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace GameLogic.Core.Models
@@ -10,12 +11,14 @@ namespace GameLogic.Core.Models
         public int Level { get; private set; }
         public float Experience { get; private set; }
         public float MoveSpeed { get; private set; }
+        public float Mass { get; private set; }
         public int PenetrationCount { get; private set; }
         public float ProjectileSpeed { get; private set; }
         public int ProjectileCount { get; private set; }
         public int RearProjectileCount { get; private set; }
         public float KnockbackForce { get; private set; }
         public float FireRate { get; private set; }
+
 
         public PlayerEntity() : base(100f, 5f)
         {
@@ -28,6 +31,7 @@ namespace GameLogic.Core.Models
             ProjectileCount = 1;
             RearProjectileCount = 0;
             KnockbackForce = 0;
+            Mass = 8f;
         }
 
 
@@ -91,6 +95,11 @@ namespace GameLogic.Core.Models
         {
             if (IsDead) return;
             FireRate *= (1f - percentageAmount);
+        }
+
+        public void IncreaseMass(float amount)
+        {
+            Mass += amount;
         }
     }
 }

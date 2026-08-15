@@ -9,7 +9,7 @@ namespace GameLogic.Core.Models
         public TriceratopsEntity() : base(100f, 35f, 5.5f, 180f)
         {
             IsImmuneToKnockback = true;
-            MeleeKnockbackForce = 480f;
+            MeleeKnockbackForce = 640f;
         }
 
         protected override void Die()
