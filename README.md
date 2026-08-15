@@ -19,7 +19,8 @@
   <em>Gameplay Preview: Action-packed combat featuring scale-aware swarm AI and custom upgrade mechanics.</em>
 </p>
 </div>
-> ⚠️ **Notice: GIFs abowe might not fully reflect the current state of the game - development moves fast, and new mechanics/assets are being deployed continuously.**
+
+> ⚠️ **Notice:** GIFs abowe might not fully reflect the current state of the game - development moves fast, and new mechanics/assets are being deployed continuously.**
 
 
 ## 🏗️ Technical Showcase & Architecture
