@@ -38,7 +38,7 @@ To sustain hundreds of active entities and projectiles simultaneously at 60+ FPS
 ### 3. Scale-Aware Swarm AI (Boids Separation)
 Standard top-down physics engines suffer from "clumping" anomalies when pushing hundreds of steering agents toward a single target. This engine features a custom **Anti-Jitter Swarm Separation Algorithm**:
 * **Edge-to-Edge Distance Calculation:** Instead of measuring center-to-center transforms (which collapses large hitboxes), the AI calculates distances utilizing the `Physics2D.Distance` schema.
-* **Mass & Extents Awareness:** Small `MicroRaptors` organically yield to massive `Diplodocus (7x10)` blockades via runtime bounding volume checks (`bounds.extents.sqrMagnitude`), dynamically amplifying separation forces with a smooth, linear velocity `Vector2.Lerp`.
+* **Mass & Extents Awareness:** Small `MicroRaptors` organically yield to massive `Diplodocus` blockades via runtime bounding volume checks (`bounds.extents.sqrMagnitude`), dynamically amplifying separation forces with a smooth, linear velocity `Vector2.Lerp`.
 
 ### 4. Modular Interface-Driven Upgrade System
 Weapon and marine stats scale dynamically through a highly decoupled interface ecosystem (`IUpgrade`).
