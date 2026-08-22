@@ -116,6 +116,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 rb.linearVelocity = Vector2.zero;
                 return;
             }
+            logicData.Tick(Time.fixedDeltaTime);
             if (knockbackTimer > 0f)
             {
                 knockbackTimer -= Time.fixedDeltaTime;
@@ -179,7 +180,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             Vector2 targetDirection = (directionToPlayer + (separationForce * separationWeight)).normalized;
             Vector2 targetVelocity = targetDirection * logicData.Speed;
 
-            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVelocity, Time.fixedDeltaTime * 12f);
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVelocity, Time.fixedDeltaTime * logicData.Agility);
         }
 
 
