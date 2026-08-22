@@ -6,11 +6,12 @@ namespace GameLogic.Core.Models
 {
     public abstract class DinosaurEntity : Entity
     {
-        public float Speed { get; private set; }
+        public float Speed { get; protected set; }
         public float XpReward { get; private set; }
         public bool IsImmuneToKnockback { get; protected set; } = false;
         public float MeleeKnockbackForce { get; protected set; } = 0f;
         public bool IsImpenetrable { get; protected set; } = false;
+        public float Agility { get; protected set; } = 12f;
 
        
         protected DinosaurEntity(float maxHealth, float baseDamage, float speed, float xpReward)
@@ -19,5 +20,7 @@ namespace GameLogic.Core.Models
             Speed = speed;
             XpReward = xpReward;
         }
+
+        public virtual void Tick(float deltatime) { }
     }
 }
