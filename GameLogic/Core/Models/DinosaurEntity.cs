@@ -23,5 +23,11 @@ namespace GameLogic.Core.Models
         }
 
         public virtual void Tick(float deltatime) { }
+
+        public virtual void ResetEntity()
+        {
+            CurrentHealth = MaxHealth;
+            IsUsingSpecialAbility = false;
+        }
     }
 }
