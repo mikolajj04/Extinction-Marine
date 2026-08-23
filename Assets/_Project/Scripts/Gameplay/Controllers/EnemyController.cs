@@ -30,6 +30,10 @@ namespace ExtinctionMarine.Gameplay.Controllers
         [SerializeField] private float flashDuration = 0.1f;
         private Color originalColor;
         private Coroutine flashCoroutine;
+        private int specialAbilityHash;
+        private bool hasSpecialAbilityParam;
+        private bool hasAttackParam;
+        private int attackTriggerHash;
 
         [Header("Identity")]
         [Tooltip("Choose dinosaur spiecies!")]
@@ -63,7 +67,23 @@ namespace ExtinctionMarine.Gameplay.Controllers
             {
                 originalColor = spriteRenderer.color;   
             }
+            specialAbilityHash = Animator.StringToHash("IsUsingSpecialAbility");
+            attackTriggerHash = Animator.StringToHash("Attack");
 
+            if (animator != null)
+            {
+                foreach (var param in animator.parameters)
+                {
+                    if (param.nameHash == specialAbilityHash)
+                    {
+                        hasSpecialAbilityParam = true;           
+                    }
+                    if (param.nameHash == attackTriggerHash)
+                    {
+                        hasAttackParam = true; 
+                    }
+                }
+            }
         }
 
         private DinosaurEntity CreateEntityModel()
@@ -86,11 +106,16 @@ namespace ExtinctionMarine.Gameplay.Controllers
             playerTransform = target;
             returnToPool = onDeathCallback;
 
-            logicData = CreateEntityModel();
-
+            if (logicData == null)
+            {
+                logicData = CreateEntityModel();
+            }
+            logicData.ResetEntity();
             rb.linearVelocity = Vector2.zero;
             nextAttackTime = 0f;
+            knockbackTimer = 0f;
 
+            flashCoroutine = null;
             if (spriteRenderer != null)
             {
                 spriteRenderer.color = originalColor;
@@ -238,9 +263,9 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
                     nextAttackTime = Time.time + attackCooldown;
 
-                    if(animator != null)
+                    if(animator != null && hasAttackParam)
                     {
-                        animator.SetTrigger("Attack");
+                        animator.SetTrigger(attackTriggerHash);
                     }
 
                     Debug.Log($"[EnemyController] {species} bites the player for {logicData.Damage} damage!");
@@ -250,9 +275,9 @@ namespace ExtinctionMarine.Gameplay.Controllers
         private void Update()
         {
             UpdateVisuals();
-            if (animator != null && logicData != null)
+            if (animator != null && logicData != null && hasSpecialAbilityParam)
             {
-                animator.SetBool("IsUsingSpecialAbility", logicData.IsUsingSpecialAbility);
+                animator.SetBool(specialAbilityHash, logicData.IsUsingSpecialAbility);
             }
 
         }
