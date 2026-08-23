@@ -412,41 +412,36 @@ namespace ExtinctionMarine.Gameplay.Controllers
             return level * 50f * (level + 0.5f);
         }
         private void RotateTowardsMouse()
+
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (Mouse.current == null) return;
 
-         
+            Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
+            Vector3 mousePos = mainCamera.ScreenToWorldPoint(mouseScreenPos);
             Vector2 direction = mousePos - transform.position;
-
-        
             Vector3 characterScale = transform.localScale;
 
             if (direction.x > 0)
             {
-          
                 characterScale.x = Mathf.Abs(characterScale.x);
             }
             else if (direction.x < 0)
             {
-
                 characterScale.x = -Mathf.Abs(characterScale.x);
             }
 
             transform.localScale = characterScale;
 
-
             float tiltAngle = Mathf.Atan2(direction.y, Mathf.Abs(direction.x)) * Mathf.Rad2Deg;
 
             tiltAngle = Mathf.Clamp(tiltAngle, -30f, 30f);
 
-           
             if (direction.x > 0)
             {
                 transform.rotation = Quaternion.Euler(0f, 0f, tiltAngle);
             }
             else if (direction.x < 0)
             {
-                
                 transform.rotation = Quaternion.Euler(0f, 0f, -tiltAngle);
             }
         }
