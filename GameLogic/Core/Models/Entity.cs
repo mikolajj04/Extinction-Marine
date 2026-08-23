@@ -7,7 +7,7 @@ namespace GameLogic.Core.Models
     public abstract class Entity
     {
         public float MaxHealth { get; private set;}
-        public float CurrentHealth { get; private set; }
+        public float CurrentHealth { get; protected set; }
         public float Damage { get; protected set; }
 
         public bool IsDead => CurrentHealth <= 0;

@@ -12,8 +12,9 @@ namespace GameLogic.Core.Models
         public float MeleeKnockbackForce { get; protected set; } = 0f;
         public bool IsImpenetrable { get; protected set; } = false;
         public float Agility { get; protected set; } = 12f;
+        public bool IsUsingSpecialAbility { get; protected set; } = false;
 
-       
+
         protected DinosaurEntity(float maxHealth, float baseDamage, float speed, float xpReward)
             : base(maxHealth, baseDamage)
         {
@@ -22,5 +23,11 @@ namespace GameLogic.Core.Models
         }
 
         public virtual void Tick(float deltatime) { }
+
+        public virtual void ResetEntity()
+        {
+            CurrentHealth = MaxHealth;
+            IsUsingSpecialAbility = false;
+        }
     }
 }

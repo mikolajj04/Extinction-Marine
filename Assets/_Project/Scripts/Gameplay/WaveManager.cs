@@ -133,5 +133,15 @@ namespace ExtinctionMarine.Gameplay.Spawning
 
             return new Vector2(player.transform.position.x + x, player.transform.position.y + y);
         }
+
+        private void OnDrawGizmos() //Debug method
+        {
+            if (player != null)
+            {
+              
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireSphere(player.transform.position, spawnRadius);
+            }
+        }
     }
 }
