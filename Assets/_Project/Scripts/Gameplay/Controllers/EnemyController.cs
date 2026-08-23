@@ -250,6 +250,11 @@ namespace ExtinctionMarine.Gameplay.Controllers
         private void Update()
         {
             UpdateVisuals();
+            if (animator != null && logicData != null)
+            {
+                animator.SetBool("IsUsingSpecialAbility", logicData.IsUsingSpecialAbility);
+            }
+
         }
 
         private void UpdateVisuals()
