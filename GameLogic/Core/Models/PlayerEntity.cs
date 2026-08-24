@@ -41,10 +41,7 @@ namespace GameLogic.Core.Models
             Experience += amount;
         }
 
-        protected override void Die()
-        {
-
-        }
+        
         public void LevelUp()
         {
             Level++;

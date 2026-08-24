@@ -12,7 +12,6 @@ namespace GameLogic.Core.Models
             IsImmuneToKnockback = true;
         }
 
-        protected override void Die() { }
     }
 
 }

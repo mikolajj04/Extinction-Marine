@@ -27,11 +27,9 @@ namespace GameLogic.Core.Models
 
             CurrentHealth -= amount;
             if (CurrentHealth < 0) { CurrentHealth = 0; }
-            if(CurrentHealth == 0) { Die(); }
 
         }
 
-        protected abstract void Die();
 
         public virtual void Heal(float amount)
         {

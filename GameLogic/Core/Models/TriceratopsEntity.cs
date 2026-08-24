@@ -12,9 +12,5 @@ namespace GameLogic.Core.Models
             MeleeKnockbackForce = 640f;
         }
 
-        protected override void Die()
-        {
-            
-        }
     }
 }
