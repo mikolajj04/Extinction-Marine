@@ -293,10 +293,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 0
+        x: 1
         y: 0
-        width: 480
-        height: 64
+        width: 479
+        height: 55
       spriteId: 91403007522fbfd448e5322145554258
     linkedCells: []
     tileCells: []

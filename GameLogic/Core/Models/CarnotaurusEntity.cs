@@ -7,14 +7,14 @@ namespace GameLogic.Core.Models
     public class CarnotaurusEntity : DinosaurEntity
     {
         
-        private float chargeDuration = 3f;
-        private float chargeCooldown = 6f;
+        private float chargeDuration = 2f;
+        private float chargeCooldown = 5f;
         private float timer;
         private float baseSpeed;
         private float baseAgility;
-        public CarnotaurusEntity() : base(1000f, 60f, 7f, 500f)
+        public CarnotaurusEntity() : base(1000f, 45f, 7f, 500f)
         {
-            MeleeKnockbackForce = 300f;
+            MeleeKnockbackForce = 350f;
             IsImmuneToKnockback = true;
             IsImpenetrable = true;
             baseSpeed = Speed;
@@ -37,7 +37,7 @@ namespace GameLogic.Core.Models
                 else
                 {
                     IsUsingSpecialAbility = true;
-                    Speed = baseSpeed * 4.5f;
+                    Speed = baseSpeed * 6f;
                     Agility= baseAgility * 0.05f;
                     timer = chargeDuration;
                 }
@@ -46,7 +46,6 @@ namespace GameLogic.Core.Models
 
         
 
-        protected override void Die() { }
 
         public override void ResetEntity()
         {
