@@ -7,7 +7,14 @@ using Random = UnityEngine.Random;
 
 namespace ExtinctionMarine.Gameplay.Spawning
 {
+    
   
+    [Serializable]
+    public struct PoolSpawnWeight{
+        public EnemyPool Pool;
+        [Min(1)] public int Weight;
+    }
+
     [Serializable]
     public class WaveConfig
     {
@@ -16,8 +23,8 @@ namespace ExtinctionMarine.Gameplay.Spawning
         public float TimeToStart;
         [Tooltip("How often do we spawn a new enemy?")]
         public float SpawnRate;
-        [Tooltip("List of pools (EnemyPool) from which the manager can draw in this wave")]
-        public EnemyPool[] AllowedPools;
+        [Tooltip("List of pools with their spawn weights (e.g. Raptor=3, Diplodocus=1)")]
+        public PoolSpawnWeight[] AllowedPools;
 
         [Header("Boss Event (Optional)")]
         [Tooltip("Is the Boss supposed spawn in the moment this wave starts?")]
@@ -97,9 +104,26 @@ namespace ExtinctionMarine.Gameplay.Spawning
         {
             if (currentWave.AllowedPools == null || currentWave.AllowedPools.Length == 0) return;
 
-            
-            int randomIndex = Random.Range(0, currentWave.AllowedPools.Length);
-            EnemyPool selectedPool = currentWave.AllowedPools[randomIndex];
+            int totalWeight = 0;
+            foreach (var item in currentWave.AllowedPools)
+            {
+                totalWeight += item.Weight;
+            }
+
+            int randomValue = Random.Range(0, totalWeight);
+            EnemyPool selectedPool = null;
+
+            int currentWeight = 0;
+            foreach (var item in currentWave.AllowedPools)
+            {
+                currentWeight += item.Weight;
+                if (randomValue < currentWeight)
+                {
+                    selectedPool = item.Pool;
+                    break;
+                }
+            }
+            if (selectedPool == null) return;
 
             Vector2 spawnPos = GetSpawnPositionOffScreen();
 
