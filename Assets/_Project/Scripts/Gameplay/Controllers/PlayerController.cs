@@ -205,8 +205,6 @@ namespace ExtinctionMarine.Gameplay.Controllers
         {
          
             if (IsDead) return;
-            moveInput.x = Input.GetAxisRaw("Horizontal");
-            moveInput.y = Input.GetAxisRaw("Vertical");
             bool isMoving = moveInput.magnitude > 0.1f;
             if (animator != null)
             {
