@@ -3,3 +3,4 @@
 *.hlsl linguist-vendored
 *.cginc linguist-vendored
 *.shadergraph linguist-vendored
+*.unity filter=lfs diff=lfs merge=lfs -text
