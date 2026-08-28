@@ -57,8 +57,9 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
 
         public bool IsDead => logicData.IsDead;
+        public Vector2 AimDirection { get; private set; }
 
-       //Upgrade Gates:
+        //Upgrade Gates:
         public void ApplyFireRateUpgrade(float percentageAmount)
         {
 
@@ -417,6 +418,8 @@ namespace ExtinctionMarine.Gameplay.Controllers
             Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
             Vector3 mousePos = mainCamera.ScreenToWorldPoint(mouseScreenPos);
             Vector2 direction = mousePos - transform.position;
+
+            AimDirection = direction.normalized;
             Vector3 characterScale = transform.localScale;
 
             if (direction.x > 0)

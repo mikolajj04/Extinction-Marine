@@ -8,7 +8,7 @@ namespace GameLogic.Core.Models
     {
         public RaptorEntity() : base(20f, 15f, 6.5f, 15f)
         {
-
+          
         }
 
     }
