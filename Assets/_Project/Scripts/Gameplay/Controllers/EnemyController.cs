@@ -163,7 +163,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 float distanceToPlayer = toEnemy.magnitude;
                 float dotProduct = Vector2.Dot(player.AimDirection, toEnemy.normalized);
 
-                if (dotProduct <= 0.5f || distanceToPlayer <= 5.0f)
+                if (dotProduct <= 0f || distanceToPlayer <= 4f)
                 {
                     targetPosition = playerTransform.position; 
                     Debug.DrawLine(transform.position, targetPosition, Color.red);
