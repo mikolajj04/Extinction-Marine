@@ -28,6 +28,8 @@ namespace ExtinctionMarine.Gameplay.Controllers
         [SerializeField] private Animator animator;
         [SerializeField] private SpriteRenderer spriteRenderer;
         private Vector3 baseScale;
+        [SerializeField] private SpriteRenderer shadowRenderer;
+        private float originalShadowAlpha;
         [SerializeField] private Color hitFlashColor = new Color(1f, 0f, 0f, 0.5f);
         [SerializeField] private float flashDuration = 0.1f;
         private Color originalColor;
@@ -69,6 +71,10 @@ namespace ExtinctionMarine.Gameplay.Controllers
             if(spriteRenderer!= null)
             {
                 originalColor = spriteRenderer.color;   
+            }
+            if (shadowRenderer != null)
+            {
+                originalShadowAlpha = shadowRenderer.color.a;
             }
             specialAbilityHash = Animator.StringToHash("IsUsingSpecialAbility");
             attackTriggerHash = Animator.StringToHash("Attack");
@@ -163,7 +169,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 float distanceToPlayer = toEnemy.magnitude;
                 float dotProduct = Vector2.Dot(player.AimDirection, toEnemy.normalized);
 
-                if (dotProduct <= 0f || distanceToPlayer <= 4f)
+                if (dotProduct <= logicData.AttackConeThreshold || distanceToPlayer <= 4f)
                 {
                     targetPosition = playerTransform.position; 
                     Debug.DrawLine(transform.position, targetPosition, Color.red);
@@ -325,6 +331,22 @@ namespace ExtinctionMarine.Gameplay.Controllers
             {
   
                 transform.localScale = new Vector3(-Mathf.Abs(baseScale.x), baseScale.y, baseScale.z);
+            }
+            if (spriteRenderer != null && flashCoroutine == null)
+            {
+                Color currentColor = spriteRenderer.color;
+
+                
+                currentColor.a = Mathf.Lerp(currentColor.a, logicData.TargetAlpha, Time.deltaTime * 3f);
+                spriteRenderer.color = currentColor;
+
+                originalColor = new Color(originalColor.r, originalColor.g, originalColor.b, currentColor.a);
+            }
+            if (shadowRenderer != null)
+            {
+                Color shadowColor = shadowRenderer.color;
+                shadowColor.a = Mathf.Lerp(shadowColor.a, originalShadowAlpha * logicData.TargetAlpha, Time.deltaTime * 3f);
+                shadowRenderer.color = shadowColor;
             }
         }
 

@@ -185,10 +185,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExtinctionMarine.Gameplay.EnemyController
   animator: {fileID: 2008788917319184719}
   spriteRenderer: {fileID: 8111463201997180917}
+  shadowRenderer: {fileID: 0}
   hitFlashColor: {r: 1, g: 0.6179246, b: 0.6179246, a: 1}
   flashDuration: 0.1
   species: 5
-  attackCooldown: 1
+  attackCooldown: 2
   separationRadius: 1.5
   separationWeight: 1
 --- !u!95 &2008788917319184719

@@ -14,6 +14,8 @@ namespace GameLogic.Core.Models
         public float Agility { get; protected set; } = 12f;
         public bool IsUsingSpecialAbility { get; protected set; } = false;
         public bool IsSneaky { get; protected set; } = false;
+        public virtual float TargetAlpha => 1f;
+        public float AttackConeThreshold { get; protected set; } = 0f;
 
 
         protected DinosaurEntity(float maxHealth, float baseDamage, float speed, float xpReward)
