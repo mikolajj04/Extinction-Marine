@@ -15,7 +15,9 @@ namespace ExtinctionMarine.Gameplay.Controllers
         MicroRaptor,
         Carnotaurus,
         Diplodocus,
-        Stegosaurus
+        Stegosaurus,
+        Dilophosaurus
+
     }
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))] 
@@ -48,6 +50,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
         [SerializeField] private float separationWeight = 1.5f;
         public static event Action<Vector3, float> OnEnemyKilled;
         private Transform playerTransform;
+        private PlayerController player;
         private DinosaurEntity logicData;
         private Rigidbody2D rb;
         private Collider2D myCollider;
@@ -97,6 +100,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 DinosaurSpecies.Carnotaurus => new CarnotaurusEntity(),
                 DinosaurSpecies.Diplodocus => new DiplodocusEntity(),
                 DinosaurSpecies.Stegosaurus => new StegosaurusEntity(),
+                DinosaurSpecies.Dilophosaurus => new DilophosaurusEntity(),
                 _ => new RaptorEntity() 
             };
         }
@@ -104,6 +108,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
         public void Initialize(Transform target, Action<EnemyController> onDeathCallback)
         {
             playerTransform = target;
+            player = target.GetComponent<PlayerController>();
             returnToPool = onDeathCallback;
 
             if (logicData == null)
@@ -135,26 +140,51 @@ namespace ExtinctionMarine.Gameplay.Controllers
             knockbackTimer = 0.2f;
         }
         private void FixedUpdate()
-        {
+        {        
             if (logicData == null || logicData.IsDead || playerTransform == null)
             {
                 rb.linearVelocity = Vector2.zero;
                 return;
             }
+
             logicData.Tick(Time.fixedDeltaTime);
             if (knockbackTimer > 0f)
             {
-                knockbackTimer -= Time.fixedDeltaTime;
-
-               
+                knockbackTimer -= Time.fixedDeltaTime;       
                 rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, Time.fixedDeltaTime * 5f);
 
                 return; 
             }
 
-            Vector2 directionToPlayer = (playerTransform.position - transform.position).normalized;
-            Vector2 separationForce = Vector2.zero;
+            Vector2 targetPosition = playerTransform.position;
+            if (logicData.IsSneaky)
+            {
+                Vector2 toEnemy = (Vector2)transform.position - (Vector2)playerTransform.position;
+                float distanceToPlayer = toEnemy.magnitude;
+                float dotProduct = Vector2.Dot(player.AimDirection, toEnemy.normalized);
 
+                if (dotProduct <= 0.5f || distanceToPlayer <= 5.0f)
+                {
+                    targetPosition = playerTransform.position; 
+                    Debug.DrawLine(transform.position, targetPosition, Color.red);
+                }
+                else
+                {
+                    float side = (player.AimDirection.x * toEnemy.y - player.AimDirection.y * toEnemy.x) > 0 ? 1f : -1f;
+
+                    Vector2 perpendicular = new Vector2(-player.AimDirection.y, player.AimDirection.x) * side;
+                    Vector2 bypassPoint = (Vector2)playerTransform.position - (player.AimDirection * 1f) + (perpendicular * 10f);
+
+                    targetPosition = bypassPoint;
+                    Debug.DrawLine(transform.position, targetPosition, Color.blue);
+                }
+            }
+
+            
+
+            Vector2 directionToTarget = (targetPosition - (Vector2)transform.position).normalized;
+            Vector2 separationForce = Vector2.zero;
+               
             float scanRadius = separationRadius + 5f;
             int hitCount = Physics2D.OverlapCircle(transform.position, scanRadius,ContactFilter2D.noFilter, separationBuffer);
 
@@ -201,15 +231,14 @@ namespace ExtinctionMarine.Gameplay.Controllers
                     }
                 }
             }
-
-            Vector2 targetDirection = (directionToPlayer + (separationForce * separationWeight)).normalized;
-            Vector2 targetVelocity = targetDirection * logicData.Speed;
+            
+            Vector2 finalDirection = (directionToTarget + (separationForce * separationWeight)).normalized;
+            Vector2 targetVelocity = finalDirection * logicData.Speed;
 
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVelocity, Time.fixedDeltaTime * logicData.Agility);
         }
 
-
-
+         
 
         public void TakeDamage(float amount)
         {
@@ -231,7 +260,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 Die();
             }
         }
-
+        
         private void Die()
         {
             Debug.Log($"[EnemyController] {species} eliminated, recycling into pool.");
