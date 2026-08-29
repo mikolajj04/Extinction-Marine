@@ -37,8 +37,8 @@ namespace GameLogic.Core.Models
                 else
                 {
                     IsUsingSpecialAbility = true;
-                    Speed = baseSpeed * 6f;
-                    Agility= baseAgility * 0.05f;
+                    Speed = baseSpeed * 7f;
+                    Agility= baseAgility * 0.08f;
                     timer = chargeDuration;
                 }
             }
