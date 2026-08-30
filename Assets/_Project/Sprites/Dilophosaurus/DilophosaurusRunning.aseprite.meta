@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d8406ed5b31aa24478662ddebfae792a
+guid: 5acc7774a51dbd741b0889c1c5a64012
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 0
+    spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 16
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639235649635474019
+  platformSettingsDirtyTick: 639235540038679038
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: MarineRunV2 1
+  - name: DilophosaurusRunning
     originalName: 
-    pivot: {x: 0.49999997, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 218
+      width: 128
       height: 32
-    spriteID: 38e69f817cfd82644976f15ff1d23ab4
+    spriteID: 7f703ee30d0f86a43a899ca93c041e99
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -149,9 +149,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: MarineRunV2 1_0
+  - name: DilophosaurusRunning
     originalName: 
-    pivot: {x: 0.49, y: 0.003}
+    pivot: {x: 0.53, y: 0.003}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -161,7 +161,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 27c15309346ec0541bdab8b0c4a2081d
+    spriteID: e7e578d9a052260438d9885ef1da455d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,9 +170,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: MarineRunV2 1_1
+  - name: DilophosaurusRunning_1
     originalName: 
-    pivot: {x: 0.49, y: 0.003}
+    pivot: {x: 0.53, y: 0.003}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -182,7 +182,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 99bc671ecd7d2284cae7a3d02348ef3d
+    spriteID: c9b8e5e50a7f8924ca931d6dad849c95
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -191,9 +191,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: MarineRunV2 1_2
+  - name: DilophosaurusRunning_2
     originalName: 
-    pivot: {x: 0.49, y: 0.003}
+    pivot: {x: 0.53, y: 0.003}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -203,7 +203,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 6a1a7bcbee71f2c43bc5e18746485cac
+    spriteID: 2b201bcc4e22f3e4da7af51c01e8fc43
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,9 +212,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: MarineRunV2 1_3
+  - name: DilophosaurusRunning_3
     originalName: 
-    pivot: {x: 0.49, y: 0.003}
+    pivot: {x: 0.53, y: 0.003}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -224,70 +224,7 @@ ScriptedImporter:
       y: 0
       width: 32
       height: 32
-    spriteID: 51ee7cd9866513844884422130049a17
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: MarineRunV2 1_4
-    originalName: 
-    pivot: {x: 0.49, y: 0.003}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 128
-      y: 0
-      width: 32
-      height: 32
-    spriteID: b15a29723ad9de749952829eb588e42a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: MarineRunV2 1_5
-    originalName: 
-    pivot: {x: 0.49, y: 0.003}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 160
-      y: 0
-      width: 32
-      height: 32
-    spriteID: a8563ce56d435e04aad7d1f84132f6db
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: MarineRunV2 1_6
-    originalName: 
-    pivot: {x: 0.49, y: 0.003}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 192
-      y: 0
-      width: 32
-      height: 32
-    spriteID: 35989c2e15de84f42a2ad636a49ed330
+    spriteID: dc4fa91e686a9e7458bf7946c5d4a329
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -300,25 +237,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 3391318786
+      value0: 3972390169
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: MarineRunV2 1
+    name: DilophosaurusRunning
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: MarineRunV2 1
+    - name: DilophosaurusRunning
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 223
+        width: 128
         height: 32
-      spriteId: 38e69f817cfd82644976f15ff1d23ab4
+      spriteId: 7f703ee30d0f86a43a899ca93c041e99
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -352,5 +289,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 224, y: 32}
-  previousTextureSize: {x: 256, y: 32}
+  canvasSize: {x: 128, y: 32}
+  previousTextureSize: {x: 128, y: 32}
