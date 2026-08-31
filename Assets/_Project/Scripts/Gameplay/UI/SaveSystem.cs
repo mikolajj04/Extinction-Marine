@@ -3,7 +3,7 @@ using System.IO;
 using UnityEngine;
 
 
-namespace ExtinctionMarine.Gameplay.Save
+namespace ExtinctionMarine.Gameplay.UI
 {
     [Serializable]
     public class ArmorySaveData
