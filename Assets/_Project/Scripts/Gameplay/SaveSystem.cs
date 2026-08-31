@@ -15,37 +15,49 @@ namespace ExtinctionMarine.Gameplay.Save
         public int CarnotaurusKills = 0;
         public float LongestSurvivedTime = 0f;
     }
+
+    [Serializable]
+    public class SettingsSaveData
+    {
+        public float MasterVolume = 1.0f;
+        public float MusicVolume = 1.0f;
+        public float SfxVolume = 1.0f;
+        public bool IsFullscreen = true;
+    }
+
     public static class SaveSystem
     {
-        private static string SavePath => Application.persistentDataPath + "/marine_armory.json";
-        public static void Save(ArmorySaveData data)
+        public static void Save<T>(T data, string fileName)
         {
+            string path = Path.Combine(Application.persistentDataPath, fileName);
             try { 
             string json = JsonUtility.ToJson(data, true);
-                File.WriteAllText(SavePath, json);
-                Debug.Log($"[SaveSystem] Data saved on the disk: {SavePath}");
+                File.WriteAllText(path, json);
+                Debug.Log($"[SaveSystem] Data ({typeof(T).Name}) saved on the disk: {path}");
             }
             catch(Exception ex)
             {
-                Debug.Log($"[SaveSystem] I/O write error: {ex.Message}");
+                Debug.Log($"[SaveSystem] I/O write error (file: {fileName}) Error : {ex.Message}");
             }
         }
 
-        public static ArmorySaveData Load()
+        public static T Load<T>(string fileName) where T : new()
         {
+            string path = Path.Combine(Application.persistentDataPath, fileName);
             try {
-                if (File.Exists(SavePath)) { 
+                if (File.Exists(path)) { 
  
 
-                    string json = File.ReadAllText(SavePath);
-                    return JsonUtility.FromJson<ArmorySaveData>(json);
+                    string json = File.ReadAllText(path);
+                    return JsonUtility.FromJson<T>(json);
                 }
             }
             catch(Exception ex)
             {
-                Debug.Log($"[SaveSystem] The log file is corrupted or no permissions: {ex}");
+                Debug.Log($"[SaveSystem] The log file ({fileName}) is corrupted or no permissions: {ex}");
             }
-            return new ArmorySaveData();
+            Debug.LogWarning($"[SaveSystem] Creating new file for: {typeof(T).Name}.");
+            return new T();
         }
 
     }
