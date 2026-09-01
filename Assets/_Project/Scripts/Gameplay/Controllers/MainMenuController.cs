@@ -4,7 +4,7 @@ using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace ExtinctionMarine.Gameplay.UI
+namespace ExtinctionMarine.Gameplay.Controllers
 {
     public class MainMenuController : MonoBehaviour
     {

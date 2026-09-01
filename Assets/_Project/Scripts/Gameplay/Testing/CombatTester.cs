@@ -3,7 +3,7 @@
 //using GameLogic.Core.Systems;
 //using GameLogic.Core.Models;
 
-//namespace ExtinctionMarine.Gameplay
+//namespace ExtinctionMarine.Gameplay.Testing
 //{
 //    public class CombatTester : MonoBehaviour
 //    {

@@ -5,7 +5,7 @@ using ExtinctionMarine.Gameplay.Pools;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace ExtinctionMarine.Gameplay.Spawning
+namespace ExtinctionMarine.Gameplay.Systems
 {
     
   
