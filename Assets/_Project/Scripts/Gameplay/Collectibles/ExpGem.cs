@@ -2,7 +2,7 @@
 using System;
 using ExtinctionMarine.Gameplay.Controllers;
 
-namespace ExtinctionMarine.Gameplay
+namespace ExtinctionMarine.Gameplay.Collectibles
 {
     public class ExpGem : MonoBehaviour
     {
