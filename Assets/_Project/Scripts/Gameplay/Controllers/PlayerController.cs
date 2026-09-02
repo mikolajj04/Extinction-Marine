@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using ExtinctionMarine.Gameplay.Abilities;
 using ExtinctionMarine.Gameplay.Pools;
 using ExtinctionMarine.Gameplay.UI;
 using GameLogic.Core.Models;
@@ -46,12 +47,14 @@ namespace ExtinctionMarine.Gameplay.Controllers
 
         private float knockbackTimer = 0f;
 
+        private DashAbility dashAbility;
         private PlayerEntity logicData;
         private Rigidbody2D rb;
         private Vector2 moveInput;
+        public Vector2 MoveInput => moveInput;
         private Camera mainCamera;
         public static event Action OnPlayerLevelUp;
-
+       
         private bool isFiring;
         private float fireCooldownTimer;
 
@@ -176,6 +179,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             mainCamera = Camera.main;
             logicData = new PlayerEntity();
             rb.mass = logicData.Mass;
+            dashAbility = GetComponent<DashAbility>();
 
         }
 
@@ -295,6 +299,10 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 knockbackTimer -= Time.fixedDeltaTime;
                 rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, Time.fixedDeltaTime * 5f);
                 return;
+            }
+            if (dashAbility != null && dashAbility.IsDashing)
+            {
+                return; 
             }
             MovePlayer();
         }
