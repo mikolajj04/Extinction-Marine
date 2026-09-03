@@ -8,7 +8,7 @@ namespace ExtinctionMarine.Gameplay.Systems
     [Serializable]
     public class ArmorySaveData
     {
-        public bool IsDashUnlocked = false;
+        public bool IsDashUnlocked = true;
         public bool IsGrenadeUnlocked = false;
         public bool IsShieldUnlocked = false;
 

@@ -419,7 +419,6 @@ namespace ExtinctionMarine.Gameplay.Controllers
             return level * 50f * (level + 0.5f);
         }
         private void RotateTowardsMouse()
-
         {
             if (Mouse.current == null) return;
 
@@ -428,30 +427,18 @@ namespace ExtinctionMarine.Gameplay.Controllers
             Vector2 direction = mousePos - transform.position;
 
             AimDirection = direction.normalized;
-            Vector3 characterScale = transform.localScale;
 
-            if (direction.x > 0)
+            if (animator != null)
             {
-                characterScale.x = Mathf.Abs(characterScale.x);
-            }
-            else if (direction.x < 0)
-            {
-                characterScale.x = -Mathf.Abs(characterScale.x);
-            }
+                float angle = Mathf.Atan2(AimDirection.y, AimDirection.x) * Mathf.Rad2Deg;
 
-            transform.localScale = characterScale;
+                float snappedAngle = Mathf.Round(angle / 45f) * 45f;
 
-            float tiltAngle = Mathf.Atan2(direction.y, Mathf.Abs(direction.x)) * Mathf.Rad2Deg;
+                float rad = snappedAngle * Mathf.Deg2Rad;
+                Vector2 snappedDirection = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
 
-            tiltAngle = Mathf.Clamp(tiltAngle, -30f, 30f);
-
-            if (direction.x > 0)
-            {
-                transform.rotation = Quaternion.Euler(0f, 0f, tiltAngle);
-            }
-            else if (direction.x < 0)
-            {
-                transform.rotation = Quaternion.Euler(0f, 0f, -tiltAngle);
+                animator.SetFloat("AimX", snappedDirection.x);
+                animator.SetFloat("AimY", snappedDirection.y);
             }
         }
         private void CheckToxicBoundary()
