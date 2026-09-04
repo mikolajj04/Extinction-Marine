@@ -464,7 +464,51 @@ namespace ExtinctionMarine.Gameplay.Controllers
             
         }
 
+        //DEV METHODS
+        [ContextMenu("DEV CHEAT: Overkill Damage")]
+        public void CheatMaxDamage()
+        {
+            if (logicData == null) return;
+           
+            for (int i = 0; i < 5; i++)
+            {
+                ApplyDamageUpgrade();
+            }
+            Debug.LogWarning("[DEV] Overkill Damage activated!");
+        }
+
+        [ContextMenu("DEV CHEAT: Minigun Fire Rate")]
+        public void CheatMinigun()
+        {
+            if (logicData == null) return;
+            
+            ApplyFireRateUpgrade(0.8f);
+            Debug.LogWarning("[DEV] Fire Rate To the moon!");
+        }
+
+        [ContextMenu("DEV CHEAT: Heal to max HP")]
+        public void CheatHeal()
+        {
+            if (logicData == null) return;
+
+            ApplyHeal(100);
+            Debug.LogWarning("[DEV] Healed to max HP!");
+        }
+        [ContextMenu("DEV CHEAT: Boost speed")]
+        public void CheatSpeed()
+        {
+            if (logicData == null) return;
+
+            ApplySpeedUpgrade(10);
+            Debug.LogWarning("[DEV] I cant stop, I cant stop...");
+        }
+
+
     }
+
+
+
+
 
 }
 
