@@ -30,7 +30,7 @@ namespace ExtinctionMarine.Gameplay.UI
             
             EnemyController.OnEnemyKilled -= RegisterKill;
         }
-        private void RegisterKill(Vector3 deathPosition, float xpAmount)
+        private void RegisterKill(Vector3 deathPosition, float xpAmount, DinosaurSpecies species)
         {
             currentKills++;
         }

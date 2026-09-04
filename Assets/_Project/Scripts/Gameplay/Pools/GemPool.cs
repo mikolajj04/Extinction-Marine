@@ -39,7 +39,7 @@ namespace ExtinctionMarine.Gameplay.Pools
             return gem;
         }
 
-        private void SpawnGemAtPosition(Vector3 deathPosition, float xpAmount)
+        private void SpawnGemAtPosition(Vector3 deathPosition, float xpAmount, DinosaurSpecies species)
         {
             ExpGem gem = pool.Count > 0 ? pool.Dequeue() : CreateNewGem();
             gem.Initialize(deathPosition, ReturnGem, xpAmount);

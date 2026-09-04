@@ -50,7 +50,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
         [Header("Swarm Behavior")]
         [SerializeField] private float separationRadius = 1.0f;
         [SerializeField] private float separationWeight = 1.5f;
-        public static event Action<Vector3, float> OnEnemyKilled;
+        public static event Action<Vector3, float, DinosaurSpecies> OnEnemyKilled;
         private Transform playerTransform;
         private PlayerController player;
         private DinosaurEntity logicData;
@@ -270,7 +270,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
         private void Die()
         {
             Debug.Log($"[EnemyController] {species} eliminated, recycling into pool.");
-            OnEnemyKilled?.Invoke(transform.position, logicData.XpReward);
+            OnEnemyKilled?.Invoke(transform.position, logicData.XpReward, species);
             returnToPool?.Invoke(this);
 
         }
