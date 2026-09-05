@@ -10,7 +10,7 @@ namespace ExtinctionMarine.Gameplay.Abilities
     public class ArmoryManager : MonoBehaviour
     {
         [Header("Ability UI Elements")]
-        [Tooltip("Icon Button of Ability in menu")]
+        [Tooltip("Icon/Button of Ability in menu")]
         [SerializeField] private Button dashButton;
 
         [Tooltip("Status Text")]
@@ -22,7 +22,7 @@ namespace ExtinctionMarine.Gameplay.Abilities
             RefreshArmoryState();
         }
 
-        public void RefreshArmoryState()
+        private void RefreshArmoryState()
         {
             currentData = SaveSystem.Load<ArmorySaveData>("marine_armory.json");
 

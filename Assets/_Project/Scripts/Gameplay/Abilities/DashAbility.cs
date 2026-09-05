@@ -34,7 +34,8 @@ namespace ExtinctionMarine.Gameplay.Abilities
         private void Start()
         {
             ArmorySaveData save = SaveSystem.Load<ArmorySaveData>("marine_armory.json");
-            isDashUnlocked = save.IsDashUnlocked;
+
+            isDashUnlocked = save.IsDashUnlocked && save.EquippedAbility == "DASH";
         }
         public void OnDash(InputValue value)
         {
