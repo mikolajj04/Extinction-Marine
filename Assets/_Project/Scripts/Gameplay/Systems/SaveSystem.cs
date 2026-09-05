@@ -14,6 +14,7 @@ namespace ExtinctionMarine.Gameplay.Systems
 
         public int CarnotaurusKills = 0;
         public float LongestSurvivedTime = 0f;
+        public string EquippedAbility = "";
     }
 
     [Serializable]
