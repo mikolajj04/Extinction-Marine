@@ -10,7 +10,7 @@ namespace ExtinctionMarine.Gameplay.Abilities
     public class ArmoryManager : MonoBehaviour
     {
         [Header("Ability UI Elements")]
-        [Tooltip("Icon/Button of Ability in menu")]
+        [Tooltip("Icon Button of Ability in menu")]
         [SerializeField] private Button dashButton;
 
         [Tooltip("Status Text")]
@@ -22,20 +22,42 @@ namespace ExtinctionMarine.Gameplay.Abilities
             RefreshArmoryState();
         }
 
-        private void RefreshArmoryState()
+        public void RefreshArmoryState()
         {
             currentData = SaveSystem.Load<ArmorySaveData>("marine_armory.json");
+
             if (currentData.IsDashUnlocked)
             {
-                dashButton.interactable = true;
-                if (dashStatusText != null) dashStatusText.text = "UNLOCKED";
+                if (currentData.EquippedAbility == "DASH")
+                {
+                    dashStatusText.text = "EQUIPPED";
+                    dashButton.interactable = false; 
+                }
+                else
+                {
+                    dashStatusText.text = "EQUIP";
+                    dashButton.interactable = true; 
+                }
             }
             else
             {
+                dashStatusText.text = $"KILL CARNOTAURUS ({currentData.CarnotaurusKills}/1)";
                 dashButton.interactable = false;
-                if (dashStatusText != null) dashStatusText.text = $"KILL CARNOTAURUS ({currentData.CarnotaurusKills}/1)";
             }
+        }
+
+        
+        public void OnEquipDashClicked()
+        {
+            currentData.EquippedAbility = "DASH";
+
+            SaveSystem.Save(currentData, "marine_armory.json");
+
+            RefreshArmoryState();
+            Debug.Log("[Armory] Dash has been equipped!");
         }
     }
 }
+    
+
 
