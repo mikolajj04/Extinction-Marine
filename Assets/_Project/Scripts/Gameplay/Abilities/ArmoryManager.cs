@@ -25,17 +25,39 @@ namespace ExtinctionMarine.Gameplay.Abilities
         private void RefreshArmoryState()
         {
             currentData = SaveSystem.Load<ArmorySaveData>("marine_armory.json");
+
             if (currentData.IsDashUnlocked)
             {
-                dashButton.interactable = true;
-                if (dashStatusText != null) dashStatusText.text = "UNLOCKED";
+                if (currentData.EquippedAbility == "DASH")
+                {
+                    dashStatusText.text = "EQUIPPED";
+                    dashButton.interactable = false; 
+                }
+                else
+                {
+                    dashStatusText.text = "EQUIP";
+                    dashButton.interactable = true; 
+                }
             }
             else
             {
+                dashStatusText.text = $"KILL CARNOTAURUS ({currentData.CarnotaurusKills}/1)";
                 dashButton.interactable = false;
-                if (dashStatusText != null) dashStatusText.text = $"KILL CARNOTAURUS ({currentData.CarnotaurusKills}/1)";
             }
+        }
+
+        
+        public void OnEquipDashClicked()
+        {
+            currentData.EquippedAbility = "DASH";
+
+            SaveSystem.Save(currentData, "marine_armory.json");
+
+            RefreshArmoryState();
+            Debug.Log("[Armory] Dash has been equipped!");
         }
     }
 }
+    
+
 
