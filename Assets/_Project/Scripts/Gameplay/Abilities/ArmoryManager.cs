@@ -12,9 +12,11 @@ namespace ExtinctionMarine.Gameplay.Abilities
         [Header("Ability UI Elements")]
         [Tooltip("Icon/Button of Ability in menu")]
         [SerializeField] private Button dashButton;
+        [SerializeField] private Button noneButton;
 
         [Tooltip("Status Text")]
         [SerializeField] private TMP_Text dashStatusText;
+        [SerializeField] private TMP_Text noneStatusText;
         private ArmorySaveData currentData;
 
         private void OnEnable()
@@ -44,6 +46,21 @@ namespace ExtinctionMarine.Gameplay.Abilities
                 dashStatusText.text = $"KILL CARNOTAURUS ({currentData.CarnotaurusKills}/1)";
                 dashButton.interactable = false;
             }
+            if(currentData.EquippedAbility == "NONE")
+            {
+                noneStatusText.text = "EQUIPPED";
+                noneButton.interactable = false;
+            }else if (currentData.EquippedAbility == "")
+            {
+                noneStatusText.text = "EQUIPPED";
+                noneButton.interactable = false;
+            }
+            else 
+            {
+                noneStatusText.text = "EQUIP";
+                noneButton.interactable = true;
+            }
+            
         }
 
         
@@ -55,6 +72,16 @@ namespace ExtinctionMarine.Gameplay.Abilities
 
             RefreshArmoryState();
             Debug.Log("[Armory] Dash has been equipped!");
+        }
+
+        public void OnEquipNoneClicked()
+        {
+            currentData.EquippedAbility = "NONE";
+
+            SaveSystem.Save(currentData, "marine_armory.json");
+
+            RefreshArmoryState();
+            Debug.Log("[Armory] NONE has been equipped!");
         }
     }
 }
