@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using ExtinctionMarine.Gameplay.Systems;
 using GameLogic.Core.Models;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -251,6 +252,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             if (logicData == null || logicData.IsDead) return;
 
             logicData.TakeDamage(amount);
+            AudioManager.Instance.PlayHit();
             Debug.Log($"[EnemyController] {species} took {amount} damage. HP: {logicData.CurrentHealth}");
             if (spriteRenderer != null)
             {

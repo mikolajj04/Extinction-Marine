@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using ExtinctionMarine.Gameplay.Abilities;
 using ExtinctionMarine.Gameplay.Pools;
+using ExtinctionMarine.Gameplay.Systems;
 using ExtinctionMarine.Gameplay.UI;
 using GameLogic.Core.Models;
 using TMPro;
@@ -18,7 +19,10 @@ namespace ExtinctionMarine.Gameplay.Controllers
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour
     {
-        
+        [Header("Audio")]
+        [SerializeField] private float footstepInterval = 0.35f;
+        private float currentFootstepTimer = 0f;
+
         [SerializeField] private Transform firePoint;
         [Header("VFX")]
         [SerializeField] private Image damageOverlay;
@@ -216,6 +220,19 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 animator.SetBool("IsRunning", isMoving);
             }
 
+            if (isMoving)
+            {
+                currentFootstepTimer -= Time.deltaTime;
+                if(currentFootstepTimer <= 0f)
+                {
+                    AudioManager.Instance.PlayFootstep();
+                    currentFootstepTimer = footstepInterval;
+                }
+            }
+            else
+            {
+                currentFootstepTimer = 0f;
+            }
             RotateTowardsMouse();
 
             fireCooldownTimer -= Time.deltaTime;
@@ -247,7 +264,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             {
                 muzzleFlash.Play();
             }
-
+            AudioManager.Instance.PlayShoot();
             CameraController.Instance.TriggerShake(0.1f, 0.15f);
 
 
@@ -333,6 +350,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
                 healthBar.UpdateBar(logicData.CurrentHealth, logicData.MaxHealth);
             }
 
+            AudioManager.Instance.PlayPlayerHurt();
             CameraController.Instance.TriggerShake(0.15f, 0.3f);
             if (damageOverlay != null)
             {
@@ -404,6 +422,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
            
             if (logicData.Experience >= expNeededForCurrentLevel)
             {
+                AudioManager.Instance.PlayLevelUp();
                 logicData.LevelUp();
                 UpdateLevelUI();
                 OnPlayerLevelUp?.Invoke();

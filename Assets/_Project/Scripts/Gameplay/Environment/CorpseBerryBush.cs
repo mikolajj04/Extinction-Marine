@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using ExtinctionMarine.Gameplay.Controllers;
+﻿using ExtinctionMarine.Gameplay.Controllers;
+using ExtinctionMarine.Gameplay.Systems;
+using UnityEngine;
 
 namespace ExtinctionMarine.Gameplay.Environment
 {
@@ -30,11 +31,13 @@ namespace ExtinctionMarine.Gameplay.Environment
 
                 if (isToxic)
                 {
+                    AudioManager.Instance.PlayPlayerHurt();
                     player.ApplyDamage(effectAmount);
                     Debug.LogWarning($"[Environment] Corpse Berry was TOXIC! Marine lost {effectAmount} HP.");
                 }
                 else
                 {
+                    AudioManager.Instance.PlayHealingBerry();
                     player.ApplyHeal(effectAmount);
                     Debug.Log($"[Environment] Corpse Berry was safe. Marine recovered {effectAmount} HP.");
                 }

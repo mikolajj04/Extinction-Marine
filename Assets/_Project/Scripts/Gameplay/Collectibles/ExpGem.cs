@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using ExtinctionMarine.Gameplay.Controllers;
+using ExtinctionMarine.Gameplay.Systems;
 
 namespace ExtinctionMarine.Gameplay.Collectibles
 {
@@ -70,6 +71,7 @@ namespace ExtinctionMarine.Gameplay.Collectibles
             {
                 player.AddExperience(expAmount);
             }
+            AudioManager.Instance.PlayExpGemPickup();
 
             gameObject.SetActive(false);
             returnToPool?.Invoke(this);
