@@ -57,7 +57,7 @@ namespace ExtinctionMarine.Gameplay.Systems
             {
                 Debug.Log($"[SaveSystem] The log file ({fileName}) is corrupted or no permissions: {ex}");
             }
-            Debug.LogWarning($"[SaveSystem] Creating new file for: {typeof(T).Name}.");
+            Debug.LogWarning($"[SaveSystem] File not found. Creating default memory instance for: {typeof(T).Name}.");
             return new T();
         }
 
