@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ExtinctionMarine.Gameplay.Controllers;
+using ExtinctionMarine.Gameplay.Systems;
 using UnityEngine;
 
 namespace ExtinctionMarine.Gameplay.Environment
@@ -28,7 +29,7 @@ namespace ExtinctionMarine.Gameplay.Environment
             
             if (collision.TryGetComponent<PlayerController>(out var player))
             {
-               
+                AudioManager.Instance.PlayHealingBerry();
                 player.ApplyHeal(healAmount);
 
                
