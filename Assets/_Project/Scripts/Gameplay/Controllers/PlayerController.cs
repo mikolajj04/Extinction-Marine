@@ -129,15 +129,15 @@ namespace ExtinctionMarine.Gameplay.Controllers
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Brand new rear-gun installed! Number of rear-guns: {logicData.RearProjectileCount}");
         }
 
-        public void ApplyDamageUpgrade()
+        public void ApplyDamageUpgrade(float amount)
         {
-            logicData.IncreaseDamage(2f);
+            logicData.IncreaseDamage(amount);
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Damage of your projectiles {logicData.Damage}");
         }
 
-        public void ApplyBulletSpeedUpgrade()
+        public void ApplyBulletSpeedUpgrade(float amount)
         {
-            logicData.IncreaseProjectileSpeed(5f);
+            logicData.IncreaseProjectileSpeed(amount);
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Current speed of your projectiles {logicData.ProjectileSpeed}");
         }
 
@@ -148,9 +148,9 @@ namespace ExtinctionMarine.Gameplay.Controllers
         
         }
 
-        public void ApplyConcussiveShells()
+        public void ApplyConcussiveShells(float force)
         {
-            logicData.IncreaseKnockback(3f);
+            logicData.IncreaseKnockback(force);
             Debug.LogWarning($"[PlayerController] Upgrade has been chosen!: Bullets has been upgraded. Current knockback force: {logicData.KnockbackForce}");
 
         }
@@ -469,12 +469,10 @@ namespace ExtinctionMarine.Gameplay.Controllers
         public void CheatMaxDamage()
         {
             if (logicData == null) return;
-           
-            for (int i = 0; i < 5; i++)
-            {
-                ApplyDamageUpgrade();
-            }
-            Debug.LogWarning("[DEV] Overkill Damage activated!");
+                   
+            
+             ApplyDamageUpgrade(15f);
+            
         }
 
         [ContextMenu("DEV CHEAT: Minigun Fire Rate")]

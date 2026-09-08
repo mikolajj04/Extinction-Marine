@@ -15,7 +15,7 @@ namespace ExtinctionMarine.Gameplay.Upgrades
         public void Apply(PlayerController player)
         {
 
-            player.ApplyBulletSpeedUpgrade();
+            player.ApplyBulletSpeedUpgrade(5f);
 
 
         }
