@@ -1,4 +1,5 @@
 ﻿using System;
+using ExtinctionMarine.Gameplay.Systems;
 using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
@@ -27,6 +28,11 @@ namespace ExtinctionMarine.Gameplay.Controllers
         {
             Time.timeScale = 1f;
             ShowPanel(mainPanel);
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayMenuMusic();
+            }
+
         }
 
         public void OpenArmory()
