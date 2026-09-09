@@ -6,11 +6,15 @@ namespace ExtinctionMarine.Gameplay.Systems
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager Instance { get; private set; }
+        [Header("Music Settings")]
+        [SerializeField] private AudioSource musicSource;
+        [SerializeField] private AudioClip menuMusicClip;
         [Header("Audio Sources")]
         [SerializeField] private AudioSource uiSource;
         [SerializeField] private AudioSource sfxSource;
         [SerializeField] private AudioSource gemSource;
         [SerializeField] private AudioSource movementSource;
+
 
         [Header("UI Clips")]
         [SerializeField] private AudioClip hoverClip;
@@ -37,6 +41,28 @@ namespace ExtinctionMarine.Gameplay.Systems
             else
             {
                 Destroy(gameObject);
+            }
+        }
+        //MUSIC
+        public void PlayMenuMusic()
+        {
+            if (musicSource == null || menuMusicClip == null) return;
+
+            if (musicSource.isPlaying && musicSource.clip == menuMusicClip) return;
+
+            musicSource.clip = menuMusicClip;
+            musicSource.loop = true;      
+            musicSource.pitch = 1.0f;     
+            musicSource.volume = 0.5f;    
+            musicSource.Play();
+        }
+
+        
+        public void StopMusic()
+        {
+            if (musicSource != null)
+            {
+                musicSource.Stop();
             }
         }
 
