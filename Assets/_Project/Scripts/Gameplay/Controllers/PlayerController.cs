@@ -393,6 +393,7 @@ namespace ExtinctionMarine.Gameplay.Controllers
             Debug.LogWarning("[Unity View] TRIGGER GAME OVER: Marine has been killed");
             if (gameOverScreen != null)
             {
+                AudioManager.Instance.PlayMarineDeath();
                 gameOverScreen.ShowGameOver();
             }
 

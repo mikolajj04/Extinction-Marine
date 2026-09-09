@@ -26,7 +26,8 @@ namespace ExtinctionMarine.Gameplay.Systems
         [SerializeField] private AudioClip expGemPickingClip;
         [SerializeField] private AudioClip playerHurtClip;
         [SerializeField] private AudioClip levelUpClip;
-        [SerializeField] private AudioClip HealingBerryClip;
+        [SerializeField] private AudioClip healingBerryClip;
+        [SerializeField] private AudioClip marineDeathClip;
 
         [Header("Movement")]
         [SerializeField] private AudioClip footstepClip;
@@ -105,9 +106,9 @@ namespace ExtinctionMarine.Gameplay.Systems
         }
         public void PlayHealingBerry()
         {
-            if (HealingBerryClip == null) return;
+            if (healingBerryClip == null) return;
             gemSource.pitch = Random.Range(0.8f, 1f);
-            sfxSource.PlayOneShot(HealingBerryClip, 0.5f);
+            sfxSource.PlayOneShot(healingBerryClip, 0.5f);
         }
         public void PlayFootstep()
         {
@@ -115,6 +116,11 @@ namespace ExtinctionMarine.Gameplay.Systems
 
             movementSource.pitch = Random.Range(0.5f, 1.5f);
             movementSource.PlayOneShot(footstepClip, 0.5f);
+        }
+        public void PlayMarineDeath()
+        {
+            if (marineDeathClip == null) return;
+            sfxSource.PlayOneShot(marineDeathClip, 1f);
         }
     }
 }
