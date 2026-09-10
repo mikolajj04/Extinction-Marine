@@ -6,6 +6,8 @@ namespace ExtinctionMarine.Gameplay.Systems
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager Instance { get; private set; }
+        private float currentMusicVolume = 1.0f;
+        private float currentSfxVolume = 1.0f;
         [Header("Music Settings")]
         [SerializeField] private AudioSource musicSource;
         [SerializeField] private AudioClip menuMusicClip;
@@ -43,6 +45,10 @@ namespace ExtinctionMarine.Gameplay.Systems
             {
                 Destroy(gameObject);
             }
+            SettingsSaveData data = SaveSystem.Load<SettingsSaveData>("settings.json");
+            currentMusicVolume = data.MusicVolume;
+            currentSfxVolume = data.SfxVolume;
+            ApplyVolumes();
         }
         //MUSIC
         public void PlayMenuMusic()
@@ -54,7 +60,6 @@ namespace ExtinctionMarine.Gameplay.Systems
             musicSource.clip = menuMusicClip;
             musicSource.loop = true;      
             musicSource.pitch = 1.0f;     
-            musicSource.volume = 0.5f;    
             musicSource.Play();
         }
 
@@ -122,5 +127,26 @@ namespace ExtinctionMarine.Gameplay.Systems
             if (marineDeathClip == null) return;
             sfxSource.PlayOneShot(marineDeathClip, 1f);
         }
+
+        //SETTINGS
+        public void SetMusicVolume(float volume)
+        {
+            currentMusicVolume = Mathf.Clamp01(volume);
+            ApplyVolumes();
+        }
+        public void SetSfxVolume(float volume)
+        {
+            currentSfxVolume = Mathf.Clamp01(volume);
+            ApplyVolumes();
+        }
+        private void ApplyVolumes()
+        {
+            if (musicSource != null) musicSource.volume = 0.5f * currentMusicVolume;
+            if (uiSource != null) uiSource.volume = 1.0f * currentSfxVolume;
+            if (sfxSource != null) sfxSource.volume = 1.0f * currentSfxVolume;
+            if (gemSource != null) gemSource.volume = 1.0f * currentSfxVolume;
+            if (movementSource != null) movementSource.volume = 1.0f * currentSfxVolume;
+        }
+
     }
 }
