@@ -1,5 +1,6 @@
 ﻿using System;
 using ExtinctionMarine.Gameplay.Systems;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
@@ -24,8 +25,15 @@ namespace ExtinctionMarine.Gameplay.Controllers
         [Tooltip("Connect Setting panel here ")]
         [SerializeField] private GameObject settingsPanel;
 
+        [Header("Version Display")]
+        [SerializeField] private TMP_Text versionText;
+
         private void Start()
         {
+            if(versionText != null)
+            {
+                versionText.text = $"v{Application.version}";
+            }
             Time.timeScale = 1f;
             ShowPanel(mainPanel);
             if (AudioManager.Instance != null)
